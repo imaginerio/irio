@@ -18,7 +18,7 @@
 </Parameters>
 
 
-<Style name="background" filter-mode="first">
+<!-- <Style name="background" filter-mode="first">
   <Rule>
     <PolygonSymbolizer fill="#f9fcc5" fill-opacity="0.5" />
   </Rule>
@@ -30,114 +30,115 @@
        <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/background.shp]]></Parameter>
        <Parameter name="type"><![CDATA[shape]]></Parameter>
     </Datasource>
-  </Layer>
+  </Layer> -->
 
 <Style name="parcels-borders" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <LineSymbolizer stroke-opacity="0.5" stroke-width="1" stroke="#8e991c" />
   </Rule>
 </Style>
 <Style name="parcels" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <PolygonPatternSymbolizer file="img/Paper-21-blur-red.png" />
     <PolygonSymbolizer fill-opacity="0.5" fill="#d4e054" />
   </Rule>
 </Style>
 <Layer name="parcels"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>parcels</StyleName>
     <StyleName>parcels-borders</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/20170713_Shapefiles/ParcelsPoly.shp]]></Parameter>
-       <Parameter name="type"><![CDATA[shape]]></Parameter>
-       <Parameter name="id"><![CDATA[parcels]]></Parameter>
-       <Parameter name="project"><![CDATA[rice]]></Parameter>
-       <Parameter name="srs"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'ParcelsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="openspaces-wpattern" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Wetlands')</Filter>
+    <Filter>[featuretyp] = 'Wetlands'</Filter>
     <PolygonPatternSymbolizer file="img/ripple4.png" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="openspaces-wfill" filter-mode="first" image-filters="agg-stack-blur(15,15)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Wetlands')</Filter>
+    <Filter>[featuretyp] = 'Wetlands'</Filter>
     <PolygonSymbolizer fill="#549fc7" fill-opacity="0.5" />
   </Rule>
 </Style>
 <Style name="openspaces-cfill" filter-mode="first" image-filters="agg-stack-blur(10,10)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Plazas')</Filter>
+    <Filter>[featuretyp] = 'Plazas'</Filter>
     <PolygonSymbolizer fill="#fff8d4" fill-opacity="0.8" />
   </Rule>
 </Style>
 <Style name="openspaces-bpattern" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Parking Lots')</Filter>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
     <PolygonPatternSymbolizer file="img/grid1.png" opacity="0.05" />
   </Rule>
 </Style>
 <Style name="openspaces-bfill" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Parking Lots')</Filter>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
     <PolygonSymbolizer fill="#c9c9c9" />
   </Rule>
 </Style>
 <Style name="openspaces-bhighlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Parking Lots')</Filter>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
     <PolygonSymbolizer geometry-transform="translate(2,2)" fill="#ffffff" fill-opacity="0.5" />
   </Rule>
 </Style>
 <Style name="openspaces-bshadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Parking Lots')</Filter>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
     <PolygonSymbolizer geometry-transform="translate(-2,-2)" fill="#969696" fill-opacity="1" />
   </Rule>
 </Style>
 <Style name="openspaces-apattern" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Athletic')</Filter>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
     <PolygonPatternSymbolizer file="img/Lines-9-reverse.png" opacity="0.1" />
   </Rule>
 </Style>
 <Style name="openspaces-afill" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Athletic')</Filter>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
     <PolygonSymbolizer fill="#50d17f" />
   </Rule>
 </Style>
 <Style name="openspaces-ahighlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Athletic')</Filter>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
     <PolygonSymbolizer geometry-transform="translate(2,2)" fill="#ffffff" fill-opacity="0.5" />
   </Rule>
 </Style>
 <Style name="openspaces-ashadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Athletic')</Filter>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
     <PolygonSymbolizer geometry-transform="translate(-2,-2)" fill="#000000" fill-opacity="0.3" />
   </Rule>
 </Style>
 <Style name="openspaces-pattern" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Agriculture')</Filter>
+    <Filter>[featuretyp] = 'Agriculture'</Filter>
     <PolygonPatternSymbolizer file="img/Lines-5.png" opacity="0.1" />
   </Rule>
 </Style>
 <Style name="openspaces-fill" filter-mode="first" image-filters="agg-stack-blur(4,4)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Agriculture')</Filter>
+    <Filter>[featuretyp] = 'Agriculture'</Filter>
     <PolygonSymbolizer fill="#6cb856" fill-opacity="0.3" />
   </Rule>
 </Style>
 <Layer name="openspaces"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>openspaces-fill</StyleName>
     <StyleName>openspaces-pattern</StyleName>
     <StyleName>openspaces-ashadow</StyleName>
@@ -152,108 +153,115 @@
     <StyleName>openspaces-wfill</StyleName>
     <StyleName>openspaces-wpattern</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/20170713_Shapefiles/OpenSpacesPoly.shp]]></Parameter>
-       <Parameter name="type"><![CDATA[shape]]></Parameter>
-       <Parameter name="id"><![CDATA[openspaces]]></Parameter>
-       <Parameter name="project"><![CDATA[rice]]></Parameter>
-       <Parameter name="srs"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="water-poly" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <PolygonSymbolizer fill="#80b0ac" />
   </Rule>
 </Style>
 <Style name="water-poly-higlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <PolygonSymbolizer fill="#ffffff" fill-opacity="0.5" geometry-transform="translate(2,2)" />
   </Rule>
 </Style>
 <Style name="water-poly-shadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <PolygonSymbolizer fill="#304d4b" fill-opacity="0.5" geometry-transform="translate(-2,-2)" />
   </Rule>
 </Style>
 <Layer name="water-poly"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>water-poly-shadow</StyleName>
     <StyleName>water-poly-higlight</StyleName>
     <StyleName>water-poly</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/20170713_Shapefiles/WaterPoly.shp]]></Parameter>
-       <Parameter name="type"><![CDATA[shape]]></Parameter>
-       <Parameter name="id"><![CDATA[water-poly]]></Parameter>
-       <Parameter name="project"><![CDATA[rice]]></Parameter>
-       <Parameter name="srs"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'WaterPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="utilities" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <LineSymbolizer stroke-width="4" stroke="#80b0ac" stroke-dasharray="8, 10" stroke-linecap="round" />
   </Rule>
 </Style>
 <Style name="utilities-under" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <LineSymbolizer stroke-width="12" stroke="#80b0ac" stroke-opacity="0.3" />
   </Rule>
 </Style>
 <Layer name="utilities"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>utilities-under</StyleName>
     <StyleName>utilities</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/20170713_Shapefiles/UtilitiesLine.shp]]></Parameter>
-       <Parameter name="type"><![CDATA[shape]]></Parameter>
-       <Parameter name="id"><![CDATA[utilities]]></Parameter>
-       <Parameter name="project"><![CDATA[rice]]></Parameter>
-       <Parameter name="srs"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'UtilitiesLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="rivers-front" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <LineSymbolizer stroke-linecap="round" stroke="#80b0ac" stroke-opacity="1" stroke-width="10" />
   </Rule>
 </Style>
 <Style name="rivers-higlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-opacity="0.5" stroke-width="8" geometry-transform="translate(2,2)" />
   </Rule>
 </Style>
 <Style name="rivers-shadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <LineSymbolizer stroke-linecap="round" stroke="#304d4b" stroke-opacity="0.5" stroke-width="10" geometry-transform="translate(-2,-2)" />
   </Rule>
 </Style>
 <Style name="rivers-glow" filter-mode="first" image-filters="agg-stack-blur(10,10)">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
     <LineSymbolizer stroke-linecap="round" stroke="#80b0ac" stroke-width="20" stroke-opacity="0.8" />
   </Rule>
 </Style>
 <Layer name="rivers"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>rivers-glow</StyleName>
     <StyleName>rivers-shadow</StyleName>
     <StyleName>rivers-higlight</StyleName>
     <StyleName>rivers-front</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/20170713_Shapefiles/WaterLine.shp]]></Parameter>
        <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'WaterLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -261,7 +269,7 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="50" stroke-opacity="1" />
   </Rule>
 </Style>
@@ -269,7 +277,7 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="20" />
   </Rule>
 </Style>
@@ -277,7 +285,7 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#ffffff" stroke-width="8" stroke-dasharray="24, 4" />
   </Rule>
 </Style>
@@ -285,45 +293,35 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="53" stroke-opacity="0.5" geometry-transform="translate(2,2)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
   </Rule>
 </Style>
 <Style name="roads-shadows20" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="53" geometry-transform="translate(-2,-2)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="22" stroke-opacity="0.5" geometry-transform="translate(-2,-2)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#737373" stroke-width="8" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
   </Rule>
 </Style>
 <Style name="roads-roads19" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="24" stroke-opacity="1" />
   </Rule>
 </Style>
@@ -331,7 +329,7 @@
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="10" />
   </Rule>
 </Style>
@@ -339,7 +337,7 @@
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#ffffff" stroke-width="8" stroke-dasharray="24, 4" />
   </Rule>
 </Style>
@@ -347,45 +345,40 @@
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="27" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
   </Rule>
 </Style>
 <Style name="roads-shadows19" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="27" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="12" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths')</Filter>
     <LineSymbolizer stroke="#737373" stroke-width="8" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
+    
   </Rule>
 </Style>
 <Style name="roads-roads18" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads')</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="18" stroke-opacity="1" />
   </Rule>
 </Style>
@@ -393,7 +386,7 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths')</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="6" />
   </Rule>
 </Style>
@@ -401,7 +394,7 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#ffffff" stroke-width="6" stroke-dasharray="24, 4" />
   </Rule>
 </Style>
@@ -409,45 +402,35 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="21" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
   </Rule>
 </Style>
 <Style name="roads-shadows18" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="21" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths')</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="8" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#737373" stroke-width="6" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
   </Rule>
 </Style>
 <Style name="roads-roads17" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="6" stroke-opacity="1" />
   </Rule>
 </Style>
@@ -455,7 +438,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="3" />
   </Rule>
 </Style>
@@ -463,7 +446,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#ffffff" stroke-width="6" stroke-dasharray="24, 4" />
   </Rule>
 </Style>
@@ -471,7 +454,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="7" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
   </Rule>
 </Style>
@@ -479,32 +462,27 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="7" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="3" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#737373" stroke-width="6" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
   </Rule>
 </Style>
 <Style name="roads-roads16" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="3" stroke-opacity="1" />
   </Rule>
 </Style>
@@ -512,7 +490,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="1.5" />
   </Rule>
 </Style>
@@ -520,7 +498,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#ffffff" stroke-width="6" stroke-dasharray="24, 4" />
   </Rule>
 </Style>
@@ -528,7 +506,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="3" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
   </Rule>
 </Style>
@@ -536,24 +514,24 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="3" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="1.5" stroke-opacity="0.5" geometry-transform="translate(-0.5,-0.5)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#737373" stroke-width="6" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
   </Rule>
 </Style>
 <Layer name="roads"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>roads-shadows16</StyleName>
     <StyleName>roads-highlight16</StyleName>
     <StyleName>roads-cowpaths16</StyleName>
@@ -581,40 +559,44 @@
     <StyleName>roads-roads20</StyleName>
     <Datasource>
        <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/20170713_Shapefiles/RoadsLine.shp]]></Parameter>
-       <Parameter name="type"><![CDATA[shape]]></Parameter>
-       <Parameter name="id"><![CDATA[roads]]></Parameter>
-       <Parameter name="project"><![CDATA[rice]]></Parameter>
-       <Parameter name="srs"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="buildings-fill" filter-mode="first">
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Residential')</Filter>
+    <Filter>[featuretyp] = 'Residential')</Filter>
     <PolygonSymbolizer fill="#fc8d62" />
     <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#a83103" stroke-opacity="0.5" />
   </Rule>
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Maintenance')</Filter>
+    <Filter>[featuretyp] = 'Maintenance')</Filter>
     <PolygonSymbolizer fill="#a6d854" />
     <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#466317" stroke-opacity="0.5" />
   </Rule>
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Athletic')</Filter>
+    <Filter>[featuretyp] = 'Athletic')</Filter>
     <PolygonSymbolizer fill="#e78ac3" />
     <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#9e206d" stroke-opacity="0.5" />
   </Rule>
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Administrative')</Filter>
+    <Filter>[featuretyp] = 'Administrative')</Filter>
     <PolygonSymbolizer fill="#8da0cb" />
     <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#344772" stroke-opacity="0.5" />
   </Rule>
   <Rule>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([FEATURETYP] = 'Academic')</Filter>
+    <Filter>[featuretyp] = 'Academic')</Filter>
     <PolygonSymbolizer fill="#66c2a5" />
     <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#215444" stroke-opacity="0.5" />
@@ -624,30 +606,30 @@
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
+    
     <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(8,8)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
+    
     <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(3,3)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
+    
     <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(12,12)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
+    
     <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(5,5)" />
   </Rule>
 </Style>
 <Layer name="buildings"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>buildings-shadow</StyleName>
     <StyleName>buildings-fill</StyleName>
     <Datasource>
@@ -663,19 +645,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="70" height="70" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -683,19 +665,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="70" height="70" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -703,19 +685,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -723,19 +705,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="70" height="70" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -743,19 +725,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="90" height="90" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="55" height="55" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="35" height="35" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -763,19 +745,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="90" height="90" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="55" height="55" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="35" height="35" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -783,19 +765,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="50" height="50" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="35" height="35" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -803,19 +785,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="50" height="50" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="35" height="35" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -823,19 +805,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="50" height="50" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="35" height="35" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -843,19 +825,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="50" height="50" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="35" height="35" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -863,19 +845,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -883,19 +865,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="70" height="70" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -903,19 +885,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="40" height="40" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -923,19 +905,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="40" height="40" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -943,19 +925,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="40" height="40" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="25" height="25" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -963,19 +945,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="40" height="40" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -983,19 +965,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="30" height="30" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="13" height="13" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -1003,19 +985,19 @@
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="30" height="30" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="13" height="13" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1023,7 +1005,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -1031,7 +1013,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1039,7 +1021,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -1047,7 +1029,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1055,7 +1037,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -1063,7 +1045,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1071,7 +1053,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -1079,7 +1061,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1087,7 +1069,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -1095,7 +1077,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree2.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1103,7 +1085,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -1111,7 +1093,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1119,7 +1101,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -1127,7 +1109,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1135,7 +1117,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -1143,7 +1125,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1151,7 +1133,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -1159,7 +1141,7 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1167,7 +1149,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -1175,20 +1157,20 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000)</Filter>
+    
   </Rule>
 </Style>
 <Style name="trees-16object32" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -1196,7 +1178,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree2.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1204,7 +1186,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -1212,7 +1194,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 3) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 3) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1220,7 +1202,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="6" height="6" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -1228,7 +1210,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="6" height="6" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1236,7 +1218,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -1244,7 +1226,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree2.svg" width="6" height="6" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1252,7 +1234,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -1260,7 +1242,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 2) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 2) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1268,7 +1250,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="4" height="4" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
@@ -1276,7 +1258,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 3)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 3)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="4" height="4" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1284,7 +1266,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="4" height="4" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
@@ -1292,7 +1274,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 2)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 2)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="4" height="4" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
@@ -1300,7 +1282,7 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
@@ -1308,12 +1290,12 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 2000) and ([LASTDISPLA] &gt;= 2000) and ([SIZE] = 1) and ([SHAPE] = 1)</Filter>
+    <Filter>[SIZE] = 1) and ([SHAPE] = 1)</Filter>
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="6" height="6" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Layer name="trees"
-  srs="+proj=lcc +lat_1=28.38333333333333 +lat_2=30.28333333333333 +lat_0=27.83333333333333 +lon_0=-99 +x_0=600000 +y_0=3999999.999999999 +datum=NAD83 +units=us-ft +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>trees-16shadow11</StyleName>
     <StyleName>trees-16object11</StyleName>
     <StyleName>trees-16shadow12</StyleName>
