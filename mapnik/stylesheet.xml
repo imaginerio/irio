@@ -1,1555 +1,1363 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map[]>
-<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" buffer-size="1000" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-image="img/Paper-21-blur-red.png" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
 
 <Parameters>
-  <Parameter name="bounds">-44.04944719,-23.10243406,-42.65988214,-22.63003187</Parameter>
-  <Parameter name="center">-43.2073,-22.9039,14</Parameter>
+  <Parameter name="bounds">-95.4266,29.7025,-95.3773,29.7295</Parameter>
+  <Parameter name="center">-95.4022,29.7174,16</Parameter>
   <Parameter name="format">png8</Parameter>
-  <Parameter name="interactivity_layer"></Parameter>
-  <Parameter name="interactivity_fields"></Parameter>
-  <Parameter name="minzoom">13</Parameter>
-  <Parameter name="maxzoom">18</Parameter>
+  <Parameter name="minzoom">16</Parameter>
+  <Parameter name="maxzoom">20</Parameter>
   <Parameter name="scale">1</Parameter>
-  <Parameter name="metatile">1</Parameter>
-  <Parameter name="id"><![CDATA[rio]]></Parameter>
-  <Parameter name="_updated">1449520709000</Parameter>
-  <Parameter name="name"><![CDATA[Rio]]></Parameter>
+  <Parameter name="metatile">2</Parameter>
+  <Parameter name="id"><![CDATA[rice]]></Parameter>
+  <Parameter name="_updated">1503544521000</Parameter>
+  <Parameter name="name"><![CDATA[rice]]></Parameter>
   <Parameter name="tilejson"><![CDATA[2.0.0]]></Parameter>
   <Parameter name="scheme"><![CDATA[xyz]]></Parameter>
 </Parameters>
 
 
-<Style name="forests" filter-mode="first">
+<!-- <Style name="background" filter-mode="first">
   <Rule>
-    <PolygonPatternSymbolizer file="../../../images/forest.png" opacity="0.2" />
+    <PolygonSymbolizer fill="#f9fcc5" fill-opacity="0.5" />
   </Rule>
 </Style>
-<Layer name="forests"
+<Layer name="background"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>forests</StyleName>
+    <StyleName>background</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/background.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer> -->
+
+<Style name="parcels-borders" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <LineSymbolizer stroke-opacity="0.5" stroke-width="1" stroke="#8e991c" />
+  </Rule>
+</Style>
+<Style name="parcels" filter-mode="first">
+  <Rule>
+    <PolygonPatternSymbolizer file="img/Paper-21-blur-red.png" />
+    <PolygonSymbolizer fill-opacity="0.5" fill="#d4e054" />
+  </Rule>
+</Style>
+<Layer name="parcels"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>parcels</StyleName>
+    <StyleName>parcels-borders</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'GroundCoverPoly' AND stylename='forests' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'ParcelsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
-<Style name="spit-pattern" filter-mode="first">
+<Style name="openspaces-wpattern" filter-mode="first">
   <Rule>
-    <PolygonPatternSymbolizer opacity="0.9" file="../../../images/spit.png" />
+    <Filter>[featuretyp] = 'Wetlands'</Filter>
+    <PolygonPatternSymbolizer file="img/ripple4.png" opacity="0.8" />
   </Rule>
 </Style>
-<Style name="spit" filter-mode="first" image-filters="agg-stack-blur(5,5)" image-filters-inflate="true">
+<Style name="openspaces-wfill" filter-mode="first" image-filters="agg-stack-blur(15,15)">
   <Rule>
-    <PolygonSymbolizer fill="#d9d6a7" fill-opacity="0.6" />
+    <Filter>[featuretyp] = 'Wetlands'</Filter>
+    <PolygonSymbolizer fill="#549fc7" fill-opacity="0.5" />
   </Rule>
 </Style>
-<Layer name="spit"
+<Style name="openspaces-cfill" filter-mode="first" image-filters="agg-stack-blur(10,10)">
+  <Rule>
+    <Filter>[featuretyp] = 'Plazas'</Filter>
+    <PolygonSymbolizer fill="#fff8d4" fill-opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="openspaces-bpattern" filter-mode="first">
+  <Rule>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
+    <PolygonPatternSymbolizer file="img/grid1.png" opacity="0.05" />
+  </Rule>
+</Style>
+<Style name="openspaces-bfill" filter-mode="first">
+  <Rule>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
+    <PolygonSymbolizer fill="#c9c9c9" />
+  </Rule>
+</Style>
+<Style name="openspaces-bhighlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
+    <PolygonSymbolizer geometry-transform="translate(2,2)" fill="#ffffff" fill-opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="openspaces-bshadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <Filter>[featuretyp] = 'Parking Lots'</Filter>
+    <PolygonSymbolizer geometry-transform="translate(-2,-2)" fill="#969696" fill-opacity="1" />
+  </Rule>
+</Style>
+<Style name="openspaces-apattern" filter-mode="first">
+  <Rule>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
+    <PolygonPatternSymbolizer file="img/Lines-9-reverse.png" opacity="0.1" />
+  </Rule>
+</Style>
+<Style name="openspaces-afill" filter-mode="first">
+  <Rule>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
+    <PolygonSymbolizer fill="#50d17f" />
+  </Rule>
+</Style>
+<Style name="openspaces-ahighlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
+    <PolygonSymbolizer geometry-transform="translate(2,2)" fill="#ffffff" fill-opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="openspaces-ashadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
+    <PolygonSymbolizer geometry-transform="translate(-2,-2)" fill="#000000" fill-opacity="0.3" />
+  </Rule>
+</Style>
+<Style name="openspaces-pattern" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <Filter>[featuretyp] = 'Agriculture'</Filter>
+    <PolygonPatternSymbolizer file="img/Lines-5.png" opacity="0.1" />
+  </Rule>
+</Style>
+<Style name="openspaces-fill" filter-mode="first" image-filters="agg-stack-blur(4,4)">
+  <Rule>
+    <Filter>[featuretyp] = 'Agriculture'</Filter>
+    <PolygonSymbolizer fill="#6cb856" fill-opacity="0.3" />
+  </Rule>
+</Style>
+<Layer name="openspaces"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>spit</StyleName>
-    <StyleName>spit-pattern</StyleName>
+    <StyleName>openspaces-fill</StyleName>
+    <StyleName>openspaces-pattern</StyleName>
+    <StyleName>openspaces-ashadow</StyleName>
+    <StyleName>openspaces-ahighlight</StyleName>
+    <StyleName>openspaces-afill</StyleName>
+    <StyleName>openspaces-apattern</StyleName>
+    <StyleName>openspaces-bshadow</StyleName>
+    <StyleName>openspaces-bhighlight</StyleName>
+    <StyleName>openspaces-bfill</StyleName>
+    <StyleName>openspaces-bpattern</StyleName>
+    <StyleName>openspaces-cfill</StyleName>
+    <StyleName>openspaces-wfill</StyleName>
+    <StyleName>openspaces-wpattern</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'GroundCoverPoly' AND stylename ='spit' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
-<Style name="mangroves-pattern" filter-mode="first">
+<Style name="water-poly" filter-mode="first">
   <Rule>
-    <PolygonPatternSymbolizer opacity="0.6" file="../../../images/mangroves.png" />
+    <PolygonSymbolizer fill="#80b0ac" />
   </Rule>
 </Style>
-<Style name="mangroves" filter-mode="first" image-filters="agg-stack-blur(5,5)" image-filters-inflate="true">
+<Style name="water-poly-higlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <PolygonSymbolizer fill="#acc0b4" fill-opacity="0.6" />
+    <PolygonSymbolizer fill="#ffffff" fill-opacity="0.5" geometry-transform="translate(2,2)" />
   </Rule>
 </Style>
-<Layer name="mangroves"
+<Style name="water-poly-shadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <PolygonSymbolizer fill="#304d4b" fill-opacity="0.5" geometry-transform="translate(-2,-2)" />
+  </Rule>
+</Style>
+<Layer name="water-poly"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>mangroves</StyleName>
-    <StyleName>mangroves-pattern</StyleName>
+    <StyleName>water-poly-shadow</StyleName>
+    <StyleName>water-poly-higlight</StyleName>
+    <StyleName>water-poly</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'GroundCoverPoly' AND stylename ='mangroves' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'WaterPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
-<Style name="marshes-pattern" filter-mode="first">
+<Style name="utilities" filter-mode="first">
   <Rule>
-    <PolygonPatternSymbolizer file="../../../images/ripple2.png" />
+    <LineSymbolizer stroke-width="4" stroke="#80b0ac" stroke-dasharray="8, 10" stroke-linecap="round" />
   </Rule>
 </Style>
-<Style name="marshes" filter-mode="first" image-filters="agg-stack-blur(25,25)" image-filters-inflate="true">
+<Style name="utilities-under" filter-mode="first">
   <Rule>
-    <PolygonSymbolizer fill="#accdc8" fill-opacity="0.6" />
+    <LineSymbolizer stroke-width="12" stroke="#80b0ac" stroke-opacity="0.3" />
   </Rule>
 </Style>
-<Layer name="marshes"
+<Layer name="utilities"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>marshes</StyleName>
-    <StyleName>marshes-pattern</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'marshes' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="agriculture-outline" filter-mode="first">
-  <Rule>
-    <LineSymbolizer stroke="#84b87e" stroke-width="1" stroke-opacity="0.4" stroke-linejoin="round" />
-  </Rule>
-</Style>
-<Style name="agriculture" filter-mode="first">
-  <Rule>
-    <PolygonSymbolizer fill="#a3ca9f" fill-opacity="0.4" />
-  </Rule>
-</Style>
-<Layer name="agriculture"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>agriculture</StyleName>
-    <StyleName>agriculture-outline</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'GroundCoverPoly' AND stylename ='agriculture' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="beaches" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <LineSymbolizer stroke-width="8" stroke="#ffd270" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <LineSymbolizer stroke-width="6" stroke="#ffd270" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <LineSymbolizer stroke-width="4" stroke="#ffd270" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <LineSymbolizer stroke-width="3" stroke="#ffd270" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.9" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <LineSymbolizer stroke-width="2" stroke="#ffd270" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.9" />
-  </Rule>
-</Style>
-<Layer name="beaches"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>beaches</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'LandLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-<Style name="marshes-pattern" filter-mode="first">
-  <Rule>
-    <PolygonPatternSymbolizer file="../../../images/ripple2.png" />
-  </Rule>
-</Style>
-<Style name="marshes" filter-mode="first" image-filters="agg-stack-blur(25,25)" image-filters-inflate="true">
-  <Rule>
-    <PolygonSymbolizer fill="#accdc8" fill-opacity="0.6" />
-  </Rule>
-</Style>
-<Layer name="marshes"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>marshes</StyleName>
-    <StyleName>marshes-pattern</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'marshes' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="cemeteries-outline" filter-mode="first">
-  <Rule>
-    <LineSymbolizer stroke="#b8c089" stroke-width="1" stroke-opacity="0.5" stroke-linejoin="round" />
-  </Rule>
-</Style>
-<Style name="cemeteries" filter-mode="first">
-  <Rule>
-    <PolygonSymbolizer fill="#ccd2aa" fill-opacity="0.6" />
-  </Rule>
-</Style>
-<Layer name="cemeteries"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>cemeteries</StyleName>
-    <StyleName>cemeteries-outline</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'cemeteries' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="plazas" filter-mode="first" image-filters="agg-stack-blur(5,5)" image-filters-inflate="true">
-  <Rule>
-    <PolygonSymbolizer fill="#fcf9d5" fill-opacity="0.8" />
-  </Rule>
-</Style>
-<Layer name="plazas"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>plazas</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'plazas' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0495149580022,-23.1024155607895,-42.6599378514538,-22.6300079267944]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="squares-outline" filter-mode="first">
-  <Rule>
-    <LineSymbolizer stroke="#d4c4b6" stroke-width="1" stroke-opacity="0.6" stroke-linejoin="round" />
-  </Rule>
-</Style>
-<Style name="squares" filter-mode="first">
-  <Rule>
-    <PolygonSymbolizer fill="#fcf9d5" fill-opacity="0.8" />
-  </Rule>
-</Style>
-<Layer name="squares"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>squares</StyleName>
-    <StyleName>squares-outline</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'squares' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="parks-outline" filter-mode="first">
-  <Rule>
-    <LineSymbolizer stroke="#b8c089" stroke-width="1" stroke-opacity="0.5" stroke-linejoin="round" />
-  </Rule>
-</Style>
-<Style name="parks" filter-mode="first">
-  <Rule>
-    <PolygonSymbolizer fill="#ccd2aa" fill-opacity="0.6" />
-  </Rule>
-</Style>
-<Layer name="parks"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>parks</StyleName>
-    <StyleName>parks-outline</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'parks' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-  
-<Style name="ponds-outline" filter-mode="first">
-  <Rule>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="1" stroke-linejoin="round" />
-  </Rule>
-</Style>
-<Style name="ponds-fill" filter-mode="first" image-filters="agg-stack-blur(10,10)" image-filters-inflate="true">
-  <Rule>
-    <PolygonSymbolizer fill="#ffffff" fill-opacity="0.4" />
-  </Rule>
-</Style>
-<Style name="ponds-shadow" filter-mode="first">
-  <Rule>
-    <PolygonSymbolizer fill="#8fb0cd" />
-  </Rule>
-</Style>
-<Layer name="ponds"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>ponds-shadow</StyleName>
-    <StyleName>ponds-fill</StyleName>
-    <StyleName>ponds-outline</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'ponds' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="riversstreams-solid" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="0.6" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="0.4" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="1.75" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="1.25" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="0.85" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="1.75" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="1.25" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <LineSymbolizer stroke="#8fb0cd" stroke-width="0.85" />
-  </Rule>
-</Style>
-<Style name="riversstreams" filter-mode="first" image-filters="agg-stack-blur(4,4),agg-stack-blur(3,3),agg-stack-blur(2,2)" image-filters-inflate="true">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="1.2" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="0.8" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="1.7" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <LineSymbolizer stroke-width="1.7" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-  </Rule>
-</Style>
-<Layer name="riversstreams"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>riversstreams</StyleName>
-    <StyleName>riversstreams-solid</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'InlandWatersLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="waterline" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="1.7" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="1.2" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="0.8" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] &lt;= 2)</Filter>
-    <LineSymbolizer stroke-width="1.7" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] &lt;= 2)</Filter>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] &lt;= 2)</Filter>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
-  </Rule>
-</Style>
-<Layer name="waterline"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>waterline</StyleName>
+    <StyleName>utilities-under</StyleName>
+    <StyleName>utilities</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'UtilitiesLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
-<Style name="neighborhoods-inline" filter-mode="first">
+<Style name="rivers-front" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <LineSymbolizer stroke-dasharray="6, 4" stroke="#766141" stroke-width="1.5" stroke-opacity="0.5" stroke-linejoin="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <LineSymbolizer stroke-dasharray="5, 3" stroke="#766141" stroke-width="1" stroke-opacity="0.5" stroke-linejoin="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <LineSymbolizer stroke-dasharray="4, 2" stroke="#977c53" stroke-width="1" stroke-opacity="0.5" stroke-linejoin="round" />
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-linecap="round" stroke="#80b0ac" stroke-opacity="1" stroke-width="10" />
   </Rule>
 </Style>
-<Style name="neighborhoods-outline" filter-mode="first">
+<Style name="rivers-higlight" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <LineSymbolizer stroke="#ffffff" stroke-width="4" stroke-opacity="0.3" stroke-linejoin="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <LineSymbolizer stroke="#ffffff" stroke-width="4" stroke-opacity="0.3" stroke-linejoin="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <LineSymbolizer stroke="#ffffff" stroke-width="3" stroke-opacity="0.3" stroke-linejoin="round" />
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-linecap="round" stroke="#ffffff" stroke-opacity="0.5" stroke-width="8" geometry-transform="translate(2,2)" />
   </Rule>
 </Style>
-<Layer name="neighborhoods"
+<Style name="rivers-shadow" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-linecap="round" stroke="#304d4b" stroke-opacity="0.5" stroke-width="10" geometry-transform="translate(-2,-2)" />
+  </Rule>
+</Style>
+<Style name="rivers-glow" filter-mode="first" image-filters="agg-stack-blur(10,10)">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-linecap="round" stroke="#80b0ac" stroke-width="20" stroke-opacity="0.8" />
+  </Rule>
+</Style>
+<Layer name="rivers"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>neighborhoods-outline</StyleName>
-    <StyleName>neighborhoods-inline</StyleName>
+    <StyleName>rivers-glow</StyleName>
+    <StyleName>rivers-shadow</StyleName>
+    <StyleName>rivers-higlight</StyleName>
+    <StyleName>rivers-front</StyleName>
     <Datasource>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'NeighborhoodsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'WaterLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
-<Style name="roads-high/inline" filter-mode="first">
+<Style name="roads-roads20" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="5" stroke="#ffffff" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="4" stroke="#ffffff" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="9" stroke="#ffffff" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="7" stroke="#ffffff" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" stroke-width="16" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" stroke-width="10" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" stroke-width="6" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" stroke-width="4" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" stroke-width="2" />
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="50" stroke-opacity="1" />
   </Rule>
 </Style>
-<Style name="roads-high/outline" filter-mode="first">
+<Style name="roads-paths20" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="7" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="6" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="11" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="9" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#d0bfaf" stroke-width="18" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#d0bfaf" stroke-width="12" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#d0bfaf" stroke-width="8" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#d0bfaf" stroke-width="6" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#d0bfaf" stroke-width="4" />
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="20" />
   </Rule>
 </Style>
-<Style name="roads-low/inline" filter-mode="first">
+<Style name="roads-cowpaths20" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="0.5" stroke="#daccbf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="3" stroke="#f2eee9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#f2eee9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="1" stroke="#daccbf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="5" stroke="#fefdfd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="4" stroke="#fefdfd" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#fefdfd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="3" stroke="#f2eee9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#f2eee9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="1" stroke="#daccbf" />
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="8" stroke-dasharray="24, 4" />
   </Rule>
 </Style>
-<Style name="roads-low/outline" filter-mode="first">
+<Style name="roads-highlight20" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="0.5" stroke="#daccbf" />
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="53" stroke-opacity="0.5" geometry-transform="translate(2,2)" />
+  </Rule>
+</Style>
+<Style name="roads-shadows20" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="53" geometry-transform="translate(-2,-2)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="22" stroke-opacity="0.5" geometry-transform="translate(-2,-2)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#737373" stroke-width="8" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
+  </Rule>
+</Style>
+<Style name="roads-roads19" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="24" stroke-opacity="1" />
+  </Rule>
+</Style>
+<Style name="roads-paths19" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="10" />
+  </Rule>
+</Style>
+<Style name="roads-cowpaths19" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="8" stroke-dasharray="24, 4" />
+  </Rule>
+</Style>
+<Style name="roads-highlight19" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="27" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
+  </Rule>
+</Style>
+<Style name="roads-shadows19" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="27" geometry-transform="translate(-1,-1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="12" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths')</Filter>
+    <LineSymbolizer stroke="#737373" stroke-width="8" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    
+  </Rule>
+</Style>
+<Style name="roads-roads18" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads')</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="18" stroke-opacity="1" />
+  </Rule>
+</Style>
+<Style name="roads-paths18" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths')</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="6" />
+  </Rule>
+</Style>
+<Style name="roads-cowpaths18" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="6" stroke-dasharray="24, 4" />
+  </Rule>
+</Style>
+<Style name="roads-highlight18" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="21" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
+  </Rule>
+</Style>
+<Style name="roads-shadows18" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="21" geometry-transform="translate(-1,-1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths')</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="8" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#737373" stroke-width="6" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
+  </Rule>
+</Style>
+<Style name="roads-roads17" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="6" stroke-opacity="1" />
+  </Rule>
+</Style>
+<Style name="roads-paths17" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="3" />
+  </Rule>
+</Style>
+<Style name="roads-cowpaths17" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="6" stroke-dasharray="24, 4" />
+  </Rule>
+</Style>
+<Style name="roads-highlight17" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="7" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
+  </Rule>
+</Style>
+<Style name="roads-shadows17" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="7" geometry-transform="translate(-1,-1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="3" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#737373" stroke-width="6" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
+  </Rule>
+</Style>
+<Style name="roads-roads16" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="3" stroke-opacity="1" />
+  </Rule>
+</Style>
+<Style name="roads-paths16" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="1.5" />
+  </Rule>
+</Style>
+<Style name="roads-cowpaths16" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="6" stroke-dasharray="24, 4" />
+  </Rule>
+</Style>
+<Style name="roads-highlight16" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="3" stroke-opacity="0.5" geometry-transform="translate(1,1)" />
+  </Rule>
+</Style>
+<Style name="roads-shadows16" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>[featuretyp] = 'Roads'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="3" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="5" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="4" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2) and ([scalerank] &lt; 4)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="1" stroke="#daccbf" />
+    <Filter>[featuretyp] = 'Paths'</Filter>
+    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="1.5" stroke-opacity="0.5" geometry-transform="translate(-0.5,-0.5)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="7" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="6" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="3" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="5" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="4" stroke="#d0bfaf" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke-width="1" stroke="#daccbf" />
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
+    <LineSymbolizer stroke="#737373" stroke-width="6" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
   </Rule>
 </Style>
 <Layer name="roads"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>roads-low/outline</StyleName>
-    <StyleName>roads-low/inline</StyleName>
-    <StyleName>roads-high/outline</StyleName>
-    <StyleName>roads-high/inline</StyleName>
+    <StyleName>roads-shadows16</StyleName>
+    <StyleName>roads-highlight16</StyleName>
+    <StyleName>roads-cowpaths16</StyleName>
+    <StyleName>roads-paths16</StyleName>
+    <StyleName>roads-roads16</StyleName>
+    <StyleName>roads-shadows17</StyleName>
+    <StyleName>roads-highlight17</StyleName>
+    <StyleName>roads-cowpaths17</StyleName>
+    <StyleName>roads-paths17</StyleName>
+    <StyleName>roads-roads17</StyleName>
+    <StyleName>roads-shadows18</StyleName>
+    <StyleName>roads-highlight18</StyleName>
+    <StyleName>roads-cowpaths18</StyleName>
+    <StyleName>roads-paths18</StyleName>
+    <StyleName>roads-roads18</StyleName>
+    <StyleName>roads-shadows19</StyleName>
+    <StyleName>roads-highlight19</StyleName>
+    <StyleName>roads-cowpaths19</StyleName>
+    <StyleName>roads-paths19</StyleName>
+    <StyleName>roads-roads19</StyleName>
+    <StyleName>roads-shadows20</StyleName>
+    <StyleName>roads-highlight20</StyleName>
+    <StyleName>roads-cowpaths20</StyleName>
+    <StyleName>roads-paths20</StyleName>
+    <StyleName>roads-roads20</StyleName>
     <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/rice/layers/20170713_shapefiles/RoadsLine.shp]]></Parameter>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
-       <Parameter name="id"><![CDATA[roads]]></Parameter>
-       <Parameter name="project"><![CDATA[Rio]]></Parameter>
-       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
     </Datasource>
   </Layer>
 
-<Style name="buildings-set" filter-mode="first">
+<Style name="buildings-fill" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <PolygonSymbolizer fill="#e4b684" />
+    <Filter>[featuretyp] = 'Residential'</Filter>
+    <PolygonSymbolizer fill="#fc8d62" />
+    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <LineSymbolizer stroke-width="2" stroke="#a83103" stroke-opacity="0.5" />
   </Rule>
   <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#e4b684" />
+    <Filter>[featuretyp] = 'Maintenance'</Filter>
+    <PolygonSymbolizer fill="#a6d854" />
+    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <LineSymbolizer stroke-width="2" stroke="#466317" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <Filter>[featuretyp] = 'Athletic'</Filter>
+    <PolygonSymbolizer fill="#e78ac3" />
+    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <LineSymbolizer stroke-width="2" stroke="#9e206d" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <Filter>[featuretyp] = 'Administrative'</Filter>
+    <PolygonSymbolizer fill="#8da0cb" />
+    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <LineSymbolizer stroke-width="2" stroke="#344772" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <Filter>[featuretyp] = 'Academic'</Filter>
+    <PolygonSymbolizer fill="#66c2a5" />
+    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <LineSymbolizer stroke-width="2" stroke="#215444" stroke-opacity="0.5" />
   </Rule>
 </Style>
-<Style name="buildings-offset" filter-mode="first" opacity="0.4">
+<Style name="buildings-shadow" filter-mode="first" image-filters="agg-stack-blur(2,2),agg-stack-blur(1,1),agg-stack-blur(2,2),agg-stack-blur(1,1)">
   <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <PolygonSymbolizer fill="#000000" geometry-transform="translate(2,2)" comp-op="multiply" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#000000" geometry-transform="translate(1.3,1.3)" comp-op="multiply" />
-  </Rule>
-</Style>
-<Style name="buildings-outline" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <LineSymbolizer stroke="#a58365" stroke-width="1" stroke-opacity="0.4" stroke-linejoin="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <LineSymbolizer stroke="#a58365" stroke-width="0.8" stroke-opacity="0.5" stroke-linejoin="round" />
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(8,8)" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <LineSymbolizer stroke="#a58365" stroke-width="0.5" stroke-opacity="0.5" stroke-linejoin="round" />
-  </Rule>
-</Style>
-<Style name="buildings" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#e2b17c" />
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(3,3)" />
   </Rule>
   <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#e0ac74" />
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(12,12)" />
   </Rule>
   <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#dca263" />
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(5,5)" />
   </Rule>
 </Style>
 <Layer name="buildings"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>buildings</StyleName>
-    <StyleName>buildings-outline</StyleName>
-    <StyleName>buildings-offset</StyleName>
-    <StyleName>buildings-set</StyleName>
+    <StyleName>buildings-shadow</StyleName>
+    <StyleName>buildings-fill</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'BuildingsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
-<!--<Style name="fountains" filter-mode="first">
+<Style name="trees-object33" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <MarkersSymbolizer placement="interior" clip="false" file="../../../images/monument-18.svg" fill="#977c53" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <PolygonSymbolizer fill="#c1ad8f" />
-    <LineSymbolizer stroke="#766141" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <MarkersSymbolizer placement="interior" clip="false" ignore-placement="true" file="../../../images/monument-24.png" fill="#876e4a" />
-  </Rule>
-</Style>
-<Layer name="fountains"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>fountains</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'fountains' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.6834457612267,-22.9671653560144,-43.1710435408641,-22.8051180962776]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="fountains_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <TextSymbolizer placement="interior" face-name="DejaVu Sans Regular" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" size="10" character-spacing="1" wrap-width="40" dx="8" dy="-8" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="fountains_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>fountains_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'fountains' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q
-]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0497381775892,-23.102799251023,-42.6598428820212,-22.6297988204215]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>-->
-
-<Style name="railpoint" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MarkersSymbolizer fill="#876e4a" file="../../../images/rail-24.svg" multi-policy="whole" placement="point" clip="false" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <MarkersSymbolizer file="../../../images/rail-18.svg" multi-policy="whole" placement="point" clip="false" fill="#977c53" />
-  </Rule>
-</Style>
-<Layer name="railpoint"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>railpoint</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoint WHERE layer = 'BuildingsPoint' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-  
-<Style name="beaches_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <TextSymbolizer size="14" minimum-path-length="275" placement="line" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <TextSymbolizer size="14" minimum-path-length="250" placement="line" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="12" minimum-path-length="200" placement="line" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="beaches_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>beaches_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'LandLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="inlandwater_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <TextSymbolizer size="16" wrap-width="80" line-spacing="6" placement="interior" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="14" wrap-width="40" line-spacing="4" placement="interior" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <TextSymbolizer size="12" wrap-width="40" placement="interior" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" line-spacing="2" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="inlandwater_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>inlandwater_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'InlandWatersPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="land_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <TextSymbolizer size="21" fill="#7b6e5a" character-spacing="3" placement="point" face-name="DejaVu Sans Bold" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="15" fill="#7b6e5a" character-spacing="3" placement="point" face-name="DejaVu Sans Bold" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <TextSymbolizer size="13" character-spacing="2" placement="point" face-name="DejaVu Sans Bold" fill="#977c53" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <TextSymbolizer size="10" character-spacing="2" placement="point" face-name="DejaVu Sans Bold" fill="#977c53" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="land_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>land_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'LandPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="neighborhoods_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <TextSymbolizer size="21" fill="#7b6e5a" character-spacing="4" placement="point" face-name="DejaVu Sans Bold" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[nameshort]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="15" fill="#7b6e5a" character-spacing="4" placement="point" face-name="DejaVu Sans Bold" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[nameshort]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <TextSymbolizer size="13" character-spacing="3" placement="point" face-name="DejaVu Sans Bold" fill="#977c53" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[nameshort]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <TextSymbolizer size="10" character-spacing="2" placement="point" face-name="DejaVu Sans Bold" fill="#977c53" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" ><![CDATA[[nameshort]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="neighborhoods_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>neighborhoods_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'NeighborhoodsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="squares_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <TextSymbolizer size="14" character-spacing="1" wrap-width="40" placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <TextSymbolizer size="14" character-spacing="1" wrap-width="40" placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="13" character-spacing="1" wrap-width="40" minimum-distance="20" placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="70" height="70" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <TextSymbolizer placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
   </Rule>
-</Style>
-<Layer name="squares_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>squares_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'squares' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-       <Parameter name="id"><![CDATA[squares_labels]]></Parameter>
-       <Parameter name="project"><![CDATA[rio]]></Parameter>
-       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="plazas_labels" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <TextSymbolizer size="14" character-spacing="1" wrap-width="40" placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#6bbd50" opacity="0.8" />
   </Rule>
+</Style>
+<Style name="trees-shadow33" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <TextSymbolizer size="14" character-spacing="1" wrap-width="40" placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="13" character-spacing="1" wrap-width="40" minimum-distance="20" placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="70" height="70" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <TextSymbolizer placement="interior" face-name="DejaVu Sans Oblique" fill="#766141" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
-<Layer name="plazas_labels"
+<Style name="trees-object32" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow32" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="70" height="70" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="25" height="25" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-object31" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="90" height="90" fill="#609343" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="55" height="55" fill="#609343" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="35" height="35" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow31" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="90" height="90" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="55" height="55" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="35" height="35" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-object23" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="50" height="50" fill="#609343" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="35" height="35" fill="#609343" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow23" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="50" height="50" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="35" height="35" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-object22" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="50" height="50" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="35" height="35" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow22" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="50" height="50" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="35" height="35" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-object21" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow21" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="70" height="70" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-object13" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="40" height="40" fill="#426b32" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow13" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="40" height="40" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-object12" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="40" height="40" fill="#609343" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="25" height="25" fill="#609343" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow12" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="40" height="40" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="25" height="25" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-object11" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="30" height="30" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="13" height="13" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-shadow11" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750</MaxScaleDenominator>
+    <MinScaleDenominator>500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <MinScaleDenominator>750</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="30" height="30" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="13" height="13" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object33" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow33" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object32" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow32" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object31" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow31" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object23" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow23" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object22" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow22" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree2.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object21" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow21" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object13" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow13" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object12" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow12" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-17object11" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-17shadow11" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object33" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow33" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    
+  </Rule>
+</Style>
+<Style name="trees-16object32" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow32" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree2.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object31" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow31" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 3) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object23" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="6" height="6" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow23" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="6" height="6" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object22" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow22" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree2.svg" width="6" height="6" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object21" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow21" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 2) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object13" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="4" height="4" fill="#426b32" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow13" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 3)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="4" height="4" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object12" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="4" height="4" fill="#609343" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow12" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 2)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="4" height="4" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="trees-16object11" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
+  </Rule>
+</Style>
+<Style name="trees-16shadow11" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([size] = 1) and ([shape] = 1)</Filter>
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="6" height="6" fill="#000000" opacity="0.5" />
+  </Rule>
+</Style>
+<Layer name="trees"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>plazas_labels</StyleName>
+    <StyleName>trees-16shadow11</StyleName>
+    <StyleName>trees-16object11</StyleName>
+    <StyleName>trees-16shadow12</StyleName>
+    <StyleName>trees-16object12</StyleName>
+    <StyleName>trees-16shadow13</StyleName>
+    <StyleName>trees-16object13</StyleName>
+    <StyleName>trees-16shadow21</StyleName>
+    <StyleName>trees-16object21</StyleName>
+    <StyleName>trees-16shadow22</StyleName>
+    <StyleName>trees-16object22</StyleName>
+    <StyleName>trees-16shadow23</StyleName>
+    <StyleName>trees-16object23</StyleName>
+    <StyleName>trees-16shadow31</StyleName>
+    <StyleName>trees-16object31</StyleName>
+    <StyleName>trees-16shadow32</StyleName>
+    <StyleName>trees-16object32</StyleName>
+    <StyleName>trees-16shadow33</StyleName>
+    <StyleName>trees-16object33</StyleName>
+    <StyleName>trees-17shadow11</StyleName>
+    <StyleName>trees-17object11</StyleName>
+    <StyleName>trees-17shadow12</StyleName>
+    <StyleName>trees-17object12</StyleName>
+    <StyleName>trees-17shadow13</StyleName>
+    <StyleName>trees-17object13</StyleName>
+    <StyleName>trees-17shadow21</StyleName>
+    <StyleName>trees-17object21</StyleName>
+    <StyleName>trees-17shadow22</StyleName>
+    <StyleName>trees-17object22</StyleName>
+    <StyleName>trees-17shadow23</StyleName>
+    <StyleName>trees-17object23</StyleName>
+    <StyleName>trees-17shadow31</StyleName>
+    <StyleName>trees-17object31</StyleName>
+    <StyleName>trees-17shadow32</StyleName>
+    <StyleName>trees-17object32</StyleName>
+    <StyleName>trees-17shadow33</StyleName>
+    <StyleName>trees-17object33</StyleName>
+    <StyleName>trees-shadow11</StyleName>
+    <StyleName>trees-object11</StyleName>
+    <StyleName>trees-shadow12</StyleName>
+    <StyleName>trees-object12</StyleName>
+    <StyleName>trees-shadow13</StyleName>
+    <StyleName>trees-object13</StyleName>
+    <StyleName>trees-shadow21</StyleName>
+    <StyleName>trees-object21</StyleName>
+    <StyleName>trees-shadow22</StyleName>
+    <StyleName>trees-object22</StyleName>
+    <StyleName>trees-shadow23</StyleName>
+    <StyleName>trees-object23</StyleName>
+    <StyleName>trees-shadow31</StyleName>
+    <StyleName>trees-object31</StyleName>
+    <StyleName>trees-shadow32</StyleName>
+    <StyleName>trees-object32</StyleName>
+    <StyleName>trees-shadow33</StyleName>
+    <StyleName>trees-object33</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'plazas' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT *, floor( random() * 3 ) + 1 AS size, floor( random() * 3 ) + 1 AS shape FROM basepoint WHERE layer = 'TreePoint' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0495149580022,-23.1024155607895,-42.6599378514538,-22.6300079267944]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="parks_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <TextSymbolizer size="15" dx="12" dy="12" wrap-width="40" minimum-distance="15" placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
-    <!--<MarkersSymbolizer file="../../../images/park2-24.svg" placement="interior" fill="#7a8446" multi-policy="whole" clip="false" />-->
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <TextSymbolizer size="14" dx="12" dy="12" wrap-width="40" minimum-distance="15" placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[nameshort]]]></TextSymbolizer>
-    <!--<MarkersSymbolizer file="../../../images/park2-24.svg" placement="interior" fill="#7a8446" multi-policy="whole" clip="false" />-->
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="13" wrap-width="40" minimum-distance="15" placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" dx="10" dy="10" ><![CDATA[[nameshort]]]></TextSymbolizer>
-    <!--<MarkersSymbolizer placement="interior" file="../../../images/park2-18.svg" fill="#7a8446" multi-policy="whole" clip="false" />-->
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <TextSymbolizer placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" dx="10" dy="10" size="12" ><![CDATA['']]></TextSymbolizer>
-    <!--<MarkersSymbolizer placement="interior" file="../../../images/park2-18.svg" fill="#7a8446" multi-policy="whole" clip="false" />-->
-  </Rule>
-</Style>
-<Layer name="parks_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>parks_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'parks' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<!--<Style name="cemeteries_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <TextSymbolizer size="15" dx="12" dy="12" wrap-width="40" minimum-distance="15" placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[namecomple]]]></TextSymbolizer>
-    <MarkersSymbolizer file="../../../images/cemetery-24.png" placement="interior" fill="#7a8446" multi-policy="whole" clip="false" opacity="0.9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <TextSymbolizer size="14" dx="12" dy="12" wrap-width="40" minimum-distance="15" placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" ><![CDATA[[namecomple]]]></TextSymbolizer>
-    <MarkersSymbolizer file="../../../images/cemetery-24.png" placement="interior" fill="#7a8446" multi-policy="whole" clip="false" opacity="0.9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="13" wrap-width="40" minimum-distance="15" placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" dx="10" dy="10" ><![CDATA[[namecomple]]]></TextSymbolizer>
-    <MarkersSymbolizer placement="interior" file="../../../images/cemetery-18.png" fill="#7a8446" multi-policy="whole" clip="false" opacity="0.9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <TextSymbolizer placement="interior" placement-type="simple" placements="S,N,E,W" face-name="DejaVu Sans Oblique" fill="#5b6234" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" line-spacing="2" dx="10" dy="10" size="12" ><![CDATA['']]></TextSymbolizer>
-    <MarkersSymbolizer placement="interior" file="../../../images/cemetery-18.png" fill="#7a8446" multi-policy="whole" clip="false" opacity="0.9" />
-  </Rule>
-</Style>
-<Layer name="cemeteries_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>cemeteries_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'cemeteries' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
-    </Datasource>
-  </Layer>-->
-
-<Style name="roads_labels-low" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <TextSymbolizer fill="#574c3b" size="15" minimum-distance="350" placement="line" face-name="DejaVu Sans Book" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <TextSymbolizer fill="#574c3b" size="14" minimum-distance="300" placement="line" face-name="DejaVu Sans Book" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <TextSymbolizer size="12" fill="#574c3b" minimum-distance="250" placement="line" face-name="DejaVu Sans Book" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <TextSymbolizer size="10" placement="line" face-name="DejaVu Sans Book" fill="#7b6e5a" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] &gt; 2)</Filter>
-    <TextSymbolizer size="10" placement="line" face-name="DejaVu Sans Book" fill="#7b6e5a" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Style name="roads_labels-med" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer fill="#574c3b" size="15" minimum-distance="350" placement="line" face-name="DejaVu Sans Book" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer fill="#574c3b" size="15" minimum-distance="300" placement="line" face-name="DejaVu Sans Book" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer size="14" fill="#574c3b" minimum-distance="250" placement="line" face-name="DejaVu Sans Book" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer size="12" placement="line" face-name="DejaVu Sans Book" fill="#7b6e5a" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer size="12" placement="line" face-name="DejaVu Sans Book" fill="#7b6e5a" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Style name="roads_labels-high" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="16" minimum-distance="350" placement="line" face-name="DejaVu Sans Book" fill="#574c3b" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="16" minimum-distance="300" placement="line" face-name="DejaVu Sans Book" fill="#574c3b" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="14" minimum-distance="250" placement="line" face-name="DejaVu Sans Book" fill="#574c3b" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="13" placement="line" face-name="DejaVu Sans Book" fill="#574c3b" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="12" placement="line" face-name="DejaVu Sans Book" fill="#574c3b" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="10" placement="line" face-name="DejaVu Sans Book" fill="#574c3b" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="roads_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>roads_labels-high</StyleName>
-    <StyleName>roads_labels-med</StyleName>
-    <StyleName>roads_labels-low</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
-  
-<Style name="agriculture_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MarkersSymbolizer file="../../../images/farm-24.svg" opacity="0.9" placement="interior" multi-policy="whole" clip="false" fill="#50864a" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <MarkersSymbolizer opacity="0.9" placement="interior" multi-policy="whole" clip="false" fill="#50864a" file="../../../images/farm-18.svg" />
-  </Rule>
-</Style>
-<Layer name="agriculture_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>agriculture_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'GroundCoverPoly' AND stylename ='agriculture' AND firstdispl <= 1812 AND lastdispla >= 1812  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="riversstreams_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <TextSymbolizer size="14" minimum-path-length="525" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <TextSymbolizer size="14" minimum-path-length="425" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="12" minimum-path-length="400" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="riversstreams_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>riversstreams_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'InlandWatersLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="waterline_labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <TextSymbolizer size="14" minimum-path-length="425" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="12" minimum-path-length="400" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <TextSymbolizer size="11" minimum-path-length="300" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <TextSymbolizer placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
-  </Rule>
-</Style>
-<Layer name="waterline_labels"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>waterline_labels</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE featuretyp = 'Aqueducts' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-<!--
-<Style name="cemeteries_marker" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MarkersSymbolizer file="../../../images/cemetery-24.svg" multi-policy="whole" placement="interior" clip="false" fill="#7a8446" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <MarkersSymbolizer file="../../../images/cemetery-18.svg" multi-policy="whole" placement="interior" clip="false" fill="#7a8446" />
-  </Rule>
-</Style>
-<Layer name="cemeteries_marker"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>cemeteries_marker</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'cemeteries' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>-->
-
 </Map>
