@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map[]>
-<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-image="img/Paper-21-blur-red.png" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-image="../../../img/Paper-21-blur-red.png" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
 
 <Parameters>
   <Parameter name="bounds">-95.4266,29.7025,-95.3773,29.7295</Parameter>
@@ -39,7 +39,7 @@
 </Style>
 <Style name="parcels" filter-mode="first">
   <Rule>
-    <PolygonPatternSymbolizer file="img/Paper-21-blur-red.png" />
+    <PolygonPatternSymbolizer file="../../../img/Paper-21-blur-red.png" />
     <PolygonSymbolizer fill-opacity="0.5" fill="#d4e054" />
   </Rule>
 </Style>
@@ -61,8 +61,8 @@
 
 <Style name="openspaces-wpattern" filter-mode="first">
   <Rule>
-    <Filter>[featuretyp] = 'Wetlands'</Filter>
-    <PolygonPatternSymbolizer file="img/ripple4.png" opacity="0.8" />
+    <Filter>[featuretyp] = 'Wetlands'../../../
+    <PolygonPatternSymbolizer file="../../../img/ripple4.png" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="openspaces-wfill" filter-mode="first" image-filters="agg-stack-blur(15,15)">
@@ -80,7 +80,7 @@
 <Style name="openspaces-bpattern" filter-mode="first">
   <Rule>
     <Filter>[featuretyp] = 'Parking Lots'</Filter>
-    <PolygonPatternSymbolizer file="img/grid1.png" opacity="0.05" />
+    <PolygonPatternSymbolizer file="../../../img/grid1.png" opacity="0.05" />
   </Rule>
 </Style>
 <Style name="openspaces-bfill" filter-mode="first">
@@ -104,7 +104,7 @@
 <Style name="openspaces-apattern" filter-mode="first">
   <Rule>
     <Filter>[featuretyp] = 'Athletic'</Filter>
-    <PolygonPatternSymbolizer file="img/Lines-9-reverse.png" opacity="0.1" />
+    <PolygonPatternSymbolizer file="../../../img/Lines-9-reverse.png" opacity="0.1" />
   </Rule>
 </Style>
 <Style name="openspaces-afill" filter-mode="first">
@@ -128,7 +128,7 @@
 <Style name="openspaces-pattern" filter-mode="first" image-filters="agg-stack-blur(1,1)">
   <Rule>
     <Filter>[featuretyp] = 'Agriculture'</Filter>
-    <PolygonPatternSymbolizer file="img/Lines-5.png" opacity="0.1" />
+    <PolygonPatternSymbolizer file="../../../img/Lines-5.png" opacity="0.1" />
   </Rule>
 </Style>
 <Style name="openspaces-fill" filter-mode="first" image-filters="agg-stack-blur(4,4)">
@@ -365,7 +365,7 @@
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[featuretyp] = 'Cowpaths')</Filter>
+    <Filter>[featuretyp] = 'Cowpaths'</Filter>
     <LineSymbolizer stroke="#737373" stroke-width="8" stroke-dasharray="24, 4" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
@@ -378,7 +378,7 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[featuretyp] = 'Roads')</Filter>
+    <Filter>[featuretyp] = 'Roads'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#999999" stroke-width="18" stroke-opacity="1" />
   </Rule>
 </Style>
@@ -386,7 +386,7 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[featuretyp] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fffae3" stroke-width="6" />
   </Rule>
 </Style>
@@ -416,7 +416,7 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[featuretyp] = 'Paths')</Filter>
+    <Filter>[featuretyp] = 'Paths'</Filter>
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#737373" stroke-width="8" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
   </Rule>
   <Rule>
@@ -574,31 +574,31 @@
   <Rule>
     <Filter>[featuretyp] = 'Residential'</Filter>
     <PolygonSymbolizer fill="#fc8d62" />
-    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#a83103" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <Filter>[featuretyp] = 'Maintenance'</Filter>
     <PolygonSymbolizer fill="#a6d854" />
-    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#466317" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <Filter>[featuretyp] = 'Athletic'</Filter>
     <PolygonSymbolizer fill="#e78ac3" />
-    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#9e206d" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <Filter>[featuretyp] = 'Administrative'</Filter>
     <PolygonSymbolizer fill="#8da0cb" />
-    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#344772" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <Filter>[featuretyp] = 'Academic'</Filter>
     <PolygonSymbolizer fill="#66c2a5" />
-    <PolygonPatternSymbolizer file="img/8px-1px-Dotted.png" opacity="0.2" />
+    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#215444" stroke-opacity="0.5" />
   </Rule>
 </Style>
@@ -645,19 +645,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="70" height="70" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="70" height="70" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="25" height="25" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow33" filter-mode="first">
@@ -665,19 +665,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="70" height="70" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="70" height="70" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object32" filter-mode="first">
@@ -685,19 +685,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow32" filter-mode="first">
@@ -705,19 +705,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="70" height="70" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree2.svg" width="70" height="70" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree2.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="25" height="25" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree2.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object31" filter-mode="first">
@@ -725,19 +725,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="90" height="90" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="90" height="90" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="55" height="55" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="55" height="55" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="35" height="35" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="35" height="35" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow31" filter-mode="first">
@@ -745,19 +745,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="90" height="90" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="90" height="90" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="55" height="55" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="55" height="55" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="35" height="35" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="35" height="35" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object23" filter-mode="first">
@@ -765,19 +765,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="50" height="50" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="50" height="50" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="35" height="35" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="35" height="35" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="15" height="15" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow23" filter-mode="first">
@@ -785,19 +785,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="50" height="50" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="50" height="50" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="35" height="35" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="35" height="35" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object22" filter-mode="first">
@@ -805,19 +805,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="50" height="50" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="50" height="50" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="35" height="35" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="35" height="35" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow22" filter-mode="first">
@@ -825,19 +825,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="50" height="50" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree2.svg" width="50" height="50" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="35" height="35" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree2.svg" width="35" height="35" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object21" filter-mode="first">
@@ -845,19 +845,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="70" height="70" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="45" height="45" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="20" height="20" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow21" filter-mode="first">
@@ -865,19 +865,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="70" height="70" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="70" height="70" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object13" filter-mode="first">
@@ -885,19 +885,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="40" height="40" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="40" height="40" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="25" height="25" fill="#426b32" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="10" height="10" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow13" filter-mode="first">
@@ -905,19 +905,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="40" height="40" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="40" height="40" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object12" filter-mode="first">
@@ -925,19 +925,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="40" height="40" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="40" height="40" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="25" height="25" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="25" height="25" fill="#609343" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow12" filter-mode="first">
@@ -945,19 +945,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="40" height="40" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="40" height="40" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="25" height="25" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="25" height="25" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-object11" filter-mode="first">
@@ -965,19 +965,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="45" height="45" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="30" height="30" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="30" height="30" fill="#6bbd50" opacity="0.8" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="13" height="13" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="13" height="13" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-shadow11" filter-mode="first">
@@ -985,19 +985,19 @@
     <MaxScaleDenominator>750</MaxScaleDenominator>
     <MinScaleDenominator>500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="45" height="45" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="30" height="30" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="30" height="30" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="img/tree1.svg" width="13" height="13" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(3,3)" allow-overlap="true" file="../../../img/tree1.svg" width="13" height="13" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object33" filter-mode="first">
@@ -1005,7 +1005,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="15" height="15" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow33" filter-mode="first">
@@ -1013,7 +1013,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree3.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object32" filter-mode="first">
@@ -1021,7 +1021,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow32" filter-mode="first">
@@ -1029,7 +1029,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree2.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object31" filter-mode="first">
@@ -1037,7 +1037,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="20" height="20" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow31" filter-mode="first">
@@ -1045,7 +1045,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree1.svg" width="20" height="20" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object23" filter-mode="first">
@@ -1053,7 +1053,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="10" height="10" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow23" filter-mode="first">
@@ -1061,7 +1061,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree3.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object22" filter-mode="first">
@@ -1069,7 +1069,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow22" filter-mode="first">
@@ -1077,7 +1077,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree2.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree2.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object21" filter-mode="first">
@@ -1085,7 +1085,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="15" height="15" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow21" filter-mode="first">
@@ -1093,7 +1093,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="15" height="15" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree1.svg" width="15" height="15" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object13" filter-mode="first">
@@ -1101,7 +1101,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow13" filter-mode="first">
@@ -1109,7 +1109,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object12" filter-mode="first">
@@ -1117,7 +1117,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="8" height="8" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow12" filter-mode="first">
@@ -1125,7 +1125,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-17object11" filter-mode="first">
@@ -1133,7 +1133,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="10" height="10" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-17shadow11" filter-mode="first">
@@ -1141,7 +1141,7 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(2,2)" allow-overlap="true" file="../../../img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object33" filter-mode="first">
@@ -1149,7 +1149,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="8" height="8" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow33" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1157,7 +1157,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree3.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
@@ -1170,7 +1170,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow32" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1178,7 +1178,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree2.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree2.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object31" filter-mode="first">
@@ -1186,7 +1186,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="10" height="10" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow31" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1194,7 +1194,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 3) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree1.svg" width="10" height="10" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object23" filter-mode="first">
@@ -1202,7 +1202,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="6" height="6" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="6" height="6" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow23" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1210,7 +1210,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="6" height="6" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree3.svg" width="6" height="6" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object22" filter-mode="first">
@@ -1218,7 +1218,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree2.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree2.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow22" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1226,7 +1226,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree2.svg" width="6" height="6" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree2.svg" width="6" height="6" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object21" filter-mode="first">
@@ -1234,7 +1234,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="8" height="8" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow21" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1242,7 +1242,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 2) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree1.svg" width="8" height="8" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object13" filter-mode="first">
@@ -1250,7 +1250,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree3.svg" width="4" height="4" fill="#426b32" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree3.svg" width="4" height="4" fill="#426b32" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow13" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1258,7 +1258,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 3)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree3.svg" width="4" height="4" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree3.svg" width="4" height="4" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object12" filter-mode="first">
@@ -1266,7 +1266,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="4" height="4" fill="#609343" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="4" height="4" fill="#609343" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow12" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1274,7 +1274,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 2)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="4" height="4" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree1.svg" width="4" height="4" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Style name="trees-16object11" filter-mode="first">
@@ -1282,7 +1282,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer allow-overlap="true" file="img/tree1.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
+    <MarkersSymbolizer allow-overlap="true" file="../../../img/tree1.svg" width="6" height="6" fill="#6bbd50" opacity="0.8" />
   </Rule>
 </Style>
 <Style name="trees-16shadow11" filter-mode="first" image-filters="agg-stack-blur(2,2)">
@@ -1290,7 +1290,7 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([size] = 1) and ([shape] = 1)</Filter>
-    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="img/tree1.svg" width="6" height="6" fill="#000000" opacity="0.5" />
+    <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree1.svg" width="6" height="6" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
 <Layer name="trees"
