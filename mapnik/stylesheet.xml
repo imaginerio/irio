@@ -61,7 +61,7 @@
 
 <Style name="openspaces-wpattern" filter-mode="first">
   <Rule>
-    <Filter>[featuretyp] = 'Wetlands'../../../
+    <Filter>[featuretyp] = 'Wetlands'</Filter>
     <PolygonPatternSymbolizer file="../../../img/ripple4.png" opacity="0.8" />
   </Rule>
 </Style>
