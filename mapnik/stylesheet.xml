@@ -472,68 +472,283 @@
     </Datasource>
   </Layer>
 
-<Style name="waterline" filter-mode="first">
+<Style name="sewage_pipes-dot" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="6" stroke-dasharray="1.5, 35" stroke-linecap="round" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <LineSymbolizer stroke-width="4.5" stroke-dasharray="1.5, 30" stroke-linecap="round" stroke="#8fb0cd" />
+  </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
+    <LineSymbolizer stroke-width="4" stroke-dasharray="1.5, 25" stroke-linecap="round" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke-width="3.5" stroke-dasharray="1, 20" stroke-linecap="round" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="3" stroke-dasharray="0.5, 15" stroke-linecap="round" stroke="#8fb0cd" />
+  </Rule>
+</Style>
+<Style name="sewage_pipes-line" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="2.3" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <LineSymbolizer stroke-width="2" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
     <LineSymbolizer stroke-width="1.7" stroke="#8fb0cd" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
     <LineSymbolizer stroke-width="1.2" stroke="#8fb0cd" />
   </Rule>
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
     <LineSymbolizer stroke-width="0.8" stroke="#8fb0cd" />
   </Rule>
+</Style>
+<Layer name="sewage_pipes"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>sewage_pipes-line</StyleName>
+    <StyleName>sewage_pipes-dot</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline_dev WHERE layer = 'UtilitiesLine' AND stylename = 'sewage_pipes' AND firstdispl <= 2013 AND lastdispla >= 2013  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="ditches" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
+    <LineSymbolizer stroke-width="2.7" stroke-dasharray="10, 5" stroke="#8fb0cd" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
+    <LineSymbolizer stroke-width="2.2" stroke-dasharray="8, 4" stroke="#8fb0cd" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([scalerank] &lt;= 2)</Filter>
-    <LineSymbolizer stroke-width="1.7" stroke="#8fb0cd" />
+    <LineSymbolizer stroke-width="1.7" stroke-dasharray="5, 3" stroke="#8fb0cd" />
   </Rule>
   <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([scalerank] &lt;= 2)</Filter>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1.2" stroke="#8fb0cd" stroke-dasharray="4, 2" />
   </Rule>
   <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([scalerank] &lt;= 2)</Filter>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <LineSymbolizer stroke-width="3.5" stroke="#8fb0cd" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <LineSymbolizer stroke-width="2.5" stroke="#8fb0cd" />
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="0.8" stroke="#8fb0cd" stroke-dasharray="4, 2" />
   </Rule>
 </Style>
-<Layer name="waterline"
+<Layer name="ditches"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>waterline</StyleName>
+    <StyleName>ditches</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'UtilitiesLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline_dev WHERE layer = 'UtilitiesLine' AND stylename = 'ditches' AND firstdispl <= 2013 AND lastdispla >= 2013  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="canals" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="2.7" stroke-dasharray="10, 5, 50, 5" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <LineSymbolizer stroke-width="2.2" stroke-dasharray="8, 4, 40, 4" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1.7" stroke-dasharray="5, 3, 30, 3" stroke="#8fb0cd" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke-width="1.2" stroke="#8fb0cd" stroke-dasharray="4, 2, 20, 2" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke-width="0.8" stroke="#8fb0cd" stroke-dasharray="4, 2, 20, 2" />
+  </Rule>
+</Style>
+<Layer name="canals"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>canals</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline_dev WHERE layer = 'UtilitiesLine' AND stylename = 'canals' AND firstdispl <= 2013 AND lastdispla >= 2013  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="water_pipes-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-opacity="0.8" stroke="#ffffff" stroke-width="1.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="0.8" stroke="#ffffff" stroke-width="1.25" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="0.8" stroke="#ffffff" stroke-width="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="1" stroke="#ffffff" stroke-width="0.75" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="1" stroke="#ffffff" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Style name="water_pipes-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="4" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="3.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="2.75" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="2" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="1.75" />
+  </Rule>
+</Style>
+<Layer name="water_pipes"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>water_pipes-outline</StyleName>
+    <StyleName>water_pipes-inline</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline_dev WHERE layer = 'UtilitiesLine' AND stylename = 'water_pipes' AND firstdispl <= 2013 AND lastdispla >= 2013  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-43.7954299139144,-23.0822316762007,-43.0917420245885,-22.7290825466831]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="aqueducts-inline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke-opacity="0.8" stroke="#ffffff" stroke-dasharray="12, 7" stroke-width="1.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="0.8" stroke="#ffffff" stroke-dasharray="10, 6" stroke-width="1.25" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="0.8" stroke="#ffffff" stroke-dasharray="7, 4" stroke-width="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="1" stroke="#ffffff" stroke-dasharray="5, 3" stroke-width="0.75" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke-opacity="1" stroke="#ffffff" stroke-dasharray="4, 2" stroke-width="0.5" />
+  </Rule>
+</Style>
+<Style name="aqueducts-outline" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="4" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="3.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="2.75" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="2" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <LineSymbolizer stroke="#8fb0cd" stroke-width="1.75" />
+  </Rule>
+</Style>
+<Layer name="aqueducts"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>aqueducts-outline</StyleName>
+    <StyleName>aqueducts-inline</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline_dev WHERE layer = 'UtilitiesLine' AND stylename = 'aqueducts' AND firstdispl <= 2013 AND lastdispla >= 2013  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
@@ -1487,32 +1702,32 @@
     </Datasource>
   </Layer>
 
-<Style name="waterline_labels" filter-mode="first">
+<Style name="utilitiesline_labels" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <TextSymbolizer size="14" minimum-path-length="425" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
+    <TextSymbolizer size="14" minimum-path-length="425" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" text-transform="capitalize" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer size="12" minimum-path-length="400" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
+    <TextSymbolizer size="12" minimum-path-length="400" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" text-transform="capitalize" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <TextSymbolizer size="11" minimum-path-length="300" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
+    <TextSymbolizer size="11" minimum-path-length="300" placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" text-transform="capitalize" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <TextSymbolizer placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
+    <TextSymbolizer placement="line" face-name="DejaVu Sans Oblique" fill="#4777a0" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1.5" character-spacing="1" text-transform="capitalize" minimum-distance="350" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
 </Style>
-<Layer name="waterline_labels"
+<Layer name="utilitiesline_labels"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>waterline_labels</StyleName>
+    <StyleName>utilitiesline_labels</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE featuretyp = 'Aqueducts' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM baseline_dev WHERE layer = 'UtilitiesLine' AND firstdispl <= 2013 AND lastdispla >= 2013  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
@@ -1521,6 +1736,9 @@
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
+       <Parameter name="id"><![CDATA[utilitiesline_labels]]></Parameter>
+       <Parameter name="project"><![CDATA[rio]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
     </Datasource>
   </Layer>
 <!--
