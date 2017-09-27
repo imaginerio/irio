@@ -5,3 +5,6 @@ Build/*
 *.log
 node_modules/*
 import/node_modules/*
+db.js
+mapnik/aws-config.json
+import/db.js
