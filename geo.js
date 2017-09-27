@@ -66,7 +66,7 @@ exports.visual = function( req, res ){
 	postgeo.connect( db.conn );
 	
 	var year = req.params.year,
-			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, title AS description, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + year + " AND lastdispla >= " + year, req );
+			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, repository, title AS description, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + year + " AND lastdispla >= " + year, req );
 	
 	postgeo.query( q, "geojson", function( data ){
 		res.send( data );
