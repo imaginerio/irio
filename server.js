@@ -61,7 +61,7 @@ app.get( '/details/:id', meta.details );
 app.get( '/names/:lang', meta.names );
 app.get( '/feature/:year/:id', geo.feature );
 app.get( '/export/:lang/:year/:layer/:raster/:bounds/', download.exportMap )
-
+app.post('/collector', meta.collector );
 
 app.listen( 3000 );
 console.log( 'Listening on port 3000...' );
