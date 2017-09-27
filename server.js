@@ -1,9 +1,9 @@
 var express = require( 'express' ),
 	  bodyParser = require( 'body-parser' ),
 	  http = require( 'http' ),
-    meta = require( './server/meta' ),
-    geo = require( './server/geo' ),
-    download = require( './server/mapnik/export' );
+    meta = require( './meta' ),
+    geo = require( './geo' ),
+    download = require( './mapnik/export' );
 
 var app = express();
 
