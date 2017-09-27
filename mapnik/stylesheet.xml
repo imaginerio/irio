@@ -1133,6 +1133,17 @@
     </Datasource>
   </Layer>
 
+<Style name="infrastructure-set" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#b2a89e" opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <PolygonSymbolizer fill="#b2a89e" opacity="0.5" />
+  </Rule>
+</Style>
 <Style name="infrastructure-outline" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
@@ -1153,22 +1164,23 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#635242" />
+    <PolygonSymbolizer fill="#b2a89e" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#635242" />
+    <PolygonSymbolizer fill="#b2a89e" />
   </Rule>
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#635242" />
+    <PolygonSymbolizer fill="#b2a89e" />
   </Rule>
 </Style>
 <Layer name="infrastructure"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>infrastructure</StyleName>
     <StyleName>infrastructure-outline</StyleName>
+    <StyleName>infrastructure-set</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'infrastructure' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
