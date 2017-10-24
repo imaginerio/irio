@@ -123,9 +123,10 @@ exports.search = function( req, res ){
 exports.plans = function( req, res ){
 	var client = new pg.Client( db.conn );
 	client.connect();
-	
-	var plans = [],
-			q = dev.checkQuery( "SELECT planyear, planname FROM plannedline UNION SELECT planyear, planname FROM plannedpoly", req );
+
+	var year = req.params.year,
+			plans = [],
+			q = dev.checkQuery( "SELECT layer, featuretyp FROM baseline WHERE layer LIKE 'Planned%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT layer, featuretyp FROM basepoly WHERE layer LIKE 'Planned%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT layer, featuretyp FROM basepoint WHERE layer LIKE 'Planned%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " GROUP BY layer, featuretyp ORDER BY layer, featuretyp", req );
 	
 	var query = client.query( q );
 	
@@ -134,7 +135,7 @@ exports.plans = function( req, res ){
 	});
 	
 	query.on( 'end', function(){
-		plans = _.sortBy( plans, function( n ){ return parseInt( n.planyear.replace( /[^0-9].*/gi, "" ) ) } ); 
+		plans = _.groupBy(plans, 'layer');
 		res.send( plans );
 		client.end();
 	});
