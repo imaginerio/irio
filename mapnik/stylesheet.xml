@@ -43,7 +43,7 @@
     <PolygonSymbolizer fill-opacity="0.5" fill="#639b09" />
   </Rule>
 </Style>
-<Layer name="parcels"
+<Layer name="ParcelsPoly"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>parcels</StyleName>
     <StyleName>parcels-borders</StyleName>
@@ -193,7 +193,7 @@
     <PolygonSymbolizer fill="#729448" fill-opacity="0.8" />
   </Rule>
 </Style>
-<Layer name="openspaces"
+<Layer name="OpenSpacesPoly"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>openspaces-fill16</StyleName>
     <StyleName>openspaces-pattern16</StyleName>
@@ -241,7 +241,7 @@
     <PolygonSymbolizer fill="#1c2428" fill-opacity="0.5" geometry-transform="translate(-1,-1)" />
   </Rule>
 </Style>
-<Layer name="water-poly"
+<Layer name="WaterPoly"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>water-poly-shadow</StyleName>
     <StyleName>water-poly-higlight</StyleName>
@@ -296,7 +296,7 @@
     <LineSymbolizer stroke-width="5" stroke="#668391" stroke-opacity="0.3" />
   </Rule>
 </Style>
-<Layer name="drains"
+<Layer name="UtilitiesLine"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>drains-under</StyleName>
     <StyleName>drains</StyleName>
@@ -336,7 +336,7 @@
     <LineSymbolizer stroke-linecap="round" stroke="#668391" stroke-width="20" stroke-opacity="0.8" />
   </Rule>
 </Style>
-<Layer name="rivers"
+<Layer name="WaterLine"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>rivers-glow</StyleName>
     <StyleName>rivers-shadow</StyleName>
@@ -625,7 +625,7 @@
     <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="1.5" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
   </Rule>
 </Style>
-<Layer name="roads"
+<Layer name="RoadsLine"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>roads-shadows16</StyleName>
     <StyleName>roads-highlight16</StyleName>
@@ -829,7 +829,7 @@
     <LineSymbolizer stroke-width="4" stroke="#a89673" stroke-opacity="0.8" />
   </Rule>
 </Style>
-<Layer name="railroads"
+<Layer name="UtilitiesLine"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>railroads-line16a</StyleName>
     <StyleName>railroads-line16b</StyleName>
@@ -1011,7 +1011,7 @@ shape
     <PolygonSymbolizer fill="#000000" fill-opacity="0.3" geometry-transform="translate(1,1)" />
   </Rule>
 </Style>
-<Layer name="buildings"
+<Layer name="BuildingsPoly"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>buildings-shadow16</StyleName>
     <StyleName>buildings-shadow17</StyleName>
@@ -1061,7 +1061,7 @@ shape
     <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#f4f1ea" halo-fill="rgba(0, 0, 0, 0.4)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
   </Rule>
 </Style>
-<Layer name="roads_labels"
+<Layer name="RoadsLine_labels"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>roads_labels</StyleName>
      <Datasource>
@@ -1107,7 +1107,7 @@ shape
     <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#60543c" halo-fill="rgba(255, 255, 255, 0.6)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
   </Rule>
 </Style>
-<Layer name="railroads_labels"
+<Layer name="UtilitiesLine_labels"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>railroads_labels</StyleName>
     <Datasource>
@@ -1842,7 +1842,7 @@ shape
     <MarkersSymbolizer transform="translate(1,1)" allow-overlap="true" file="../../../img/tree1.svg" width="6" height="6" fill="#000000" opacity="0.5" />
   </Rule>
 </Style>
-<Layer name="trees"
+<Layer name="TreesPoint"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>trees-shadow1611</StyleName>
     <StyleName>trees-object1611</StyleName>
