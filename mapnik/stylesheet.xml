@@ -343,7 +343,6 @@
     <StyleName>rivers-higlight</StyleName>
     <StyleName>rivers-front</StyleName>
     <Datasource>
-       <Parameter name="type"><![CDATA[shape]]></Parameter>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'WaterLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
@@ -868,7 +867,6 @@
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'residential'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -876,7 +874,6 @@ shape
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'residential'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -884,14 +881,12 @@ shape
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'residential'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'maintenance'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -899,7 +894,6 @@ shape
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'maintenance'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -907,14 +901,12 @@ shape
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'maintenance'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'athletic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -922,7 +914,6 @@ shape
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'athletic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -930,14 +921,12 @@ shape
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'athletic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'administrative'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -945,7 +934,6 @@ shape
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'administrative'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -953,14 +941,12 @@ shape
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'administrative'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'academic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -968,7 +954,6 @@ shape
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'academic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -976,7 +961,6 @@ shape
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'academic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-shape
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
 </Style>
