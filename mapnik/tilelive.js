@@ -222,7 +222,7 @@ function saveTile( req, tile, res ){
 	
   if( cache === false || dev === true ) return false;
   var png = "cache/png/" + req.params.year + "/" + req.params.layer + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png";
-  var p = { Bucket : 'imaginerio', Key : png, Body : tile, ACL : 'public-read' };
+  var p = { Bucket : 'instituterice', Key : png, Body : tile, ACL : 'public-read' };
   s3.putObject( p, function( err, data ){
     if( err ){
       console.log( err );
