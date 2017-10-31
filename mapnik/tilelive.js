@@ -7,7 +7,7 @@ var express = require('express'),
     AWS = require( 'aws-sdk' ),
     cache,
     db = require( '../db' ),
-    cloudfront = "http://d1nxja8ugt29ju.cloudfront.net/",
+    cloudfront = "https://instituterice.s3.amazonaws.com/",
     hillshade = [ 
     	{ year : 1960, file : '/data/raster/1960_8888.tif' },
     	{ year : 1924, file : '/data/raster/1924_1959.tif' },
