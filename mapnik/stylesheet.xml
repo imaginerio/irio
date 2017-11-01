@@ -9,7 +9,7 @@
   <Parameter name="minzoom">16</Parameter>
   <Parameter name="maxzoom">20</Parameter>
   <Parameter name="scale">1</Parameter>
-  <Parameter name="metatile">2</Parameter>
+  <Parameter name="metatile">16</Parameter>
   <Parameter name="id"><![CDATA[rice]]></Parameter>
   <Parameter name="_updated">1506112571000</Parameter>
   <Parameter name="name"><![CDATA[rice]]></Parameter>
@@ -3994,95 +3994,95 @@
 </Style>
 <Layer name="trees"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>trees-shadow1611</StyleName>
+    <!-- <StyleName>trees-shadow1611</StyleName> -->
     <StyleName>trees-object1611</StyleName>
-    <StyleName>trees-shadow1612</StyleName>
+    <!-- <StyleName>trees-shadow1612</StyleName> -->
     <StyleName>trees-object1612</StyleName>
-    <StyleName>trees-shadow1613</StyleName>
+    <!-- <StyleName>trees-shadow1613</StyleName> -->
     <StyleName>trees-object1613</StyleName>
-    <StyleName>trees-shadow1621</StyleName>
+    <!-- <StyleName>trees-shadow1621</StyleName> -->
     <StyleName>trees-object1621</StyleName>
-    <StyleName>trees-shadow1622</StyleName>
+    <!-- <StyleName>trees-shadow1622</StyleName> -->
     <StyleName>trees-object1622</StyleName>
-    <StyleName>trees-shadow1623</StyleName>
+    <!-- <StyleName>trees-shadow1623</StyleName> -->
     <StyleName>trees-object1623</StyleName>
-    <StyleName>trees-shadow1631</StyleName>
+    <!-- <StyleName>trees-shadow1631</StyleName> -->
     <StyleName>trees-object1631</StyleName>
-    <StyleName>trees-shadow1632</StyleName>
+    <!-- <StyleName>trees-shadow1632</StyleName> -->
     <StyleName>trees-object1632</StyleName>
-    <StyleName>trees-shadow1633</StyleName>
+    <!-- <StyleName>trees-shadow1633</StyleName> -->
     <StyleName>trees-object1633</StyleName>
-    <StyleName>trees-shadow1711</StyleName>
+    <!-- <StyleName>trees-shadow1711</StyleName> -->
     <StyleName>trees-object1711</StyleName>
-    <StyleName>trees-shadow1712</StyleName>
+    <!-- <StyleName>trees-shadow1712</StyleName> -->
     <StyleName>trees-object1712</StyleName>
-    <StyleName>trees-shadow1713</StyleName>
+    <!-- <StyleName>trees-shadow1713</StyleName> -->
     <StyleName>trees-object1713</StyleName>
-    <StyleName>trees-shadow1721</StyleName>
+    <!-- <StyleName>trees-shadow1721</StyleName> -->
     <StyleName>trees-object1721</StyleName>
-    <StyleName>trees-shadow1722</StyleName>
+    <!-- <StyleName>trees-shadow1722</StyleName> -->
     <StyleName>trees-object1722</StyleName>
-    <StyleName>trees-shadow1723</StyleName>
+    <!-- <StyleName>trees-shadow1723</StyleName> -->
     <StyleName>trees-object1723</StyleName>
-    <StyleName>trees-shadow1731</StyleName>
+    <!-- <StyleName>trees-shadow1731</StyleName> -->
     <StyleName>trees-object1731</StyleName>
-    <StyleName>trees-shadow1732</StyleName>
+    <!-- <StyleName>trees-shadow1732</StyleName> -->
     <StyleName>trees-object1732</StyleName>
-    <StyleName>trees-shadow1733</StyleName>
+    <!-- <StyleName>trees-shadow1733</StyleName> -->
     <StyleName>trees-object1733</StyleName>
-    <StyleName>trees-shadow1811</StyleName>
+    <!-- <StyleName>trees-shadow1811</StyleName> -->
     <StyleName>trees-object1811</StyleName>
-    <StyleName>trees-shadow1812</StyleName>
+    <!-- <StyleName>trees-shadow1812</StyleName> -->
     <StyleName>trees-object1812</StyleName>
-    <StyleName>trees-shadow1813</StyleName>
+    <!-- <StyleName>trees-shadow1813</StyleName> -->
     <StyleName>trees-object1813</StyleName>
-    <StyleName>trees-shadow1821</StyleName>
+    <!-- <StyleName>trees-shadow1821</StyleName> -->
     <StyleName>trees-object1821</StyleName>
-    <StyleName>trees-shadow1822</StyleName>
+    <!-- <StyleName>trees-shadow1822</StyleName> -->
     <StyleName>trees-object1822</StyleName>
-    <StyleName>trees-shadow1823</StyleName>
+    <!-- <StyleName>trees-shadow1823</StyleName> -->
     <StyleName>trees-object1823</StyleName>
-    <StyleName>trees-shadow1831</StyleName>
+    <!-- <StyleName>trees-shadow1831</StyleName> -->
     <StyleName>trees-object1831</StyleName>
-    <StyleName>trees-shadow1832</StyleName>
+    <!-- <StyleName>trees-shadow1832</StyleName> -->
     <StyleName>trees-object1832</StyleName>
-    <StyleName>trees-shadow1833</StyleName>
+    <!-- <StyleName>trees-shadow1833</StyleName> -->
     <StyleName>trees-object1833</StyleName>
-    <StyleName>trees-shadow1911</StyleName>
+    <!-- <StyleName>trees-shadow1911</StyleName> -->
     <StyleName>trees-object1911</StyleName>
-    <StyleName>trees-shadow1912</StyleName>
+    <!-- <StyleName>trees-shadow1912</StyleName> -->
     <StyleName>trees-object1912</StyleName>
-    <StyleName>trees-shadow1913</StyleName>
+    <!-- <StyleName>trees-shadow1913</StyleName> -->
     <StyleName>trees-object1913</StyleName>
-    <StyleName>trees-shadow1921</StyleName>
+    <!-- <StyleName>trees-shadow1921</StyleName> -->
     <StyleName>trees-object1921</StyleName>
-    <StyleName>trees-shadow1922</StyleName>
+    <!-- <StyleName>trees-shadow1922</StyleName> -->
     <StyleName>trees-object1922</StyleName>
-    <StyleName>trees-shadow1923</StyleName>
+    <!-- <StyleName>trees-shadow1923</StyleName> -->
     <StyleName>trees-object1923</StyleName>
-    <StyleName>trees-shadow1931</StyleName>
+    <!-- <StyleName>trees-shadow1931</StyleName> -->
     <StyleName>trees-object1931</StyleName>
-    <StyleName>trees-shadow1932</StyleName>
+    <!-- <StyleName>trees-shadow1932</StyleName> -->
     <StyleName>trees-object1932</StyleName>
-    <StyleName>trees-shadow1933</StyleName>
+    <!-- <StyleName>trees-shadow1933</StyleName> -->
     <StyleName>trees-object1933</StyleName>
-    <StyleName>trees-shadow2011</StyleName>
+    <!-- <StyleName>trees-shadow2011</StyleName> -->
     <StyleName>trees-object2011</StyleName>
-    <StyleName>trees-shadow2012</StyleName>
+    <!-- <StyleName>trees-shadow2012</StyleName> -->
     <StyleName>trees-object2012</StyleName>
-    <StyleName>trees-shadow2013</StyleName>
+    <!-- <StyleName>trees-shadow2013</StyleName> -->
     <StyleName>trees-object2013</StyleName>
-    <StyleName>trees-shadow2021</StyleName>
+    <!-- <StyleName>trees-shadow2021</StyleName> -->
     <StyleName>trees-object2021</StyleName>
-    <StyleName>trees-shadow2022</StyleName>
+    <!-- <StyleName>trees-shadow2022</StyleName> -->
     <StyleName>trees-object2022</StyleName>
-    <StyleName>trees-shadow2023</StyleName>
+    <!-- <StyleName>trees-shadow2023</StyleName> -->
     <StyleName>trees-object2023</StyleName>
-    <StyleName>trees-shadow2031</StyleName>
+    <!-- <StyleName>trees-shadow2031</StyleName> -->
     <StyleName>trees-object2031</StyleName>
-    <StyleName>trees-shadow2032</StyleName>
+    <!-- <StyleName>trees-shadow2032</StyleName> -->
     <StyleName>trees-object2032</StyleName>
-    <StyleName>trees-shadow2033</StyleName>
+    <!-- <StyleName>trees-shadow2033</StyleName> -->
     <StyleName>trees-object2033</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
