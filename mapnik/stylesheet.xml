@@ -9,7 +9,7 @@
   <Parameter name="minzoom">16</Parameter>
   <Parameter name="maxzoom">20</Parameter>
   <Parameter name="scale">1</Parameter>
-  <Parameter name="metatile">2</Parameter>
+  <Parameter name="metatile">16</Parameter>
   <Parameter name="id"><![CDATA[rice]]></Parameter>
   <Parameter name="_updated">1506112571000</Parameter>
   <Parameter name="name"><![CDATA[rice]]></Parameter>
