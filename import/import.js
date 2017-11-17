@@ -148,7 +148,7 @@ var newLayer = function( client, ans, callback ) {
     
     if( ans.task == 'visual' ){
       var props = props = _.defaults( _.objMap( record.properties, processRecord ), defaultVisual ),
-          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, repository, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstDispl + ", " + props.LastDispla + ", " + props.Notes + ", " + props.Creator + ", " + props.SS_Title + ", " + props.SS_Reposit + ", " + props.SSC_ImageI + ", " + props.Latitude + ", " + props.Longitude + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + ( props.SS_ID || "'" + uuid.v1() + "'" ) + ", '" + ans.layer + "')";
+          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, repository, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstDispl + ", " + props.LastDispla + ", " + props.Notes + ", " + props.Creator + ", " + props.SS_Title + ", " + props.SS_Reposit + ", " + props.SSC_ImageI + ", " + props.Latitude + ", " + props.Longitude + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + ( props.SS_ID || props.SSID ) + ", '" + ans.layer + "')";
     }
     else if( ans.task == 'planned' ){
       var props = props = _.objMap( record.properties, processRecord ),
