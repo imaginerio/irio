@@ -66,10 +66,10 @@ exports.exportMap = function( req, res ){
     var Image = Canvas.Image,
         canvas = new Canvas( dimensions.x, dimensions.y ),
         context = canvas.getContext( '2d' );
-      
-    var base = new Image;
-    base.src = fs.readFileSync( 'base' + id + '.png' );
-    context.drawImage( base, 0, 0, dimensions.x, dimensions.y );
+    
+    var layers = new Image;
+    layers.src = fs.readFileSync( 'layers' + id + '.png' );
+    context.drawImage( layers, 0, 0, dimensions.x, dimensions.y );
     
     if( req.params.raster != 'null' ){
       var raster = new Image;
@@ -78,10 +78,6 @@ exports.exportMap = function( req, res ){
       context.drawImage( raster, 0, 0, dimensions.x, dimensions.y );
       context.globalAlpha = 1;
     }
-    
-    var layers = new Image;
-    layers.src = fs.readFileSync( 'layers' + id + '.png' );
-    context.drawImage( layers, 0, 0, dimensions.x, dimensions.y );
     
 //    var legend = new Image;
 //    legend.src = fs.readFileSync( __dirname + '/images/legend_' + req.params.lang + '.png' );
@@ -92,7 +88,7 @@ exports.exportMap = function( req, res ){
     context.fillStyle = '#666';
     context.fillRect( 0, titleHeight - 1, dimensions.x, 1 );
     context.font = '100 30px Raleway';
-    context.fillText( req.params.lang == 'en' ? 'imagineRio' : 'imagináRio', 20, 35 );
+    context.fillText( req.params.lang == 'en' ? 'instituteRice' : 'instituteRice', 20, 35 );
   
     context.font = 'bold 20px Raleway';
     context.fillText( req.params.year, dimensions.x - 100, 35 );
