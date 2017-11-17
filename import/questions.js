@@ -30,7 +30,7 @@ exports.q = [
           { name : 'viewsheds', value : 'viewsheds' },
           { name : 'maps', value : 'maps' },
           { name : 'plans', value : 'plans' },
-          { name : 'aerials', value : 'aerials' },
+          { name : 'aerials', value : 'aerials' }
         ]
       }
       else if( ans.task == 'planned' ){
