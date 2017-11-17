@@ -12,29 +12,7 @@ exports.exportMap = function( req, res ){
   mapnik.register_default_input_plugins();
   
   var id = uuid.v1();
-    drawBase( req, res, id, drawLayers );
-  
-  function drawBase( req, res, id, callback ){
-    var map = new mapnik.Map( dimensions.x, dimensions.y );
-    map.load( __dirname + "/cache/xml/" + req.params.year + "/base.xml", function( err, map ){
-      if( err ) throw err;
-      var bounds = req.params.bounds.split( ',' );
-      var merc = geo_mercator( bounds[ 0 ], bounds[ 1 ] ).concat( geo_mercator( bounds[ 2 ], bounds[ 3 ] ) );
-      map.extent = merc;
-      var im = new mapnik.Image( dimensions.x, dimensions.y );
-      map.render( im, function( err, im ){
-        if( err ) throw err;
-        im.encode( 'png', function( err, buffer ){
-          if( err ) throw err;
-          fs.writeFile( 'base' + id + '.png', buffer, function( err ){
-            if( err ) throw err;
-            console.log( 'Saved base image to base' + id + '.png');
-            callback( req, res, id, drawRaster );
-          });
-        });
-      });
-    });
-  }
+  drawLayers( req, res, id, drawRaster );
   
   function drawLayers( req, res, id, callback ){
     var map = new mapnik.Map( dimensions.x, dimensions.y );
