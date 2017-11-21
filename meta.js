@@ -86,7 +86,7 @@ exports.raster = function( req, res ){
 	var year = req.params.year,
 			max = req.query.max || year,
 			arr = [],
-			q = dev.checkQuery( "SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, layer, ST_AsText(ST_Envelope(geom) AS bbox FROM mapsplans WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " UNION SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, layer, ST_AsText(ST_Envelope(geom) AS bbox FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " ORDER BY layer", req );
+			q = dev.checkQuery( "SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM mapsplans WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " UNION SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " ORDER BY layer", req );
 	
 	var query = client.query( q );
 	
