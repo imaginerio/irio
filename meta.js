@@ -137,6 +137,13 @@ exports.plans = function( req, res ){
 	
 	query.on( 'end', function(){
 		plans = _.groupBy(plans, 'planname');
+		plans = _.map(plans, function (p, name) {
+			var obj = { name: name };
+			obj.features = _.map(p, function (f) {
+				return f.featuretyp;
+			});
+			return obj;
+		});
 		res.send( plans );
 		client.end();
 	});
