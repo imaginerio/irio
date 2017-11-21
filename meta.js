@@ -127,7 +127,7 @@ exports.plans = function( req, res ){
 
 	var year = req.params.year,
 			plans = [],
-			q = dev.checkQuery( "SELECT layer, featuretyp FROM baseline WHERE layer LIKE 'Planned%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT layer, featuretyp FROM basepoly WHERE layer LIKE 'Planned%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT layer, featuretyp FROM basepoint WHERE layer LIKE 'Planned%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " GROUP BY layer, featuretyp ORDER BY layer, featuretyp", req );
+			q = dev.checkQuery( "SELECT planname, featuretyp FROM (SELECT planyear::int, planname, featuretyp FROM plannedpoly UNION SELECT planyear::int, planname, featuretyp FROM plannedline ORDER BY planyear, planname, featuretyp) AS q WHERE planyear = " + year, req );
 	
 	var query = client.query( q );
 	
@@ -136,7 +136,7 @@ exports.plans = function( req, res ){
 	});
 	
 	query.on( 'end', function(){
-		plans = _.groupBy(plans, 'layer');
+		plans = _.groupBy(plans, 'planname');
 		res.send( plans );
 		client.end();
 	});
