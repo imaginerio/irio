@@ -200,5 +200,7 @@ exports.memory = function( req, res ){
 	base('memories').create(req.body, function(err, record) {
 			if (err) { console.error(err); return; }
 			console.log(record.getId());
+			res.status(200);
+			res.send();
 	});
 }
