@@ -78,9 +78,10 @@ exports.plan = function( req, res ){
 	postgeo.connect( db.conn );
 	
 	var plan = decodeURI( req.query.name ),
-			feature = decodeURI( req.query.feature ),
-			q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "'", req )
-	console.log(q);
+			feature = decodeURI( req.query.feature );
+
+	var q = feature ? dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "'", req ) : dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + " UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "'", req );
+
 	postgeo.query( q, "geojson", function( data ){
 		res.send( data );
 	});
