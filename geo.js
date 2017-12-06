@@ -81,7 +81,7 @@ exports.plan = function( req, res ){
 			feature = decodeURI( req.query.feature );
 
 	var q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + " UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "'", req );
-	if (feature) {
+	if (feature !== 'undefined') {
 		q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "'", req );
 	}
 
