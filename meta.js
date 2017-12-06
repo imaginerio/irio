@@ -1,7 +1,8 @@
 var pg = require( 'pg' ),
-	_ = require( 'underscore' ),
-	db = require( './db' ),
-	dev = require( './dev' );
+		_ = require( 'underscore' ),
+		db = require( './db' ),
+		Airtable = require('airtable'),
+		dev = require( './dev' );
 	
 _.mixin({
   // ### _.objMap
@@ -190,5 +191,14 @@ exports.names = function( req, res ){
 	query.on( 'end', function(){
 		res.send( names );
 		client.end();
+	});
+}
+
+exports.memory = function( req, res ){
+	var base = new Airtable({apiKey: db.airtable}).base('appbi7Lmj9ghIaQZp');
+	
+	base('memories').create(req.body, function(err, record) {
+			if (err) { console.error(err); return; }
+			console.log(record.getId());
 	});
 }
