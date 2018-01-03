@@ -21,7 +21,7 @@ var tilelive = require('tilelive'),
 require('tilelive-mapnik').registerProtocols(tilelive);
 
 //loading AWS config
-AWS.config.loadFromPath( './aws-config.json' );
+AWS.config.loadFromPath( __dirname + '/aws-config.json' );
 var s3 = new AWS.S3();
 
 //postgres connect
@@ -90,7 +90,7 @@ function parseXML( req, res, callback ){
 		callback( file, req, res );
 	}
 	else{
-		var data = fs.readFileSync( req.params.layer == "base" ? "base.xml" : "stylesheet.xml", 'utf8' );	
+		var data = fs.readFileSync( __dirname + "/stylesheet.xml", 'utf8' );	
     var xmlDoc = xml.parseXml( data );
     var sources = xmlDoc.find( "//Parameter[@name='table']" ),
         pghost = xmlDoc.find( "//Parameter[@name='host']" ),
@@ -145,7 +145,7 @@ function parseRasterXML( req, res, callback ){
 		callback( file, req, res );
 	}
 	else{
-  	  var data = fs.readFileSync( "raster.xml", 'utf8' );
+  	  var data = fs.readFileSync( __dirname + "/raster.xml", 'utf8' );
   	  var xmlDoc = xml.parseXml( data );
   	  var sources = xmlDoc.find( "//Parameter[@name='file']" );
 				
