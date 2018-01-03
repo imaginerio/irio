@@ -204,3 +204,20 @@ exports.memory = function( req, res ){
 			res.send();
 	});
 }
+
+exports.collector = function( req, res ){
+	var client = new pg.Client(  db.conn );
+	client.connect();
+
+	var data = req.body;
+	var geo = JSON.parse(data.polygon);
+	var q = "INSERT INTO viewsheds_dev ( layer, globalid, creator, repository, firstdispl, lastdispla, imageid, title, geom, uploaddate, latitude, longitude ) VALUES ( 'viewsheds', " + data.id + ", '" + data.creator + "', '" + data.repository + "', " + data.firstdisplay + ", " + data.lastdisplay + ", '" + data.ssid + "', '" + data.title + "', ST_GeomFromGeoJSON('" + JSON.stringify( geo.geometry ) + "'), 9999, " + data.lat + ", " + data.lon + ")";
+	
+	var query = client.query( q );
+	query.on( 'end', function(){
+		res.status( 200 ).send( 'Successfully added ' + data.id );
+	});
+	query.on('error', function( err ){
+		res.status( 500 ).send(err);
+	});
+}

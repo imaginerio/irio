@@ -65,7 +65,7 @@ app.get( '/export/:lang/:year/:layer/:raster/:bounds/', download.exportMap );
 app.get( '/tiles/:year/:layer/:z/:x/:y.*', tilelive.tiles );
 app.get( '/raster/:id/:z/:x/:y.*', tilelive.raster );
 app.post( '/memory', meta.memory );
-
+app.post('/collector', meta.collector );
 
 app.listen( 80 );
 console.log( 'Listening on port 80...' );
