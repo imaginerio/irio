@@ -1,5 +1,4 @@
-var express = require('express'),
-    tilelive = require('tilelive'),
+var tilelive = require('tilelive'),
     fs = require( 'graceful-fs' ),
     xml = require( 'libxmljs' ),
     _ = require( 'underscore' ),
@@ -18,32 +17,6 @@ var express = require('express'),
     	{ year : 1880, file : '/data/raster/1880_1904.tif' },
     	{ year : 1500, file : '/data/raster/1500_1879.tif' }
     ];
-    
-var app = express();
-
-app.use( function( req, res, next )
-{
-    res.setHeader( 'Access-Control-Allow-Origin', '*' );
-    next();
-});
-
-app.use( function(err, req, res, next) {
-  console.error(err.stack);
-  next(err);
-});
-
-app.use( function(err, req, res, next) {
-  if (req.xhr) {
-    res.send( 500, { error: 'Something blew up!' } );
-  } else {
-    next(err);
-  }
-});
-
-app.use( function(err, req, res, next) {
-  res.status( 500 );
-  res.render( 'error', { error: err } );
-});
 
 require('tilelive-mapnik').registerProtocols(tilelive);
 
@@ -55,7 +28,7 @@ var s3 = new AWS.S3();
 var client = new pg.Client( db.conn );
 client.connect();
 
-app.get('/tiles/:year/:layer/:z/:x/:y.*', function( req, res ){
+exports.tiles = function( req, res ){
   var dev = req.headers.host.match( /-dev/ ) ? true : false;
   cache = req.query.cache == undefined;
   var png = "cache/png/" + req.params.year + "/" + req.params.layer + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png",
@@ -79,9 +52,9 @@ app.get('/tiles/:year/:layer/:z/:x/:y.*', function( req, res ){
       parseXML( req, res, renderTile );
     }
   });
-});
+};
 
-app.get( '/raster/:id/:z/:x/:y.*', function( req, res ){
+exports.raster = function( req, res ){
   var dev = req.headers.host.match( /-dev/ ) ? true : false;
   cache = req.query.cache == undefined;
   var png = "cache/png/null/" + req.params.id + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png",
@@ -107,7 +80,7 @@ app.get( '/raster/:id/:z/:x/:y.*', function( req, res ){
       parseRasterXML( req, res, renderTile );
     }
   });
-})
+};
 
 function parseXML( req, res, callback ){
 	var dev = req.headers.host.match( /-dev/ ) ? true : false,
@@ -237,7 +210,3 @@ function saveTile( req, tile, res ){
     }
   });
 }
-
-app.listen( 3001 );
-console.log( 'Listening on port: ' + 3001 );
-

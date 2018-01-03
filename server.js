@@ -3,7 +3,8 @@ var express = require( 'express' ),
 	  http = require( 'http' ),
     meta = require( './meta' ),
     geo = require( './geo' ),
-    download = require( './mapnik/export' );
+    download = require( './mapnik/export' ),
+    tilelive = require( './mapnik/tilelive' );
 
 var app = express();
 
@@ -61,11 +62,13 @@ app.get( '/details/:id', meta.details );
 app.get( '/names/:lang', meta.names );
 app.get( '/feature/:year/:id', geo.feature );
 app.get( '/export/:lang/:year/:layer/:raster/:bounds/', download.exportMap );
+app.get( '/tiles/:year/:layer/:z/:x/:y.*', tilelive.tiles );
+app.get( '/raster/:id/:z/:x/:y.*', tilelive.raster );
 app.post( '/memory', meta.memory );
 
 
-app.listen( 3000 );
-console.log( 'Listening on port 3000...' );
+app.listen( 80 );
+console.log( 'Listening on port 80...' );
 
 //http.createServer( urlRedirect ).listen( 80 );
 
