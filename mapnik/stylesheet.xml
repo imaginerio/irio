@@ -1363,7 +1363,6 @@
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'residential'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1371,7 +1370,6 @@
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'residential'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1379,7 +1377,6 @@
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'residential'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1387,14 +1384,12 @@
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>[stylename] = 'residential'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="0.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'maintenance'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1402,7 +1397,6 @@
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'maintenance'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1410,7 +1404,6 @@
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'maintenance'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1418,14 +1411,12 @@
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>[stylename] = 'maintenance'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="0.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'athletic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1433,7 +1424,6 @@
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'athletic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1441,7 +1431,6 @@
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'athletic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1449,14 +1438,12 @@
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>[stylename] = 'athletic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="0.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'administrative'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1464,7 +1451,6 @@
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'administrative'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1472,7 +1458,6 @@
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'administrative'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1480,14 +1465,12 @@
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>[stylename] = 'administrative'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="0.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <Filter>[stylename] = 'academic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1495,7 +1478,6 @@
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>[stylename] = 'academic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1503,7 +1485,6 @@
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'academic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
   <Rule>
@@ -1511,7 +1492,6 @@
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>[stylename] = 'academic'</Filter>
     <PolygonSymbolizer fill="#db8e68" />
-    <PolygonPatternSymbolizer file="../../../img/8px-1px-Dotted.png" opacity="0.2" />
     <LineSymbolizer stroke-width="0.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
 </Style>
