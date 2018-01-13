@@ -18,7 +18,7 @@ app.use( function( req, res, next )
     //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    //res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -67,8 +67,8 @@ app.get( '/raster/:id/:z/:x/:y.*', tilelive.raster );
 app.post( '/memory', meta.memory );
 app.post('/collector', meta.collector );
 
-app.listen( 80 );
-console.log( 'Listening on port 80...' );
+app.listen( 8080 );
+console.log( 'Listening on port 8080...' );
 
 //http.createServer( urlRedirect ).listen( 80 );
 
