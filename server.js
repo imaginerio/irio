@@ -69,12 +69,3 @@ app.post('/collector', meta.collector );
 
 app.listen( 80 );
 console.log( 'Listening on port 80...' );
-
-//http.createServer( urlRedirect ).listen( 80 );
-
-function urlRedirect( req, res ){
-  res.writeHead(302, {
-    'Location': 'http://imaginerio.org'
-  });
-  res.end();
-}
