@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+
+<Parameters>
+  <Parameter name="bounds">35.4142,33.8297,35.593,33.9509</Parameter>
+  <Parameter name="center">35.5016,33.8858,13</Parameter>
+  <Parameter name="format">png8</Parameter>
+  <Parameter name="minzoom">13</Parameter>
+  <Parameter name="maxzoom">18</Parameter>
+  <Parameter name="scale">1</Parameter>
+  <Parameter name="metatile">10</Parameter>
+  <Parameter name="id"><![CDATA[diverseLevant]]></Parameter>
+  <Parameter name="_updated">1516290800000</Parameter>
+  <Parameter name="tilejson"><![CDATA[2.0.0]]></Parameter>
+  <Parameter name="scheme"><![CDATA[xyz]]></Parameter>
+</Parameters>
+
+
+<Style name="ocean" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill="#edf6ee" />
+  </Rule>
+</Style>
+<Layer name="ocean"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>ocean</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/extent/extent.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[ocean]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="buffer3" filter-mode="first" image-filters="agg-stack-blur(500,500)" image-filters-inflate="true">
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#ddeff1" />
+  </Rule>
+</Style>
+<Layer name="buffer3"
+  srs="++proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>buffer3</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/buffer/buffer3.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[buffer3]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="buffer2" filter-mode="first" image-filters="agg-stack-blur(500,500)" image-filters-inflate="true">
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <PolygonSymbolizer fill="#ddeff1" />
+  </Rule>
+</Style>
+<Layer name="buffer2"
+  srs="++proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>buffer2</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/buffer/buffer2.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[buffer2]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="buffer1" filter-mode="first" image-filters="agg-stack-blur(500,500)" image-filters-inflate="true">
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <PolygonSymbolizer fill="#ddeff1" />
+  </Rule>
+</Style>
+<Layer name="buffer1"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>buffer1</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/buffer/buffer1.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[buffer1]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="land-land" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill="#f8fae8" />
+    <PolygonPatternSymbolizer file="layers/img/land-texture.png" opacity="0.3" />
+  </Rule>
+</Style>
+<Style name="land-glow" filter-mode="first" image-filters="agg-stack-blur(10,10)" image-filters-inflate="true">
+  <Rule>
+    <PolygonSymbolizer fill="#95cdd3" />
+  </Rule>
+</Style>
+<Layer name="land"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>land-glow</StyleName>
+    <StyleName>land-land</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/land/land.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="countries" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke="#cccccc" stroke-width="1" stroke-linejoin="round" />
+  </Rule>
+</Style>
+<Layer name="countries"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>countries</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/countries/countries_land_boundaries.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[countries]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="landcover" filter-mode="first">
+  <Rule>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Built Domain')</Filter>
+    <PolygonSymbolizer fill="#975063" fill-opacity="0.05" />
+  </Rule>
+</Style>
+<Layer name="landcover"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    <StyleName>landcover</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/LandCoverPoly.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[landcover]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="openspaces" filter-mode="first">
+  <Rule>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Square')</Filter>
+    <PolygonSymbolizer fill="#999999" fill-opacity="0.4" />
+  </Rule>
+  <Rule>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Garden')</Filter>
+    <PolygonSymbolizer fill="#93cca2" fill-opacity="0.4" />
+  </Rule>
+  <Rule>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Park')</Filter>
+    <PolygonSymbolizer fill="#b3d164" fill-opacity="0.4" />
+  </Rule>
+  <Rule>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Cemetery')</Filter>
+    <PolygonSymbolizer fill="#d8c483" fill-opacity="0.4" />
+  </Rule>
+</Style>
+<Layer name="openspaces"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    <StyleName>openspaces</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/OpenSpacesPoly.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[openspaces]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="roads-dash" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="2" stroke-dasharray="6, 5" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="1.5" stroke-dasharray="5, 4" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="1" stroke-dasharray="4, 3" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="1" stroke-dasharray="3, 3" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="0.5" stroke-dasharray="2, 2" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="2" stroke-dasharray="6, 5" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="1.5" stroke-dasharray="5, 4" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="1" stroke-dasharray="4, 3" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="1" stroke-dasharray="3, 3" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="0.5" stroke-dasharray="2, 2" stroke-linejoin="round" />
+  </Rule>
+</Style>
+<Style name="roads-solid" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Pedestrian')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+</Style>
+<Style name="roads" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+</Style>
+<Style name="roads-fill" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="13.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="13.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="13.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="13.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="19.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#f1eba5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+</Style>
+<Style name="roads-stroke" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <LineSymbolizer stroke="#c8cbb3" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="22" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <LineSymbolizer stroke="#b2b695" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+</Style>
+<Layer name="roads"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    <StyleName>roads-stroke</StyleName>
+    <StyleName>roads-fill</StyleName>
+    <StyleName>roads</StyleName>
+    <StyleName>roads-solid</StyleName>
+    <StyleName>roads-dash</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/RoadsLine.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[roads]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="utilities-line2" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="1" offset="1.75" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="0.75" offset="1.5" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="0.5" offset="1.25" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="0.5" offset="1" stroke="#b2b695" />
+  </Rule>
+</Style>
+<Style name="utilities-hatch" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="5" stroke-dasharray="1.5, 40" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="5" stroke-dasharray="1.5, 24" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="3" stroke-dasharray="1.5, 12" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="3" stroke-dasharray="1.5, 12" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="3" stroke-dasharray="1, 12" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="7" stroke-dasharray="1.5, 50" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="6" stroke-dasharray="1.5, 38" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="5" stroke-dasharray="1.25, 18" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="4" stroke-dasharray="1, 18" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="3" stroke-dasharray="1, 12" stroke="#b2b695" />
+  </Rule>
+</Style>
+<Style name="utilities-line1" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="0.75" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="0.75" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Tram')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="1" offset="-1.75" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="0.75" offset="-1.5" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="0.5" offset="-1.25" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="0.5" offset="-1" stroke="#b2b695" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Rail/Train')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#b2b695" />
+  </Rule>
+</Style>
+<Layer name="utilities"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    <StyleName>utilities-line1</StyleName>
+    <StyleName>utilities-hatch</StyleName>
+    <StyleName>utilities-line2</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/UtilitiesLine.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[utilities]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="road-labels" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="16" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Steps')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="16" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Residential')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Service')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Primary')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Secundary')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([FIRSTYEAR] &lt;= 1920) and ([LASTYEAR] &gt;= 1920) and ([TYPE] = 'Tertiary')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[NAME]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="road-labels"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    <StyleName>road-labels</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/RoadsLine.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[road-labels]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="utility-labels"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/UtilitiesLine.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[utility-labels]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="openspace-labels" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Square')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#404040" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Garden')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Cemetery')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920) and ([Type] = 'Park')</Filter>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="openspace-labels"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    <StyleName>openspace-labels</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/OpenSpacesPoly.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[openspace-labels]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="buildings" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920)</Filter>
+    <PolygonSymbolizer fill="#e5bac2" />
+    <LineSymbolizer stroke="#b06a7d" />
+  </Rule>
+</Style>
+<Style name="buildings-shadow" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920)</Filter>
+    <PolygonSymbolizer fill="#82885d" fill-opacity="0.5" geometry-transform="translate(5,5)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920)</Filter>
+    <PolygonSymbolizer fill="#82885d" fill-opacity="0.5" geometry-transform="translate(4,4)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920)</Filter>
+    <PolygonSymbolizer fill="#82885d" fill-opacity="0.5" geometry-transform="translate(3,3)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920)</Filter>
+    <PolygonSymbolizer fill="#82885d" fill-opacity="0.5" geometry-transform="translate(2,2)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920)</Filter>
+    <PolygonSymbolizer fill="#82885d" fill-opacity="0.5" geometry-transform="translate(1.5,1.5)" />
+  </Rule>
+  <Rule>
+    <Filter>([FirstYear] &lt;= 1920) and ([LastYear] &gt;= 1920)</Filter>
+  </Rule>
+</Style>
+<Layer name="buildings"
+  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+    <StyleName>buildings-shadow</StyleName>
+    <StyleName>buildings</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/20171211/BuildingsPoly.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[buildings]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="texture-paper" filter-mode="first">
+  <Rule>
+    <PolygonPatternSymbolizer file="layers/img/paper-texture4.png" opacity="0.1" />
+  </Rule>
+</Style>
+<Layer name="texture"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>texture-paper</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/bcsheesley/Documents/MapBox/project/diverseLevant/layers/extent/extent.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+       <Parameter name="id"><![CDATA[texture]]></Parameter>
+       <Parameter name="project"><![CDATA[diverseLevant]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
