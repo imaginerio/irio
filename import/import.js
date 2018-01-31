@@ -122,7 +122,6 @@ var newLayer = function( client, ans, callback ) {
   }
   
   var recordTest = function( props ) {
-    if( props.FirstYear < 1500 || props.LastYear < 1500 ) return false;
     if( ( props.FirstYear > new Date().getFullYear() && props.FirstYear != 8888 ) || ( props.LastYear > new Date().getFullYear() && props.LastYear != 8888 ) ) return false;
     if( props.FirstYear > props.LastYear ) return false;
     return true;
