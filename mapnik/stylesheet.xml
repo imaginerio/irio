@@ -825,116 +825,116 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'steps')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="16" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="16" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'steps')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'residential')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="16" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="16" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'residential')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#666666" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'service')</Filter>
-    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'service')</Filter>
-    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([stylename] = 'service')</Filter>
-    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([stylename] = 'service')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'primary')</Filter>
-    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'primary')</Filter>
-    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([stylename] = 'primary')</Filter>
-    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([stylename] = 'primary')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'secundary')</Filter>
-    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'secundary')</Filter>
-    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([stylename] = 'secundary')</Filter>
-    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([stylename] = 'secundary')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'tertiary')</Filter>
-    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'tertiary')</Filter>
-    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([stylename] = 'tertiary')</Filter>
-    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([stylename] = 'tertiary')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="RoadsLine_labels"
@@ -968,22 +968,22 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <Filter>([stylename] = 'square')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#404040" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#404040" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <Filter>([stylename] = 'garden')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <Filter>([stylename] = 'cemetery')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <Filter>([stylename] = 'park')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="OpenSpacesPoly_labels"
