@@ -13,6 +13,7 @@ var pg = require( 'pg' ),
     questions = require( './questions' ),
     push = require( './push' ),
     defaultNull = {
+      "Type" : null,
       "Name" : null,
       "NameShort" : null,
       "Notes" : null,
