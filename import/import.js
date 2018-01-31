@@ -162,6 +162,7 @@ var newLayer = function( client, ans, callback ) {
     
     query.on( 'error', function( error ) {
       console.log( q );
+      count.error++;
       reader.readRecord( recordReader );
     });
     
