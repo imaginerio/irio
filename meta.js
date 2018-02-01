@@ -36,7 +36,7 @@ exports.timeline = function( req, res ){
 	var query = client.query( q );
 	
 	query.on( 'row', function( result ){
-		if( result.year > 0 ) years.push( result.year );
+		years.push( result.year );
 	});
 	
 	query.on( 'end', function(){
