@@ -342,7 +342,7 @@
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#c8cbb3" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
 </Style>
@@ -434,31 +434,31 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#f1eba5" stroke-width="13.5" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#f1eba5" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#f1eba5" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#f1eba5" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#f1eba5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
@@ -585,31 +585,31 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#b2b695" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#b2b695" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#b2b695" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#b2b695" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <LineSymbolizer stroke="#b2b695" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
@@ -901,25 +901,25 @@
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <TextSymbolizer size="18" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <TextSymbolizer size="16" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <TextSymbolizer size="15" face-name="Mirza Regular" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([stylename] = 'secundary')</Filter>
+    <Filter>([stylename] = 'secondary')</Filter>
     <TextSymbolizer face-name="Mirza Regular" size="14" fill="#333333" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" character-spacing="2" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
