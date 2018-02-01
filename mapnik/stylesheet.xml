@@ -119,7 +119,7 @@
     <StyleName>land-land</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'LandPoly' AND stylename = 'land' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'LandPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="dbname"><![CDATA[rice]]></Parameter>
