@@ -6,17 +6,7 @@ var tilelive = require('tilelive'),
     AWS = require( 'aws-sdk' ),
     cache,
     db = require( '../db' ),
-    cloudfront = "https://diverselevant.s3.amazonaws.com/",
-    hillshade = [ 
-    	{ year : 1960, file : '/data/raster/1960_8888.tif' },
-    	{ year : 1924, file : '/data/raster/1924_1959.tif' },
-    	{ year : 1923, file : '/data/raster/1923_1923.tif' },
-    	{ year : 1922, file : '/data/raster/1922_1922.tif' },
-    	{ year : 1910, file : '/data/raster/1910_1921.tif' },
-    	{ year : 1905, file : '/data/raster/1905_1909.tif' },
-    	{ year : 1880, file : '/data/raster/1880_1904.tif' },
-    	{ year : 1500, file : '/data/raster/1500_1879.tif' }
-    ];
+    cloudfront = "https://diverselevant.s3.amazonaws.com/";
 
 require('tilelive-mapnik').registerProtocols(tilelive);
 
@@ -124,11 +114,6 @@ function parseXML( req, res, callback ){
 			_.each( sources, function( item ){
 				item.attr( { "status" : "off" } );
 			})
-		});
-			
-		var hs = xmlDoc.find( "//Parameter[@name='file']" );
-		_.each( hs, function( item ){
-			if( item.text().match( /hillshade/ ) ) item.text( _.find( hillshade, function( h ){ return h.year <= req.params.year } ).file );
 		});
 			
     mkdir( "/data/cache/xml/" + req.params.year );
