@@ -1328,6 +1328,7 @@
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <Filter>([stylename] = 'train')</Filter>
     <LineSymbolizer stroke-width="0.5" stroke="#b2b695" />
+  </Rule>
   <Rule>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([stylename] = 'train')</Filter>
