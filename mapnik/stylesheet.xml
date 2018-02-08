@@ -532,9 +532,9 @@
 </Style>
 <Layer name="PathsLine"
   srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>paths-shadow</StyleName>
     <StyleName>paths-solid</StyleName>
     <StyleName>paths-dash</StyleName>
-    <StyleName>paths-shadow</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND stylename = 'pedestrian' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
@@ -1150,9 +1150,9 @@
 
 <Layer name="RoadsLine"
   srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>roads-shadow</StyleName>
     <StyleName>roads-stroke</StyleName>
     <StyleName>roads-fill</StyleName>
-    <StyleName>roads-shadow</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
