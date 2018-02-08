@@ -134,7 +134,7 @@
   </Rule>
 </Style>
 <Layer name="hillshade"
-  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+  srs="+proj=longlat +datum=WGS84 +no_defs">
     <StyleName>hillshade</StyleName>
     <Datasource>
        <Parameter name="file"><![CDATA[/data/raster/hillshade.tif]]></Parameter>
@@ -157,7 +157,7 @@
   </Rule>
 </Style>
 <Layer name="LandCoverPoly"
-  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+  srs="+proj=longlat +datum=WGS84 +no_defs">
     <StyleName>landcover</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
@@ -198,7 +198,7 @@
   </Rule>
 </Style>
 <Layer name="OpenSpacesPoly"
-  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+  srs="+proj=longlat +datum=WGS84 +no_defs">
     <StyleName>openspaces</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
@@ -1149,7 +1149,7 @@
 </Style>
 
 <Layer name="RoadsLine"
-  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+  srs="+proj=longlat +datum=WGS84 +no_defs">
     <StyleName>roads-stroke</StyleName>
     <StyleName>roads-fill</StyleName>
     <StyleName>roads-shadow</StyleName>
@@ -1336,7 +1336,7 @@
   </Rule>
 </Style>
 <Layer name="UtilitiesLine"
-  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+  srs="+proj=longlat +datum=WGS84 +no_defs">
     <StyleName>utilities-line1</StyleName>
     <StyleName>utilities-line2</StyleName>
     <StyleName>utilities-hatch</StyleName>
@@ -1588,7 +1588,7 @@
   </Rule>
 </Style>
 <Layer name="RoadsLine_labels"
-  srs="+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs">
+  srs="+proj=longlat +datum=WGS84 +no_defs">
     <StyleName>road-labels</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
