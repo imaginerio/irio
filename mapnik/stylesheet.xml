@@ -530,7 +530,7 @@
     <LineSymbolizer stroke="#b2b695" stroke-opacity="0.3" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
 </Style>
-<Layer name="RoadsLine"
+<Layer name="PathsLine"
   srs="+proj=longlat +datum=WGS84 +no_defs">
     <StyleName>paths-solid</StyleName>
     <StyleName>paths-dash</StyleName>
