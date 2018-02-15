@@ -1751,18 +1751,18 @@
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-24.png" />
+    <MarkersSymbolizer file="../../../img/religious-jewish-building-28.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-18.png" />
+    <MarkersSymbolizer file="../../../img/religious-jewish-building-22.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-12.png" />
+    <MarkersSymbolizer file="../../../img/religious-jewish-building-16.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
