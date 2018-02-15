@@ -1363,138 +1363,138 @@
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterystar')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-jewish-cemetery-28.png" dy="20" size="15" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-jewish-cemetery-28.png" dy="20" size="15" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'cemeterystar')</Filter>
-    <ShieldSymbolizer size="15" dy="18" file="../../../img/religious-jewish-cemetery-22.png" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer size="15" dy="18" file="../../../img/religious-jewish-cemetery-22.png" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterystar')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-jewish-cemetery-22.png" size="13" dy="16" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-jewish-cemetery-22.png" size="13" dy="16" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterystar')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-jewish-cemetery-16.png" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" size="12" character-spacing="1" line-spacing="-3" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" dy="12" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-jewish-cemetery-16.png" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" size="12" character-spacing="1" line-spacing="-3" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" dy="12" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterycross')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-christian-cemetery-24.png" dy="20" size="15" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-christian-cemetery-24.png" dy="20" size="15" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'cemeterycross')</Filter>
-    <ShieldSymbolizer size="15" dy="16" file="../../../img/religious-christian-cemetery-20.png" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer size="15" dy="16" file="../../../img/religious-christian-cemetery-20.png" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterycross')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-christian-cemetery-20.png" size="13" dy="14" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-christian-cemetery-20.png" size="13" dy="14" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterycross')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-christian-cemetery-14.png" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" size="12" character-spacing="1" line-spacing="-3" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" dy="12" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-christian-cemetery-14.png" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" size="12" character-spacing="1" line-spacing="-3" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" dy="12" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterycrescent')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-muslim-cemetery-24.png" dy="20" size="15" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-muslim-cemetery-24.png" dy="20" size="15" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'cemeterycrescent')</Filter>
-    <ShieldSymbolizer size="15" dy="16" file="../../../img/religious-muslim-cemetery-18.png" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer size="15" dy="16" file="../../../img/religious-muslim-cemetery-18.png" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterycrescent')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-muslim-cemetery-18.png" size="13" dy="14" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-muslim-cemetery-18.png" size="13" dy="14" line-spacing="-1" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" character-spacing="1" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'cemeterycrescent')</Filter>
-    <ShieldSymbolizer file="../../../img/religious-muslim-cemetery-12.png" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" size="12" character-spacing="1" line-spacing="-3" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" dy="12" ><![CDATA[[Name]]]></ShieldSymbolizer>
+    <ShieldSymbolizer file="../../../img/religious-muslim-cemetery-12.png" face-name="Mirza Regular" unlock-image="true" fill="#806c28" text-transform="uppercase" size="12" character-spacing="1" line-spacing="-3" wrap-width="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" dy="12" ><![CDATA[[namecomple]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'square')</Filter>
-    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#575a3e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#575a3e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'square')</Filter>
-    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#575a3e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#575a3e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'square')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#575a3e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#575a3e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'garden')</Filter>
-    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'garden')</Filter>
-    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'garden')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#377548" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'cemetery')</Filter>
-    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'cemetery')</Filter>
-    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'cemetery')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#806c28" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([stylename] = 'park')</Filter>
-    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" line-spacing="-1" face-name="Mirza Regular" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([stylename] = 'park')</Filter>
-    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer size="13" line-spacing="-1" face-name="Mirza Regular" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([stylename] = 'park')</Filter>
-    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[Name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="Mirza Regular" size="12" fill="#51651e" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" character-spacing="1" line-spacing="-3" wrap-width="50" text-transform="uppercase" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="OpenSpacesPoly_labels"
