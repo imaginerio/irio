@@ -1161,7 +1161,7 @@
     <StyleName>roads-fill</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT *, CASE WHEN stylename = 'freeway' THEN 0 WHEN stylename = 'primary' THEN 1 WHEN stylename = 'secondary' THEN 2 WHEN stylename = 'tertiary' THEN 3 WHEN stylename = 'residential' THEN 4 WHEN stylename = 'pedestrian' THEN 5 END AS sort FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ORDER BY sort ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="dbname"><![CDATA[rice]]></Parameter>
