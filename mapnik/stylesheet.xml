@@ -1740,9 +1740,6 @@
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="dbname"><![CDATA[rice]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -1751,46 +1748,34 @@
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-24.png" />
+    <MarkersSymbolizer file="layers/img/religious-jewish-building-28.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-18.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-12.png" />
+    <MarkersSymbolizer file="layers/img/religious-jewish-building-22.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'buildingscrescent')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-muslim-24.png" />
+    <MarkersSymbolizer file="layers/img/religious-muslim-building-24.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([stylename] = 'buildingscrescent')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-muslim-18.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([stylename] = 'buildingscrescent')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-muslim-12.png" />
+    <MarkersSymbolizer file="layers/img/religious-muslim-building-18.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'buildingscross')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-christian-24.png" />
+    <MarkersSymbolizer file="layers/img/religious-christian-building-24.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([stylename] = 'buildingscross')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-christian-18.png" />
+    <MarkersSymbolizer file="layers/img/religious-christian-building-20.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
