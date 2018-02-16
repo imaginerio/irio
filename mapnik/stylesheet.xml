@@ -1759,12 +1759,6 @@
     <MarkersSymbolizer file="../../../img/religious-jewish-building-22.png" />
   </Rule>
   <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-building-16.png" />
-  </Rule>
-  <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
     <Filter>([stylename] = 'buildingscrescent')</Filter>
@@ -1785,12 +1779,6 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([stylename] = 'buildingscross')</Filter>
     <MarkersSymbolizer file="../../../img/religious-christian-building-20.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([stylename] = 'buildingscross')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-christian-12.png" />
   </Rule>
 </Style>
 <Style name="buildings-building" filter-mode="first">
