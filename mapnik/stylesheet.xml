@@ -1740,6 +1740,9 @@
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
