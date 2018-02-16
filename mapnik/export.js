@@ -88,14 +88,14 @@ exports.exportMap = function( req, res ){
     context.fillStyle = '#666';
     context.fillRect( 0, titleHeight - 1, dimensions.x, 1 );
     context.font = '100 30px Raleway';
-    context.fillText( req.params.lang == 'en' ? 'instituteRice' : 'instituteRice', 20, 35 );
+    context.fillText( req.params.lang == 'en' ? 'diverseLevent' : 'diverseLevant', 20, 35 );
   
     context.font = 'bold 20px Raleway';
     context.fillText( req.params.year, dimensions.x - 100, 35 );
     
     res.set({
       'Content-type': 'image/png',
-      'Content-Disposition': 'attachment; filename=rio-' + req.params.year + '.png'
+      'Content-Disposition': 'attachment; filename=beirut-' + req.params.year + '.png'
     });
     res.send( new Buffer( canvas.toDataURL().substr( 22 ), 'base64' ) );
     
