@@ -88,7 +88,7 @@ exports.exportMap = function( req, res ){
     context.fillStyle = '#666';
     context.fillRect( 0, titleHeight - 1, dimensions.x, 1 );
     context.font = '100 30px Raleway';
-    context.fillText( req.params.lang == 'en' ? 'diverseLevent' : 'diverseLevant', 20, 35 );
+    context.fillText( req.params.lang == 'en' ? 'diverseLevant' : 'diverseLevant', 20, 35 );
   
     context.font = 'bold 20px Raleway';
     context.fillText( req.params.year, dimensions.x - 100, 35 );
