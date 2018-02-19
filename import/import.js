@@ -30,8 +30,8 @@ var pg = require( 'pg' ),
       "Creator" : null,
       "SS_Title" : null,
       "SS_Reposit" : null,
-      "Latitude" : null,
-      "Longitude" : null
+      "Lat" : null,
+      "Long" : null
     }
     
 _.mixin({
