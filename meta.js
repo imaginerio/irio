@@ -62,17 +62,25 @@ exports.layers = function( req, res ){
 	});
 	
 	query.on( 'end', function(){
-		_.each( arr, function( val ){
-			if( !layers[ val.folder ] ) layers[ val.folder ] = {};
-			if( !layers[ val.folder ][ val.layer ] ) layers[ val.folder ][ val.layer ] = {};
-			if( !layers[ val.folder ][ val.layer ][ val.layername ] ){
-				layers[ val.folder ][ val.layer ][ val.layername ] = {};
-				layers[ val.folder ][ val.layer ][ val.layername ].id = val.stylename;
-				layers[ val.folder ][ val.layer ][ val.layername ].features = [];
-			}
-			
-			if( val.shape ) layers[ val.folder ][ val.layer ][ val.layername ].style = { fill : val.fill, stroke : val.stroke, shape : val.shape };
-			if( val.featuretyp ) layers[ val.folder ][ val.layer ][ val.layername ].features.push( val.featuretyp );
+		var styles = _.indexBy(arr, 'stylename');
+		var layers = _.objMap(_.groupBy(arr, 'folder'), function(f) {
+			return _.objMap(_.groupBy(f, 'layer'), function (l, name) {
+				let layer = {};
+				if (_.uniq(_.pluck(l, 'stylename')).length === 1) {
+					layer.id = l[0].stylename;
+					layer.features = _.pluck(l, 'featuretyp');
+					layer.style = _.pick(l[0], 'fill', 'stroke', 'shape');
+				} else {
+					layer.features = {};
+					_.each(l, function(f) {
+						layer.features[f.featuretyp] = {
+							id: f.stylename,
+							style: _.pick(f, 'fill', 'stroke', 'shape')
+						};
+					});
+				}
+				return layer;
+			});
 		});
 		
 		res.send( layers );
