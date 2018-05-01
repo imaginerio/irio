@@ -36,7 +36,7 @@ exports.box = function( req, res ){
 			c2 = req.params.c2,
 			layers = req.params.layers,
 			results = [],
-			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, layer FROM ( SELECT globalid AS id, namecomple AS name, layer, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) as q WHERE geom && ST_MakeEnvelope( ST_MakeLine( ST_MakePoint( 1, 2 ), ST_MakePoint( 3, 4 ) ), 4326 ) GROUP BY name, layer ORDER BY layer", req );
+			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, layer FROM ( SELECT globalid AS id, namecomple AS name, layer, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) as q WHERE geom && ST_MakeEnvelope( ST_MakeLine( ST_MakePoint( " + c1 + " ), ST_MakePoint( " + c2 + " ) ), 4326 ) GROUP BY name, layer ORDER BY layer", req );
 	
 	var query = client.query( q );
 	
