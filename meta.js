@@ -120,6 +120,27 @@ exports.search = function( req, res ){
 	});
 }
 
+exports.search2 = function( req, res ){
+	var client = new pg.Client( db.conn );
+	client.connect();
+
+	var year = req.params.year,
+			word = req.params.word,
+			names = {},
+			q = dev.checkQuery( "SELECT array_agg( id ) as gid, namecomple, layer FROM ( SELECT globalid AS id, namecomple, layer FROM basepoint WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, layer FROM baseline WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, layer FROM basepoly WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " ) as q GROUP BY namecomple, layer ORDER BY layer UNION SELECT imageid AS ID, title AS namecomple, layer FROM viewsheds WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " AND lastdispla >= 1910 UNION SELECT imageid AS ID, title AS namecomple, layer FROM mapsplans WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year, req );
+	
+	var query = client.query( q );
+	
+	query.on( 'row', function( result ){
+		names[ result.namecomple ] = { id : result.gid, layer : result.layer };
+	});
+	
+	query.on( 'end', function(){
+		res.send( names );
+		client.end();
+	});
+}
+
 exports.plans = function( req, res ){
 	var client = new pg.Client( db.conn );
 	client.connect();

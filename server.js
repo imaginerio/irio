@@ -51,6 +51,7 @@ app.use(bodyParser.urlencoded({limit: 10000000}));
 app.get( '/timeline', meta.timeline );
 app.get( '/layers/:year', meta.layers );
 app.get( '/search/:year/:word', meta.search );
+app.get( '/search2/:year/:word', meta.search2 );
 app.get( '/probe/:year/:radius/:coords/:layers?', geo.probe );
 app.get( '/box/:year/:c1/:c2/:layers?', geo.box );
 app.get( '/draw/:year/:id', geo.draw );
