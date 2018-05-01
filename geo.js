@@ -27,6 +27,29 @@ exports.probe = function( req, res ){
 	});
 }
 
+exports.box = function( req, res ){
+	var client = new pg.Client( db.conn );
+	client.connect();
+	
+	var year = req.params.year,
+			c1 = req.params.c1,
+			c2 = req.params.c2,
+			layers = req.params.layers,
+			results = [],
+			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, layer FROM ( SELECT globalid AS id, namecomple AS name, layer, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) as q WHERE geom && ST_MakeEnvelope( ST_MakeLine( ST_MakePoint( 1, 2 ), ST_MakePoint( 3, 4 ) ), 4326 ) GROUP BY name, layer ORDER BY layer", req );
+	
+	var query = client.query( q );
+	
+	query.on( 'row', function( result ){
+		if( layers === undefined || layers.indexOf( result.grouping ) == -1 ) results.push( _.omit( result, 'grouping' ) );
+	});
+	
+	query.on( 'end', function(){
+		res.send( results );
+		client.end();
+	});
+}
+
 exports.draw = function( req, res ){
 	postgeo.connect( db.conn );
 	
