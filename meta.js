@@ -127,12 +127,13 @@ exports.search2 = function( req, res ){
 	var year = req.params.year,
 			word = req.params.word,
 			names = {},
-			q = dev.checkQuery( "SELECT array_agg( id ) as gid, namecomple, NULL AS file, layer FROM ( SELECT globalid AS id, namecomple, layer FROM basepoint WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer FROM baseline WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer FROM basepoly WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer FROM viewsheds WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " AND lastdispla >= 1910 UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer FROM mapsplans WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + ") as q GROUP BY namecomple, layer ORDER BY layer", req );
+			q = dev.checkQuery( "SELECT array_agg( id ) as gid, namecomple, array_agg( file ) AS file, layer FROM ( SELECT globalid AS id, namecomple, NULL AS file, layer FROM basepoint WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer FROM baseline WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer FROM basepoly WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer FROM viewsheds WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " AND lastdispla >= 1910 UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer FROM mapsplans WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + ") as q GROUP BY namecomple, layer ORDER BY layer", req );
 	
 	var query = client.query( q );
 	
 	query.on( 'row', function( result ){
 		names[ result.namecomple ] = { id : result.gid, layer : result.layer };
+		if (result.file) names[ result.namecomple ].file = result.file;
 	});
 	
 	query.on( 'end', function(){
