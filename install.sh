@@ -67,9 +67,12 @@ ufw allow 'Nginx Full'
 git clone https://github.com/axismaps/irio.git
 cd irio
 npm install
+cd import
+npm install
 
 # Setting up database user
 su postgres
 createuser -s root
 exit
 createdb rio
+psql -f init.sql -d rio
