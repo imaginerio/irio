@@ -1,10 +1,13 @@
+node_modules/*
+import/node_modules/*
 tiles*
+mapnik/cache/*
+/mapnik/cache
 raster/*
 /raster
 Build/*
-*.log
-node_modules/*
-import/node_modules/*
-db.js
 mapnik/aws-config.json
+*.pem
 import/db.js
+db.js
+*.log

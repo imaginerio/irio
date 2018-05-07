@@ -1,5 +1,4 @@
-var express = require('express'),
-    tilelive = require('tilelive'),
+var tilelive = require('tilelive'),
     fs = require( 'graceful-fs' ),
     xml = require( 'libxmljs' ),
     _ = require( 'underscore' ),
@@ -7,18 +6,6 @@ var express = require('express'),
     AWS = require( 'aws-sdk' ),
     cache,
     db = require( '../db' ),
-    cloudfront = "http://d1nxja8ugt29ju.cloudfront.net/",
-    hillshade = [ 
-    	{ year : 1960, file : '/data/raster/1960_8888.tif' },
-    	{ year : 1924, file : '/data/raster/1924_1959.tif' },
-    	{ year : 1923, file : '/data/raster/1923_1923.tif' },
-    	{ year : 1922, file : '/data/raster/1922_1922.tif' },
-    	{ year : 1910, file : '/data/raster/1910_1921.tif' },
-    	{ year : 1905, file : '/data/raster/1905_1909.tif' },
-    	{ year : 1880, file : '/data/raster/1880_1904.tif' },
-    	{ year : 1500, file : '/data/raster/1500_1879.tif' }
-    ];
-    
 var app = express();
 
 app.use( function( req, res, next )
@@ -48,14 +35,14 @@ app.use( function(err, req, res, next) {
 require('tilelive-mapnik').registerProtocols(tilelive);
 
 //loading AWS config
-AWS.config.loadFromPath( './aws-config.json' );
+AWS.config.loadFromPath( __dirname + '/aws-config.json' );
 var s3 = new AWS.S3();
 
 //postgres connect
 var client = new pg.Client( db.conn );
 client.connect();
 
-app.get('/tiles/:year/:layer/:z/:x/:y.*', function( req, res ){
+exports.tiles = function( req, res ){
   var dev = req.headers.host.match( /-dev/ ) ? true : false;
   cache = req.query.cache == undefined;
   var png = "cache/png/" + req.params.year + "/" + req.params.layer + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png",
@@ -79,9 +66,9 @@ app.get('/tiles/:year/:layer/:z/:x/:y.*', function( req, res ){
       parseXML( req, res, renderTile );
     }
   });
-});
+};
 
-app.get( '/raster/:id/:z/:x/:y.*', function( req, res ){
+exports.raster = function( req, res ){
   var dev = req.headers.host.match( /-dev/ ) ? true : false;
   cache = req.query.cache == undefined;
   var png = "cache/png/null/" + req.params.id + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png",
@@ -107,7 +94,7 @@ app.get( '/raster/:id/:z/:x/:y.*', function( req, res ){
       parseRasterXML( req, res, renderTile );
     }
   });
-})
+};
 
 function parseXML( req, res, callback ){
 	var dev = req.headers.host.match( /-dev/ ) ? true : false,
@@ -195,6 +182,11 @@ function mkdir( path, root ) {
 }
 
 function renderTile( filename, req, res ){
+		var hs = xmlDoc.find( "//Parameter[@name='file']" );
+		_.each( hs, function( item ){
+			if( item.text().match( /hillshade/ ) ) item.text( _.find( hillshade, function( h ){ return h.year <= req.params.year } ).file );
+		});
+			
 	var dev = req.headers.host.match( /-dev/ ) ? true : false;
 	
   tilelive.load('mapnik://' + filename, function( err, source ){
@@ -237,7 +229,3 @@ function saveTile( req, tile, res ){
     }
   });
 }
-
-app.listen( 3001 );
-console.log( 'Listening on port: ' + 3001 );
-

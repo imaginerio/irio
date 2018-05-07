@@ -3,7 +3,8 @@ var express = require( 'express' ),
 	  http = require( 'http' ),
     meta = require( './meta' ),
     geo = require( './geo' ),
-    download = require( './mapnik/export' );
+    download = require( './mapnik/export' ),
+    tilelive = require( './mapnik/tilelive' );
 
 var app = express();
 
@@ -17,7 +18,7 @@ app.use( function( req, res, next )
     //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    //res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -51,28 +52,21 @@ app.use(bodyParser.urlencoded({limit: 10000000}));
 app.get( '/timeline', meta.timeline );
 app.get( '/layers/:year', meta.layers );
 app.get( '/search/:year/:word', meta.search );
-app.get( '/search2/:year/:word', meta.search2 );
 app.get( '/probe/:year/:radius/:coords/:layers?', geo.probe );
 app.get( '/box/:year/:c1/:c2/:layers?', geo.box );
 app.get( '/draw/:year/:id', geo.draw );
 app.get( '/visual/:year', geo.visual );
 app.get( '/raster/:year', meta.raster );
-app.get( '/plans', meta.plans );
-app.get( '/plan/:name', geo.plan );
+app.get( '/plans/:year', meta.plans );
+app.get( '/plan', geo.plan );
 app.get( '/details/:id', meta.details );
 app.get( '/names/:lang', meta.names );
 app.get( '/feature/:year/:id', geo.feature );
-app.get( '/export/:lang/:year/:layer/:raster/:bounds/', download.exportMap )
+app.get( '/export/:lang/:year/:layer/:raster/:bounds/', download.exportMap );
+app.get( '/tiles/:year/:layer/:z/:x/:y.*', tilelive.tiles );
+app.get( '/raster/:id/:z/:x/:y.*', tilelive.raster );
+app.post( '/memory', meta.memory );
 app.post('/collector', meta.collector );
 
-app.listen( 3000 );
-console.log( 'Listening on port 3000...' );
-
-//http.createServer( urlRedirect ).listen( 80 );
-
-function urlRedirect( req, res ){
-  res.writeHead(302, {
-    'Location': 'http://imaginerio.org'
-  });
-  res.end();
-}
+app.listen( 8080 );
+console.log( 'Listening on port 8080...' );

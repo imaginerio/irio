@@ -88,7 +88,8 @@ exports.visual = function( req, res ){
 	postgeo.connect( db.conn );
 	
 	var year = req.params.year,
-			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, repository, title AS description, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + year + " AND lastdispla >= " + year, req );
+			max = req.query.max || year,
+			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, title AS description, notes AS credits, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year, req );
 	
 	postgeo.query( q, "geojson", function( data ){
 		res.send( data );
@@ -98,9 +99,14 @@ exports.visual = function( req, res ){
 exports.plan = function( req, res ){
 	postgeo.connect( db.conn );
 	
-	var plan = decodeURI( req.params.name ),
-			q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "'", req )
-	
+	var plan = decodeURI( req.query.name ),
+			feature = decodeURI( req.query.feature );
+
+	var q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "'", req );
+	if (feature !== 'undefined') {
+		q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "'", req );
+	}
+
 	postgeo.query( q, "geojson", function( data ){
 		res.send( data );
 	});
