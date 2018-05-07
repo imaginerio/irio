@@ -145,7 +145,7 @@ function parseRasterXML( req, res, callback ){
 		callback( file, req, res );
 	}
 	else{
-  	  var data = fs.readFileSync( "raster.xml", 'utf8' );
+  	  var data = fs.readFileSync( __dirname + "/raster.xml", 'utf8' );
   	  var xmlDoc = xml.parseXml( data );
   	  var sources = xmlDoc.find( "//Parameter[@name='file']" );
 				
