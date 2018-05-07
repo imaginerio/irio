@@ -153,7 +153,7 @@ var newLayer = function( client, ans, callback ) {
       }
       else if( ans.task == 'planned' ){
         var props = props = _.objMap( record.properties, processRecord ),
-            q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, planyear, planname, featuretyp, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.MasterPlan + ", " + props.MasterPl_1 + ", " + props.Type + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
+            q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, planyear, planname, featuretyp, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.UrbanProje + ", " + props.UrbanPro_1 + ", " + props.Type + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
       }
       else{
         var props = _.defaults( _.objMap( record.properties, processRecord ), defaultNull ),
