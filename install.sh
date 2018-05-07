@@ -68,7 +68,7 @@ git clone https://github.com/axismaps/irio.git
 cd irio
 npm install
 cd import
-npm install
+npm install -g
 
 # Setting up database user
 su postgres
