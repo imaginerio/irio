@@ -167,13 +167,8 @@ function mkdir( path, root ) {
   return !dirs.length||mkdir(dirs.join('/'), root);
 }
 
-function renderTile( filename, req, res ){
-		var hs = xmlDoc.find( "//Parameter[@name='file']" );
-		_.each( hs, function( item ){
-			if( item.text().match( /hillshade/ ) ) item.text( _.find( hillshade, function( h ){ return h.year <= req.params.year } ).file );
-		});
-			
-	var dev = req.headers.host.match( /-dev/ ) ? true : false;
+function renderTile( filename, req, res ){			
+  var dev = req.headers.host.match( /-dev/ ) ? true : false;
 	
   tilelive.load('mapnik://' + filename, function( err, source ){
     if( err  ){
