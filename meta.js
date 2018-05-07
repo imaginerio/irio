@@ -135,7 +135,7 @@ exports.plans = function( req, res ){
 	client.connect();
 
 	var plans = [],
-			q = dev.checkQuery( "SELECT planname, featuretyp FROM (SELECT planyear::int, planname, featuretyp FROM plannedpoly UNION SELECT planyear::int, planname, featuretyp FROM plannedline ORDER BY planyear, planname, featuretyp) AS q" + year, req );
+			q = dev.checkQuery( "SELECT planyear, planname FROM plannedpoly UNION SELECT planyear, planname FROM plannedline ORDER BY planyear, planname", req );
 	
 	var query = client.query( q );
 	
@@ -144,14 +144,6 @@ exports.plans = function( req, res ){
 	});
 	
 	query.on( 'end', function(){
-		plans = _.groupBy(plans, 'planname');
-		plans = _.map(plans, function (p, name) {
-			var obj = { name: name };
-			obj.features = _.map(p, function (f) {
-				return f.featuretyp;
-			});
-			return obj;
-		});
 		res.send( plans );
 		client.end();
 	});
