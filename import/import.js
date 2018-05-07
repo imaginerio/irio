@@ -157,7 +157,7 @@ var newLayer = function( client, ans, callback ) {
       }
       else{
         var props = _.defaults( _.objMap( record.properties, processRecord ), defaultNull ),
-            q = "INSERT INTO " + ans.geom + " (featuretyp, namecomple, nameshort, firstdispl, lastdispla, notes, creator, firstowner, owner, occupant, address, scalerank, stylename, geom, uploaddate, globalid, layer) VALUES ( " + props.Type + ", " + props.Name + ", " + props.NameShort + ", " + props.FirstYear + ", " + props.LastYear + ", " + props.Notes + ", " + props.Creator + ", " + props.FirstOwner + ", " + props.Owner + ", " + props.Occupant + ", " + props.Address + ", " + props.ScaleRank + ", " + props.StyleName + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
+            q = "INSERT INTO " + ans.geom + " (featuretyp, namecomple, nameshort, firstdispl, lastdispla, notes, creator, firstowner, owner, occupant, address, scalerank, stylename, geom, uploaddate, globalid, layer) VALUES ( " + props.Type + ", " + props.NameComple + ", " + props.NameShort + ", " + props.FirstYear + ", " + props.LastYear + ", " + props.Notes + ", " + props.Creator + ", " + props.FirstOwner + ", " + props.Owner + ", " + props.Occupant + ", " + props.Address + ", " + props.ScaleRank + ", " + props.StyleName + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
       }
 
       var query = client.query( q );
