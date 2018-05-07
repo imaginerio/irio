@@ -79,7 +79,7 @@ function parseXML( req, res, callback ){
 		callback( file, req, res );
 	}
 	else{
-		var data = fs.readFileSync( req.params.layer == "base" ? "base.xml" : "stylesheet.xml", 'utf8' );	
+		var data = fs.readFileSync( __dirname + "/" + (req.params.layer == "base" ? "base.xml" : "stylesheet.xml"), 'utf8' );	
     var xmlDoc = xml.parseXml( data );
     var sources = xmlDoc.find( "//Parameter[@name='table']" ),
         pghost = xmlDoc.find( "//Parameter[@name='host']" ),
