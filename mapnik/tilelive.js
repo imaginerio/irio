@@ -1,36 +1,11 @@
 var tilelive = require('tilelive'),
-    fs = require( 'graceful-fs' ),
+    fs = require( 'fs' ),
     xml = require( 'libxmljs' ),
     _ = require( 'underscore' ),
     pg = require( 'pg' ),
     AWS = require( 'aws-sdk' ),
     cache,
-    db = require( '../db' ),
-var app = express();
-
-app.use( function( req, res, next )
-{
-    res.setHeader( 'Access-Control-Allow-Origin', '*' );
-    next();
-});
-
-app.use( function(err, req, res, next) {
-  console.error(err.stack);
-  next(err);
-});
-
-app.use( function(err, req, res, next) {
-  if (req.xhr) {
-    res.send( 500, { error: 'Something blew up!' } );
-  } else {
-    next(err);
-  }
-});
-
-app.use( function(err, req, res, next) {
-  res.status( 500 );
-  res.render( 'error', { error: err } );
-});
+    db = require( '../db' );
 
 require('tilelive-mapnik').registerProtocols(tilelive);
 
