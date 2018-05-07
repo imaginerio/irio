@@ -134,9 +134,8 @@ exports.plans = function( req, res ){
 	var client = new pg.Client( db.conn );
 	client.connect();
 
-	var year = req.params.year,
-			plans = [],
-			q = dev.checkQuery( "SELECT planname, featuretyp FROM (SELECT planyear::int, planname, featuretyp FROM plannedpoly UNION SELECT planyear::int, planname, featuretyp FROM plannedline ORDER BY planyear, planname, featuretyp) AS q WHERE planyear = " + year, req );
+	var plans = [],
+			q = dev.checkQuery( "SELECT planname, featuretyp FROM (SELECT planyear::int, planname, featuretyp FROM plannedpoly UNION SELECT planyear::int, planname, featuretyp FROM plannedline ORDER BY planyear, planname, featuretyp) AS q" + year, req );
 	
 	var query = client.query( q );
 	
