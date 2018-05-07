@@ -149,7 +149,7 @@ var newLayer = function( client, ans, callback ) {
       
       if( ans.task == 'visual' ){
         var props = props = _.defaults( _.objMap( record.properties, processRecord ), defaultVisual ),
-            q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, repository, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.CreditLine + ", " + props.Creator + ", " + props.Title + ", " + props.Repository + ", " + props.SSC_ID + ", " + props.Lat + ", " + props.Long + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + ( props.SS_ID || props.SSID ) + ", '" + ans.layer + "')";
+            q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.CreditLine + ", " + props.Creator + ", " + props.Title + ", " + props.SSC_ID + ", " + props.Lat + ", " + props.Long + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + ( props.SS_ID || props.SSID ) + ", '" + ans.layer + "')";
       }
       else if( ans.task == 'planned' ){
         var props = props = _.objMap( record.properties, processRecord ),
