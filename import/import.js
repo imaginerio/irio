@@ -136,41 +136,47 @@ var newLayer = function( client, ans, callback ) {
   }
   
   var addRecord = function( record, reader, ans, client, callback ){
-    var date = new Date(),
-    			num = parseInt( date.getFullYear().toString() + ( "0" + ( date.getMonth() + 1 ) ).slice( -2 )  + ( "0" + date.getDate() ).slice( -2 ) );
-    
-    record.geometry.crs = {
-      "type" : "name",
-      "properties" : {
-        "name" : "EPSG:4326"
+    if (record.geometry) {
+      var date = new Date(),
+            num = parseInt( date.getFullYear().toString() + ( "0" + ( date.getMonth() + 1 ) ).slice( -2 )  + ( "0" + date.getDate() ).slice( -2 ) );
+      
+      record.geometry.crs = {
+        "type" : "name",
+        "properties" : {
+          "name" : "EPSG:4326"
+        }
       }
-    }
-    
-    if( ans.task == 'visual' ){
-      var props = props = _.defaults( _.objMap( record.properties, processRecord ), defaultVisual ),
-          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, repository, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.CreditLine + ", " + props.Creator + ", " + props.Title + ", " + props.Repository + ", " + props.SSC_ID + ", " + props.Lat + ", " + props.Long + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + ( props.SS_ID || props.SSID ) + ", '" + ans.layer + "')";
-    }
-    else if( ans.task == 'planned' ){
-      var props = props = _.objMap( record.properties, processRecord ),
-          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, planyear, planname, featuretyp, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.MasterPlan + ", " + props.MasterPl_1 + ", " + props.Type + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
-    }
-    else{
-      var props = _.defaults( _.objMap( record.properties, processRecord ), defaultNull ),
-          q = "INSERT INTO " + ans.geom + " (featuretyp, namecomple, nameshort, firstdispl, lastdispla, notes, creator, firstowner, owner, occupant, address, scalerank, stylename, geom, uploaddate, globalid, layer) VALUES ( " + props.Type + ", " + props.Name + ", " + props.NameShort + ", " + props.FirstYear + ", " + props.LastYear + ", " + props.Notes + ", " + props.Creator + ", " + props.FirstOwner + ", " + props.Owner + ", " + props.Occupant + ", " + props.Address + ", " + props.ScaleRank + ", " + props.StyleName + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
-    }
+      
+      if( ans.task == 'visual' ){
+        var props = props = _.defaults( _.objMap( record.properties, processRecord ), defaultVisual ),
+            q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, repository, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.CreditLine + ", " + props.Creator + ", " + props.Title + ", " + props.Repository + ", " + props.SSC_ID + ", " + props.Lat + ", " + props.Long + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + ( props.SS_ID || props.SSID ) + ", '" + ans.layer + "')";
+      }
+      else if( ans.task == 'planned' ){
+        var props = props = _.objMap( record.properties, processRecord ),
+            q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, planyear, planname, featuretyp, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.MasterPlan + ", " + props.MasterPl_1 + ", " + props.Type + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
+      }
+      else{
+        var props = _.defaults( _.objMap( record.properties, processRecord ), defaultNull ),
+            q = "INSERT INTO " + ans.geom + " (featuretyp, namecomple, nameshort, firstdispl, lastdispla, notes, creator, firstowner, owner, occupant, address, scalerank, stylename, geom, uploaddate, globalid, layer) VALUES ( " + props.Type + ", " + props.Name + ", " + props.NameShort + ", " + props.FirstYear + ", " + props.LastYear + ", " + props.Notes + ", " + props.Creator + ", " + props.FirstOwner + ", " + props.Owner + ", " + props.Occupant + ", " + props.Address + ", " + props.ScaleRank + ", " + props.StyleName + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
+      }
 
-    var query = client.query( q );
-    
-    query.on( 'error', function( error ) {
-      console.log( q );
-      count.error++;
+      var query = client.query( q );
+      
+      query.on( 'error', function( error ) {
+        console.log( q );
+        count.error++;
+        reader.readRecord( recordReader );
+      });
+      
+      query.on( 'end', function() {
+        count.success++;
+        reader.readRecord( recordReader );
+      });
+    } else {
+      console.log('NULL GEOMETRY: ');
+      console.log(record);
       reader.readRecord( recordReader );
-    });
-    
-    query.on( 'end', function() {
-      count.success++;
-      reader.readRecord( recordReader );
-    });
+    }
   }
 }
 
