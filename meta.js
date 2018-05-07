@@ -1,7 +1,6 @@
 var pg = require( 'pg' ),
 		_ = require( 'underscore' ),
 		db = require( './db' ),
-		Airtable = require('airtable'),
 		dev = require( './dev' );
 	
 _.mixin({
