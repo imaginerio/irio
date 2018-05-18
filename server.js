@@ -58,7 +58,7 @@ app.get( '/draw/:year/:id', geo.draw );
 app.get( '/visual/:year', geo.visual );
 app.get( '/raster/:year', meta.raster );
 app.get( '/plans/', meta.plans );
-app.get( '/plan', geo.plan );
+app.get( '/plan/:name', geo.plan );
 app.get( '/details/:id', meta.details );
 app.get( '/names/:lang', meta.names );
 app.get( '/feature/:year/:id', geo.feature );
