@@ -16,7 +16,7 @@ exports.exportMap = function( req, res ){
   
   function drawLayers( req, res, id, callback ){
     var map = new mapnik.Map( dimensions.x, dimensions.y );
-    map.load( __dirname + "/cache/xml/" + req.params.year + "/" + req.params.layer + ".xml", function( err, map ){
+    map.load( "/data/cache/xml/" + req.params.year + "/" + req.params.layer + ".xml", function( err, map ){
       if( err ) throw err;
       var bounds = req.params.bounds.split( ',' );
       var merc = geo_mercator( bounds[ 0 ], bounds[ 1 ] ).concat( geo_mercator( bounds[ 2 ], bounds[ 3 ] ) );
@@ -41,7 +41,7 @@ exports.exportMap = function( req, res ){
       callback( req, res, id );
     } else {
       var map = new mapnik.Map( dimensions.x, dimensions.y );
-      map.load( __dirname + "/cache/raster/" + req.params.raster + "/raster.xml", function( err, map ){
+      map.load( "/data/cache/raster/" + req.params.raster + "/raster.xml", function( err, map ){
         if( err ) throw err;
         var bounds = req.params.bounds.split( ',' );
         var merc = geo_mercator( bounds[ 0 ], bounds[ 1 ] ).concat( geo_mercator( bounds[ 2 ], bounds[ 3 ] ) );
