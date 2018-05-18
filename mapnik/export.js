@@ -99,7 +99,6 @@ exports.exportMap = function( req, res ){
     });
     res.send( new Buffer( canvas.toDataURL().substr( 22 ), 'base64' ) );
     
-    fs.unlinkSync( 'base' + id + '.png' );
     if( req.params.raster != 'null' ) fs.unlinkSync( 'raster' + id + '.png' );
     fs.unlinkSync( 'layers' + id + '.png' );
   }
