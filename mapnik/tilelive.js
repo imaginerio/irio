@@ -7,15 +7,15 @@ var tilelive = require('tilelive'),
     cache,
     db = require( '../db' ),
     cloudfront = "http://d1nxja8ugt29ju.cloudfront.net/",
-    hillshade = [ 
-    	{ year : 1960, file : '/data/raster/1960_8888.tif' },
-    	{ year : 1924, file : '/data/raster/1924_1959.tif' },
-    	{ year : 1923, file : '/data/raster/1923_1923.tif' },
-    	{ year : 1922, file : '/data/raster/1922_1922.tif' },
-    	{ year : 1910, file : '/data/raster/1910_1921.tif' },
-    	{ year : 1905, file : '/data/raster/1905_1909.tif' },
-    	{ year : 1880, file : '/data/raster/1880_1904.tif' },
-    	{ year : 1500, file : '/data/raster/1500_1879.tif' }
+    hillshade = [
+      { year : 1500, file : '/data/raster/Hillshade_1500_1879_New.tif' },
+      { year : 1880, file : '/data/raster/Hillshade_1880_1904_New.tif' },
+      { year : 1905, file : '/data/raster/Hillshade_1905_1909_New.tif' },
+      { year : 1910, file : '/data/raster/Hillshade_1910_1921_New.tif' },
+      { year : 1922, file : '/data/raster/Hillshade_1922_1922_New.tif' },
+      { year : 1923, file : '/data/raster/Hillshade_1923_1923_New.tif' },
+      { year : 1924, file : '/data/raster/Hillshade_1924_1959_New.tif' },
+      { year : 1960, file : '/data/raster/Hillshade_1960_8888_New.tif' }
     ];
 
 require('tilelive-mapnik').registerProtocols(tilelive);
