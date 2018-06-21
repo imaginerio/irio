@@ -61,7 +61,7 @@
 
 <Style name="builtdomain" filter-mode="first">
   <Rule>
-    <PolygonSymbolizer fill-color="#eeeeee" />
+    <PolygonSymbolizer fill-color="#eeeeee" fill-opacity="0.25" />
   </Rule>
 </Style>
 <Layer name="builtdomain"
