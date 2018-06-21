@@ -58,6 +58,28 @@
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
+
+<Style name="builtdomain" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill-color="#eeeeee" />
+  </Rule>
+</Style>
+<Layer name="builtdomain"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>builtdomain</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename='builtdomain' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
+    </Datasource>
+  </Layer>
   
  <Style name="hillshade_2013" filter-mode="first" comp-op="overlay">
   <Rule>
@@ -71,28 +93,6 @@
        <Parameter name="file"><![CDATA[hillshade_2013.tif]]></Parameter>
        <Parameter name="type"><![CDATA[gdal]]></Parameter>
        <Parameter name="shared">true</Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="builtdomain" filter-mode="first">
-  <Rule>
-    <PolygonSymbolizer fill-color="#cccccc">
-  </Rule>
-</Style>
-<Layer name="builtdomain"
-  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>forests</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename='builtdomain' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-43.7954794708309,-23.0734120840858,-43.1025330477069,-22.7491145667833]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
     </Datasource>
   </Layer>
 
