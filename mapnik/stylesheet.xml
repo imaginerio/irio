@@ -404,6 +404,34 @@
        <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
     </Datasource>
   </Layer>
+
+<Style name="gardens-outline" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke="#89c089" stroke-width="1" stroke-opacity="0.5" stroke-linejoin="round" />
+  </Rule>
+</Style>
+<Style name="gardens" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill="#a9d1a9" fill-opacity="0.6" />
+  </Rule>
+</Style>
+<Layer name="gardens"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>gardens</StyleName>
+    <StyleName>gardens-outline</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'gardens' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-44.0494471927581,-23.1024340644629,-42.6598821418086,-22.6300318711334]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rio]]></Parameter>
+       <Parameter name="host"><![CDATA[imaginerio.rice.edu]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[FXB429KJ7a7a7sF2KdKN6q93]]></Parameter>
+    </Datasource>
+  </Layer>
   
 <Style name="ponds-outline" filter-mode="first">
   <Rule>
