@@ -122,9 +122,9 @@ var newLayer = function( client, ans, callback ) {
   }
   
   var recordTest = function( props ) {
-    if( props.FirstDispl < 1500 || props.LastDispla < 1500 ) return false;
-    if( ( props.FirstDispl > new Date().getFullYear() && props.FirstDispl != 8888 ) || ( props.LastDispla > new Date().getFullYear() && props.LastDispla != 8888 ) ) return false;
-    if( props.FirstDisplay > props.LastDispla ) return false;
+    if( props.FirstYear < 1500 || props.LastYear < 1500 ) return false;
+    if( ( props.FirstYear > new Date().getFullYear() && props.FirstYear != 8888 ) || ( props.LastYear > new Date().getFullYear() && props.LastYear != 8888 ) ) return false;
+    if( props.FirstYearay > props.LastYear ) return false;
     return true;
   }
   
@@ -148,15 +148,15 @@ var newLayer = function( client, ans, callback ) {
     
     if( ans.task == 'visual' ){
       var props = props = _.defaults( _.objMap( record.properties, processRecord ), defaultVisual ),
-          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, repository, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstDispl + ", " + props.LastDispla + ", " + props.Notes + ", " + props.Creator + ", " + props.SS_Title + ", " + props.SS_Reposit + ", " + props.SSC_ImageI + ", " + props.Latitude + ", " + props.Longitude + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + ( props.SS_ID || props.SSID ) + ", '" + ans.layer + "')";
+          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, notes, creator, title, repository, imageid, latitude, longitude, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.CreditLine + ", " + props.Creator + ", " + props.Title + ", " + props.SS_Reposit + ", " + props.SSC_ID + ", " + props.Latitude + ", " + props.Longitude + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", " + props.SS_ID + ", '" + ans.layer + "')";
     }
     else if( ans.task == 'planned' ){
       var props = props = _.objMap( record.properties, processRecord ),
-          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, planyear, planname, featuretyp, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstDispl + ", " + props.LastDispla + ", " + props.MasterPlan + ", " + props.MasterPl_1 + ", " + props.FeatureTyp + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
+          q = "INSERT INTO " + ans.geom + " (firstdispl, lastdispla, planyear, planname, featuretyp, geom, uploaddate, globalid, layer) VALUES ( " + props.FirstYear + ", " + props.LastYear + ", " + props.MasterPlan + ", " + props.MasterPl_1 + ", " + props.SubType + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
     }
     else{
       var props = _.defaults( _.objMap( record.properties, processRecord ), defaultNull ),
-          q = "INSERT INTO " + ans.geom + " (featuretyp, namecomple, nameshort, firstdispl, lastdispla, notes, creator, firstowner, owner, occupant, address, scalerank, stylename, geom, uploaddate, globalid, layer) VALUES ( " + props.FeatureTyp + ", " + props.NameComple + ", " + props.NameShort + ", " + props.FirstDispl + ", " + props.LastDispla + ", " + props.Notes + ", " + props.Creator + ", " + props.FirstOwner + ", " + props.Owner + ", " + props.Occupant + ", " + props.Address + ", " + props.ScaleRank + ", " + props.StyleName + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
+          q = "INSERT INTO " + ans.geom + " (featuretyp, namecomple, nameshort, firstdispl, lastdispla, notes, creator, firstowner, owner, occupant, address, scalerank, stylename, geom, uploaddate, globalid, layer) VALUES ( " + props.SubType + ", " + props.Name + ", " + props.NameShort + ", " + props.FirstYear + ", " + props.LastYear + ", " + props.Notes + ", " + props.Creator + ", " + props.FirstOwner + ", " + props.Owner + ", " + props.Occupant + ", " + props.Address + ", " + props.ScaleRank + ", " + props.StyleName + ", ST_GeomFromGeoJSON('" + JSON.stringify( record.geometry ) + "'), " + num + ", '" + uuid.v1() + "', '" + ans.layer + "')";
     }
 
     var query = client.query( q );
