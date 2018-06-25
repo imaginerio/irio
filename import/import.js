@@ -173,92 +173,6 @@ var newLayer = function( client, ans, callback ) {
   }
 }
 
-var getNames = function( client, ans, replace, callback ){
-  if( replace == null ){
-    callback( null, client, ans, null );
-  } else {
-    var features = [ ans.layer ],
-        langs = { 'en' : 'English', 'pr' : 'Portuguese' },
-        q = [],
-        query = client.query( "SELECT featuretyp FROM " + ans.geom + " WHERE layer = '" + ans.layer + "' AND featuretyp IS NOT NULL GROUP BY featuretyp ORDER BY featuretyp" );
-    
-    query.on( 'row', function( result ){
-      features.push( result.featuretyp );
-    });
-    
-    query.on( 'error', function( error ) {
-      callback( error, client );
-    });
-      
-    query.on( 'end', function() {
-      _.each( features, function( value ){
-        _.each( langs, function( name, code ){
-          q.push({
-            type : 'input',
-            name : value + "-" + code,
-            message : 'Enter the ' + chalk.yellow( name ) + ' translation for: ' + chalk.blue( value ),
-            default : value
-          });
-        });
-      });
-      
-      inquirer.prompt( q, function( names ) {
-        callback( null, client, ans, names );
-      });
-    });
-  }
-}
-
-var updateNames = function( client, ans, names, callback ){
-  if( names == null ){
-    callback( null, client );
-  } else {
-    var translate = {},
-        i = 0;
-    _.each( names, function( value, key ){
-      var layer = key.replace( /-(en|pr)$/g, "" ),
-          code = key.replace( /.*?(en|pr)$/g, "$1" );
-      if( !translate[ layer ] ) translate[ layer ] = {};
-      translate[ layer ][ code ] = value;
-      i++;
-    });
-    
-    var q = _.reduce( translate, function( memo, trans, text ){
-      return memo + " INSERT INTO names_dev ( text, name_en, name_pr, layer ) SELECT '" + text + "', '" + trans.en + "', '" + trans.pr + "', '" + ans.layer + "' WHERE NOT EXISTS ( SELECT text FROM names_dev WHERE text = '" + text + "' );";
-    }, '' );
-    
-    var query = client.query( q );
-    
-    query.on( 'error', function( error ) {
-      console.log( q );
-      callback( error, client );
-    });
-    
-    query.on( 'end', function() {
-      console.log( chalk.green( i ) + " translations successfully added" );
-      callback( null, client );
-    });
-  }
-}
-
-var deleteNames = function( client, ans, callback ){
-  inquirer.prompt( [ { type : 'confirm', name : 'confirm', message : 'Update English / Portuguese names for ' + ans.layer } ], function( nameConfirm ){
-    if( nameConfirm.confirm == false || ans.geom == 'viewsheds' || ans.geom == 'mapsplans' ){
-      callback( null, client, ans, null );
-    } else {
-      var query = client.query( "DELETE FROM names_dev WHERE layer = '" + ans.layer + "'" );
-    
-      query.on( 'error', function( error ) {
-        callback( error, client );
-      });
-      
-      query.on( 'end', function() {
-        callback( null, client, ans, true );
-      });
-    }
-  });
-}
-
 var listLayers = function( client ) {
   var layers = new table(),
       query = client.query( "SELECT * FROM ( SELECT layer, 'point' AS geometry FROM basepoint_dev GROUP BY layer UNION SELECT layer, 'line' AS geometry FROM baseline_dev GROUP BY layer UNION SELECT layer, 'poly' AS geometry FROM basepoly_dev GROUP BY layer ) AS q WHERE layer IS NOT NULL ORDER BY layer" );
@@ -287,10 +201,7 @@ var replaceSeq = function( ans, client ) {
           testFile,
           testLayer,
           deleteLayer,
-          newLayer,
-          deleteNames,
-          getNames,
-          updateNames
+          newLayer
         ],
         waterfallExit
       );
@@ -301,10 +212,7 @@ var replaceSeq = function( ans, client ) {
             callback( null, client, ans );
           },
           testFile,
-          newLayer,
-          deleteNames,
-          getNames,
-          updateNames
+          newLayer
         ],
         waterfallExit
       );
@@ -315,8 +223,7 @@ var replaceSeq = function( ans, client ) {
             callback( null, client, ans );
           },
           testLayer,
-          deleteLayer,
-          deleteNames
+          deleteLayer
         ],
         waterfallExit
       );
@@ -331,7 +238,7 @@ var replaceSeq = function( ans, client ) {
           testFile,
           testLayer,
           deleteLayer,
-          newLayer,
+          newLayer
         ],
         waterfallExit
       );
@@ -344,7 +251,7 @@ var replaceSeq = function( ans, client ) {
           testFile,
           testLayer,
           deleteLayer,
-          newLayer,
+          newLayer
         ],
         waterfallExit
       );
