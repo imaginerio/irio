@@ -1899,8 +1899,8 @@
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <Filter>([stylename] = 'infrastructure')</Filter>
-    <PolygonSymbolizer fill="#9b9596" />
-    <LineSymbolizer stroke="#b06a7d" />
+    <PolygonSymbolizer fill="#c4bebf" />
+    <LineSymbolizer stroke="#9b9596" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
