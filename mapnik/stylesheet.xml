@@ -1898,7 +1898,7 @@
 <Style name="buildings-building" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <Filter>([stylename = 'infrastructure')</Filter>
+    <Filter>([stylename] = 'infrastructure')</Filter>
     <PolygonSymbolizer fill="#9b9596" />
     <LineSymbolizer stroke="#b06a7d" />
   </Rule>
