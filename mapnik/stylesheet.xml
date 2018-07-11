@@ -960,6 +960,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([STYLENAME] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="4" stroke-dasharray="1, 18" stroke="#7f6f4f" />
   </Rule>
 </Style>
@@ -967,6 +968,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([STYLENAME] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="0.5" offset="0.7" stroke="#7e7a6b" />
   </Rule>
 </Style>
@@ -974,6 +976,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([STYLENAME] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="0.5" offset="-0.7" stroke="#7e7a6b" />
   </Rule>
 </Style>
@@ -981,6 +984,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([STYLENAME] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="3" stroke="#a89673" stroke-opacity="0.8" />
   </Rule>
 </Style>
