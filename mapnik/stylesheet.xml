@@ -637,31 +637,31 @@
 <Style name="water-poly-labels" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1925) and ([LASTDISPLA] &gt;= 1925)</Filter>
+    <Filter>([firstdispl] &lt;= 1925) and ([lastdispla] &gt;= 1925)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="24" character-spacing="3" halo-fill="rgba(255, 255, 255, 0.3)" halo-radius="2" line-spacing="10" fill="#465a64" wrap-width="25" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1925) and ([LASTDISPLA] &gt;= 1925)</Filter>
+    <Filter>([firstdispl] &lt;= 1925) and ([lastdispla] &gt;= 1925)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="18" character-spacing="2" halo-fill="rgba(255, 255, 255, 0.3)" halo-radius="2" line-spacing="10" fill="#465a64" wrap-width="25" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1925) and ([LASTDISPLA] &gt;= 1925)</Filter>
+    <Filter>([firstdispl] &lt;= 1925) and ([lastdispla] &gt;= 1925)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="14" halo-fill="rgba(255, 255, 255, 0.3)" halo-radius="2" character-spacing="2" line-spacing="10" fill="#465a64" wrap-width="25" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1925) and ([LASTDISPLA] &gt;= 1925)</Filter>
+    <Filter>([firstdispl] &lt;= 1925) and ([lastdispla] &gt;= 1925)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="11" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" character-spacing="1" wrap-width="25" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1925) and ([LASTDISPLA] &gt;= 1925)</Filter>
+    <Filter>([firstdispl] &lt;= 1925) and ([lastdispla] &gt;= 1925)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="9" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" character-spacing="1" wrap-width="25" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
 </Style>
@@ -683,31 +683,31 @@
 <Style name="rivers_labels" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1918) and ([LASTDISPLA] &gt;= 1918)</Filter>
+    <Filter>([firstdispl] &lt;= 1918) and ([lastdispla] &gt;= 1918)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="24" character-spacing="3" halo-fill="rgba(255, 255, 255, 0.3)" halo-radius="2" fill="#465a64" placement="line" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>1500</MaxScaleDenominator>
     <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1918) and ([LASTDISPLA] &gt;= 1918)</Filter>
+    <Filter>([firstdispl] &lt;= 1918) and ([lastdispla] &gt;= 1918)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="18" character-spacing="2" halo-fill="rgba(255, 255, 255, 0.3)" halo-radius="2" fill="#465a64" placement="line" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1918) and ([LASTDISPLA] &gt;= 1918)</Filter>
+    <Filter>([firstdispl] &lt;= 1918) and ([lastdispla] &gt;= 1918)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="14" halo-fill="rgba(255, 255, 255, 0.3)" halo-radius="2" character-spacing="2" fill="#465a64" placement="line" avoid-edges="true" ><![CDATA[[namecomple]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1918) and ([LASTDISPLA] &gt;= 1918)</Filter>
+    <Filter>([firstdispl] &lt;= 1918) and ([lastdispla] &gt;= 1918)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="11" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([FIRSTDISPL] &lt;= 1918) and ([LASTDISPLA] &gt;= 1918)</Filter>
+    <Filter>([firstdispl] &lt;= 1918) and ([lastdispla] &gt;= 1918)</Filter>
     <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="9" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
   </Rule>
 </Style>
@@ -728,19 +728,19 @@
 
 <Style name="paths-pathpolygon" filter-mode="first">
   <Rule>
-    <Filter>([STYLENAME] = 'paths')</Filter>
+    <Filter>([stylename] = 'paths')</Filter>
     <PolygonSymbolizer fill="#fff8d4" fill-opacity="1" />
   </Rule>
 </Style>
 <Style name="paths-pathhighlight" filter-mode="first">
   <Rule>
-    <Filter>([STYLENAME] = 'paths')</Filter>
+    <Filter>([stylename] = 'paths')</Filter>
     <PolygonSymbolizer fill="#ffffff" fill-opacity="0.2" geometry-transform="translate(1.5,1.5)" />
   </Rule>
 </Style>
 <Style name="paths-pathshadow" filter-mode="first">
   <Rule>
-    <Filter>([STYLENAME] = 'paths')</Filter>
+    <Filter>([stylename] = 'paths')</Filter>
     <PolygonSymbolizer fill="#706c5f" fill-opacity="0.4" geometry-transform="translate(-1.5,-1.5)" />
   </Rule>
 </Style>
@@ -763,18 +763,18 @@
 
 <Style name="roads-roadpolygon" filter-mode="first">
   <Rule>
-    <Filter>([STYLENAME] = 'roads')</Filter>
+    <Filter>([stylename] = 'roads')</Filter>
     <PolygonSymbolizer fill="#979385" fill-opacity="1" />
   </Rule>
 </Style>
 <Style name="roads-roadhighlight" filter-mode="first">
   <Rule>
-    <Filter>([STYLENAME] = 'roads')</Filter>
+    <Filter>([stylename] = 'roads')</Filter>
     <PolygonSymbolizer fill="#ffffff" fill-opacity="0.2" geometry-transform="translate(2,2)" />
   </Rule>
 </Style>
 <Style name="roads-roadshadow" filter-mode="first">
-    <Filter>([STYLENAME] = 'roads')</Filter>
+    <Filter>([stylename] = 'roads')</Filter>
   <Rule>
     <PolygonSymbolizer fill="#706c5f" fill-opacity="0.8" geometry-transform="translate(-2,-2)" />
   </Rule>
@@ -960,7 +960,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([STYLENAME] = 'railroads')</Filter>
+    <Filter>([stylename] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="4" stroke-dasharray="1, 18" stroke="#7f6f4f" />
   </Rule>
 </Style>
@@ -968,7 +968,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([STYLENAME] = 'railroads')</Filter>
+    <Filter>([stylename] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="0.5" offset="0.7" stroke="#7e7a6b" />
   </Rule>
 </Style>
@@ -976,7 +976,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([STYLENAME] = 'railroads')</Filter>
+    <Filter>([stylename] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="0.5" offset="-0.7" stroke="#7e7a6b" />
   </Rule>
 </Style>
@@ -984,7 +984,7 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([STYLENAME] = 'railroads')</Filter>
+    <Filter>([stylename] = 'railroads')</Filter>
     <LineSymbolizer stroke-width="3" stroke="#a89673" stroke-opacity="0.8" />
   </Rule>
 </Style>
