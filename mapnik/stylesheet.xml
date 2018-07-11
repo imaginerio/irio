@@ -726,403 +726,67 @@
     </Datasource>
   </Layer>
 
-<Style name="roads-roads20" filter-mode="first">
+<Style name="paths-pathpolygon" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#979385" stroke-width="50" stroke-opacity="1" />
+    <Filter>([STYLENAME] = 'paths')</Filter>
+    <PolygonSymbolizer fill="#fff8d4" fill-opacity="1" />
   </Rule>
 </Style>
-<Style name="roads-paths20" filter-mode="first">
+<Style name="paths-pathhighlight" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fff8d4" stroke-width="20" />
+    <Filter>([STYLENAME] = 'paths')</Filter>
+    <PolygonSymbolizer fill="#ffffff" fill-opacity="0.2" geometry-transform="translate(1.5,1.5)" />
   </Rule>
 </Style>
-<Style name="roads-cowpaths20/extra20" filter-mode="first" image-filters="agg-stack-blur(4,4)">
+<Style name="paths-pathshadow" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="10" stroke-dasharray="7, 7" stroke-opacity="0.5" />
+    <Filter>([STYLENAME] = 'paths')</Filter>
+    <PolygonSymbolizer fill="#706c5f" fill-opacity="0.4" geometry-transform="translate(-1.5,-1.5)" />
   </Rule>
 </Style>
-<Style name="roads-cowpaths20" filter-mode="first" image-filters="agg-stack-blur(4,4)">
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="10" stroke-dasharray="48, 4" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-highlight20" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="53" stroke-opacity="0.3" geometry-transform="translate(2,2)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-shadows20" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="53" geometry-transform="translate(-2,-2)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="22" stroke-opacity="0.5" geometry-transform="translate(-2,-2)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750</MaxScaleDenominator>
-    <MinScaleDenominator>500</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-roads19" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#979385" stroke-width="24" stroke-opacity="1" />
-  </Rule>
-</Style>
-<Style name="roads-paths19" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fff8d4" stroke-width="10" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths19/extra19" filter-mode="first" image-filters="agg-stack-blur(3,3)">
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="6" stroke-dasharray="4, 4" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths19" filter-mode="first" image-filters="agg-stack-blur(3,3)">
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="6" stroke-dasharray="24, 2" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-highlight19" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="27" stroke-opacity="0.3" geometry-transform="translate(1,1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-shadows19" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="27" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="12" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500</MaxScaleDenominator>
-    <MinScaleDenominator>750</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-roads18" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#979385" stroke-width="18" stroke-opacity="1" />
-  </Rule>
-</Style>
-<Style name="roads-paths18" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fff8d4" stroke-width="6" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths18/extra18" filter-mode="first" image-filters="agg-stack-blur(2,2)">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="4" stroke-dasharray="3, 3" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths18" filter-mode="first" image-filters="agg-stack-blur(2,2)">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="4" stroke-dasharray="16, 2" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-highlight18" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="21" stroke-opacity="0.3" geometry-transform="translate(1,1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-shadows18" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="21" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="8" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-roads17" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#979385" stroke-width="6" stroke-opacity="1" />
-  </Rule>
-</Style>
-<Style name="roads-paths17" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fff8d4" stroke-width="3" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths17/extra17" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="3" stroke-dasharray="3, 3" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths17" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="3" stroke-dasharray="10, 1.5" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-highlight17" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="7" stroke-opacity="0.3" geometry-transform="translate(1,1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-shadows17" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="7" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="2.5" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-  </Rule>
-</Style>
-<Style name="roads-roads16" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#979385" stroke-width="3" stroke-opacity="1" />
-  </Rule>
-</Style>
-<Style name="roads-paths16" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fff8d4" stroke-width="1.5" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths16/extra16" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="1" stroke-dasharray="2, 2" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths16" filter-mode="first" image-filters="agg-stack-blur(1,1)">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="1" stroke-dasharray="8, 1" stroke-opacity="0.5" />
-  </Rule>
-</Style>
-<Style name="roads-highlight16" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="3" stroke-opacity="0.3" geometry-transform="translate(1,1)" />
-  </Rule>
-</Style>
-<Style name="roads-shadows16" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="3" geometry-transform="translate(-1,-1)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="1.5" stroke-opacity="0.5" geometry-transform="translate(-1,-1)" />
-  </Rule>
-</Style>
-<Style name="roads-roads15" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#979385" stroke-width="1.5" stroke-opacity="1" />
-  </Rule>
-</Style>
-<Style name="roads-paths15" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#fff8d4" stroke-width="1" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths15/extra15" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="1" stroke-dasharray="1, 1" stroke-opacity="0.3" />
-  </Rule>
-</Style>
-<Style name="roads-cowpaths15" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>[stylename] = 'cowpaths'</Filter>
-    <LineSymbolizer stroke="#7f6f4f" stroke-width="1" stroke-dasharray="4, 1" stroke-opacity="0.3" />
-  </Rule>
-</Style>
-<Style name="roads-highlight15" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff" stroke-width="3" stroke-opacity="0.3" geometry-transform="translate(0.5,0.5)" />
-  </Rule>
-</Style>
-<Style name="roads-shadows15" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>[stylename] = 'roads'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="1.5" geometry-transform="translate(-0.5,-0.5)" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>[stylename] = 'paths'</Filter>
-    <LineSymbolizer stroke-linecap="round" stroke-linejoin="round" stroke="#706c5f" stroke-width="1" stroke-opacity="0.5" geometry-transform="translate(-0.5,-0.5)" />
-  </Rule>
-</Style>
-<Layer name="RoadsLine"
+<Layer name="paths"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    <StyleName>roads-shadows15</StyleName>
-    <StyleName>roads-highlight15</StyleName>
-    <StyleName>roads-cowpaths15</StyleName>
-    <StyleName>roads-cowpaths15/extra15</StyleName>
-    <StyleName>roads-paths15</StyleName>
-    <StyleName>roads-roads15</StyleName>
-    <StyleName>roads-shadows16</StyleName>
-    <StyleName>roads-highlight16</StyleName>
-    <StyleName>roads-cowpaths16</StyleName>
-    <StyleName>roads-cowpaths16/extra16</StyleName>
-    <StyleName>roads-paths16</StyleName>
-    <StyleName>roads-roads16</StyleName>
-    <StyleName>roads-shadows17</StyleName>
-    <StyleName>roads-highlight17</StyleName>
-    <StyleName>roads-cowpaths17</StyleName>
-    <StyleName>roads-cowpaths17/extra17</StyleName>
-    <StyleName>roads-paths17</StyleName>
-    <StyleName>roads-roads17</StyleName>
-    <StyleName>roads-shadows18</StyleName>
-    <StyleName>roads-highlight18</StyleName>
-    <StyleName>roads-cowpaths18</StyleName>
-    <StyleName>roads-cowpaths18/extra18</StyleName>
-    <StyleName>roads-paths18</StyleName>
-    <StyleName>roads-roads18</StyleName>
-    <StyleName>roads-shadows19</StyleName>
-    <StyleName>roads-highlight19</StyleName>
-    <StyleName>roads-cowpaths19</StyleName>
-    <StyleName>roads-cowpaths19/extra19</StyleName>
-    <StyleName>roads-paths19</StyleName>
-    <StyleName>roads-roads19</StyleName>
-    <StyleName>roads-shadows20</StyleName>
-    <StyleName>roads-highlight20</StyleName>
-    <StyleName>roads-cowpaths20</StyleName>
-    <StyleName>roads-cowpaths20/extra20</StyleName>
-    <StyleName>roads-paths20</StyleName>
-    <StyleName>roads-roads20</StyleName>
+    <StyleName>paths-pathshadow</StyleName>
+    <StyleName>paths-pathhighlight</StyleName>
+    <StyleName>paths-pathpolygon</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'paths' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="roads-roadpolygon" filter-mode="first">
+  <Rule>
+    <Filter>([STYLENAME] = 'roads')</Filter>
+    <PolygonSymbolizer fill="#979385" fill-opacity="1" />
+  </Rule>
+</Style>
+<Style name="roads-roadhighlight" filter-mode="first">
+  <Rule>
+    <Filter>([STYLENAME] = 'roads')</Filter>
+    <PolygonSymbolizer fill="#ffffff" fill-opacity="0.2" geometry-transform="translate(2,2)" />
+  </Rule>
+</Style>
+<Style name="roads-roadshadow" filter-mode="first">
+    <Filter>([STYLENAME] = 'roads')</Filter>
+  <Rule>
+    <PolygonSymbolizer fill="#706c5f" fill-opacity="0.8" geometry-transform="translate(-2,-2)" />
+  </Rule>
+</Style>
+<Layer name="roads"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>roads-roadshadow</StyleName>
+    <StyleName>roads-roadhighlight</StyleName>
+    <StyleName>roads-roadpolygon</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE stylename = 'roads' AND firstdispl <= 99999999 AND lastdispla >= 99999999  ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="dbname"><![CDATA[rice]]></Parameter>
