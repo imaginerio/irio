@@ -244,20 +244,27 @@ exports.details = function( req, res ){
 		
 	var id = _.reduce( req.params.id.split( "," ), function( memo, i ){ return memo += "'" + i + "',"; }, "ANY(ARRAY[" ).replace( /,$/, "])" ),
 			details = [],
-			q = dev.checkQuery( "SELECT creator, firstowner, owner, occupant, address, firstdispl, lastdispla, globalid FROM basepoint WHERE globalid = " + id + " UNION SELECT creator, firstowner, owner, occupant, address, firstdispl, lastdispla, globalid FROM baseline WHERE globalid = " + id + " UNION SELECT creator, firstowner, owner, occupant, address, firstdispl, lastdispla, globalid FROM basepoly WHERE globalid = " + id, req );
+			q = dev.checkQuery( 
+				`SELECT creator, firstowner, owner, occupant, address, firstdispl, lastdispla, globalid
+				FROM basepoint
+				WHERE globalid = ${id}
+				UNION SELECT creator, firstowner, owner, occupant, address, firstdispl, lastdispla, globalid
+				FROM baseline
+				WHERE globalid = ${id}
+				UNION SELECT creator, firstowner, owner, occupant, address, firstdispl, lastdispla, globalid
+				FROM basepoly
+				WHERE globalid = ${id}`, req );
 	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		if( result.lastdispla == 8888 ) result.lastdispla = 'Present';
-		result.year = result.firstdispl + " - " + result.lastdispla;
-		result = _.objFilter( _.omit( result, [ "globalid", "firstdispl", "lastdispla", ] ), function( value ){
-			return value != null;
+	var query = client.query( q, function (err, result) {;
+		_.each(result.rows, function (r) {
+			if( r.lastdispla == 8888 ) r.lastdispla = 'Present';
+			r.year = r.firstdispl + " - " + r.lastdispla;
+			r = _.objFilter( _.omit( r, [ "globalid", "firstdispl", "lastdispla", ] ), function( value ){
+				return value != null;
+			});
+			details.push( r );
 		});
-		details.push( result );
-	});
-	
-	query.on( 'end', function(){
+		
 		res.send( details );
 		client.end();
 	});
