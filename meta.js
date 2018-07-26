@@ -60,17 +60,40 @@ exports.layers = function( req, res ){
 	var year = req.params.year,
 			arr = [],
 			layers = {},
-			q = dev.checkQuery( "SELECT folder, geo.layer, geo.featuretyp, geo.stylename, layername, fill, stroke, shape FROM ( SELECT layer, featuretyp, stylename FROM baseline WHERE firstdispl <= " + year + " AND lastdispla >= " + year + " GROUP BY layer, featuretyp, stylename  UNION SELECT layer, featuretyp, stylename FROM basepoint WHERE firstdispl <= " + year + " AND lastdispla >= " + year + " GROUP BY layer, featuretyp, stylename  UNION SELECT layer, featuretyp, stylename FROM basepoly WHERE firstdispl <= " + year + " AND lastdispla >= " + year + " GROUP BY layer, featuretyp, stylename ) AS geo INNER JOIN legend AS le ON geo.stylename = le.stylename INNER JOIN layers AS la ON geo.layer = la.layer AND geo.featuretyp = la.featuretyp WHERE geo.featuretyp IS NOT NULL ORDER BY sort", req );
+			q = dev.checkQuery( 
+				`SELECT
+					folder,
+					geo.layer,
+					geo.featuretyp,
+					geo.stylename,
+					layername,
+					fill,
+					stroke,
+					shape
+				FROM (
+					SELECT layer, featuretyp, stylename
+					FROM baseline
+					WHERE firstdispl <= $1 AND lastdispla >= $1
+					GROUP BY layer, featuretyp, stylename
+					UNION SELECT layer, featuretyp, stylename
+					FROM basepoint
+					WHERE firstdispl <= $1 AND lastdispla >= $1
+					GROUP BY layer, featuretyp, stylename
+					UNION SELECT layer, featuretyp, stylename
+					FROM basepoly
+					WHERE firstdispl <= $1 AND lastdispla >= $1
+					GROUP BY layer, featuretyp, stylename 
+				) AS geo
+				INNER JOIN legend AS le
+					ON geo.stylename = le.stylename
+				INNER JOIN layers AS la
+					ON geo.layer = la.layer AND geo.featuretyp = la.featuretyp
+				WHERE geo.featuretyp IS NOT NULL
+				ORDER BY sort`, req );
 	
-	var query = client.query( q );
-
-	query.on( 'row', function( result ){
-		arr.push( result );
-	});
-	
-	query.on( 'end', function(){
-		var styles = _.indexBy(arr, 'stylename');
-		var layers = _.objMap(_.groupBy(arr, 'folder'), function(f) {
+	var query = client.query( q, [year], function (err, arr) {
+		var styles = _.indexBy(arr.rows, 'stylename');
+		var layers = _.objMap(_.groupBy(arr.rows, 'folder'), function(f) {
 			return _.objMap(_.groupBy(f, 'layer'), function (l, name) {
 				let layer = {};
 				if (_.uniq(_.pluck(l, 'stylename')).length === 1) {
