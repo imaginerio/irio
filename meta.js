@@ -232,14 +232,8 @@ exports.plans = function( req, res ){
 	var plans = [],
 			q = dev.checkQuery( "SELECT planyear, planname FROM plannedpoly UNION SELECT planyear, planname FROM plannedline ORDER BY planyear, planname", req );
 	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		plans.push( result );
-	});
-	
-	query.on( 'end', function(){
-		res.send( plans );
+	var query = client.query( q, function (err, plans) {
+		res.send( plans.rows );
 		client.end();
 	});
 }
