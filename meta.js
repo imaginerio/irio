@@ -30,15 +30,23 @@ exports.timeline = function( req, res ){
 	client.connect();
 	
 	var years = [],
-			q = dev.checkQuery( "SELECT * FROM ( SELECT firstdispl AS year FROM basepoint UNION SELECT lastdispla AS year FROM basepoint UNION SELECT firstdispl AS year FROM baseline UNION SELECT lastdispla AS year FROM baseline UNION SELECT firstdispl AS year FROM basepoly UNION SELECT lastdispla AS year FROM basepoly UNION SELECT firstdispl AS year FROM mapsplans UNION SELECT lastdispla AS year FROM mapsplans UNION SELECT firstdispl AS year FROM viewsheds UNION SELECT lastdispla AS year FROM viewsheds ) as q ORDER BY year", req );
+			q = dev.checkQuery( 
+				`SELECT * FROM ( 
+					SELECT firstdispl AS year FROM basepoint
+					UNION SELECT lastdispla AS year FROM basepoint
+					UNION SELECT firstdispl AS year FROM baseline
+					UNION SELECT lastdispla AS year FROM baseline
+					UNION SELECT firstdispl AS year FROM basepoly
+					UNION SELECT lastdispla AS year FROM basepoly
+					UNION SELECT firstdispl AS year FROM mapsplans
+					UNION SELECT lastdispla AS year FROM mapsplans
+					UNION SELECT firstdispl AS year FROM viewsheds
+					UNION SELECT lastdispla AS year FROM viewsheds
+				) as q
+				ORDER BY year`, req );
 	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		years.push( result.year );
-	});
-	
-	query.on( 'end', function(){
+	client.query( q, function (err, result) {
+		years = _.map(result.rows, r => r.year);
 		years.pop();
 		res.send( years );
 		client.end();
