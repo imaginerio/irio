@@ -1,7 +1,6 @@
 var pg = require( 'pg' ),
 		_ = require( 'underscore' ),
 		db = require( './db' ),
-		Airtable = require('airtable'),
 		dev = require( './dev' );
 	
 _.mixin({
@@ -31,15 +30,23 @@ exports.timeline = function( req, res ){
 	client.connect();
 	
 	var years = [],
-			q = dev.checkQuery( "SELECT * FROM ( SELECT firstdispl AS year FROM basepoint UNION SELECT lastdispla AS year FROM basepoint UNION SELECT firstdispl AS year FROM baseline UNION SELECT lastdispla AS year FROM baseline UNION SELECT firstdispl AS year FROM basepoly UNION SELECT lastdispla AS year FROM basepoly UNION SELECT firstdispl AS year FROM mapsplans UNION SELECT lastdispla AS year FROM mapsplans UNION SELECT firstdispl AS year FROM viewsheds UNION SELECT lastdispla AS year FROM viewsheds ) as q ORDER BY year", req );
+			q = dev.checkQuery( 
+				`SELECT * FROM ( 
+					SELECT firstdispl AS year FROM basepoint
+					UNION SELECT lastdispla AS year FROM basepoint
+					UNION SELECT firstdispl AS year FROM baseline
+					UNION SELECT lastdispla AS year FROM baseline
+					UNION SELECT firstdispl AS year FROM basepoly
+					UNION SELECT lastdispla AS year FROM basepoly
+					UNION SELECT firstdispl AS year FROM mapsplans
+					UNION SELECT lastdispla AS year FROM mapsplans
+					UNION SELECT firstdispl AS year FROM viewsheds
+					UNION SELECT lastdispla AS year FROM viewsheds
+				) as q
+				ORDER BY year`, req );
 	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		if( result.year > 0 ) years.push( result.year );
-	});
-	
-	query.on( 'end', function(){
+	client.query( q, function (err, result) {
+		years = _.map(result.rows, r => r.year);
 		years.pop();
 		res.send( years );
 		client.end();
@@ -62,17 +69,25 @@ exports.layers = function( req, res ){
 	});
 	
 	query.on( 'end', function(){
-		_.each( arr, function( val ){
-			if( !layers[ val.folder ] ) layers[ val.folder ] = {};
-			if( !layers[ val.folder ][ val.layer ] ) layers[ val.folder ][ val.layer ] = {};
-			if( !layers[ val.folder ][ val.layer ][ val.layername ] ){
-				layers[ val.folder ][ val.layer ][ val.layername ] = {};
-				layers[ val.folder ][ val.layer ][ val.layername ].id = val.stylename;
-				layers[ val.folder ][ val.layer ][ val.layername ].features = [];
-			}
-			
-			if( val.shape ) layers[ val.folder ][ val.layer ][ val.layername ].style = { fill : val.fill, stroke : val.stroke, shape : val.shape };
-			if( val.featuretyp ) layers[ val.folder ][ val.layer ][ val.layername ].features.push( val.featuretyp );
+		var styles = _.indexBy(arr, 'stylename');
+		var layers = _.objMap(_.groupBy(arr, 'folder'), function(f) {
+			return _.objMap(_.groupBy(f, 'layer'), function (l, name) {
+				let layer = {};
+				if (_.uniq(_.pluck(l, 'stylename')).length === 1) {
+					layer.id = l[0].stylename;
+					layer.features = _.pluck(l, 'featuretyp');
+					layer.style = _.pick(l[0], 'fill', 'stroke', 'shape');
+				} else {
+					layer.features = {};
+					_.each(l, function(f) {
+						layer.features[f.featuretyp] = {
+							id: f.stylename,
+							style: _.pick(f, 'fill', 'stroke', 'shape')
+						};
+					});
+				}
+				return layer;
+			});
 		});
 		
 		res.send( layers );
@@ -87,7 +102,7 @@ exports.raster = function( req, res ){
 	var year = req.params.year,
 			max = req.query.max || year,
 			arr = [],
-			q = dev.checkQuery( "SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM mapsplans WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " UNION SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " ORDER BY layer", req );
+			q = dev.checkQuery( "SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, notes AS credits, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM mapsplans WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " UNION SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, notes AS credits, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " ORDER BY layer", req );
 	
 	var query = client.query( q );
 	
@@ -108,12 +123,13 @@ exports.search = function( req, res ){
 	var year = req.params.year,
 			word = req.params.word,
 			names = {},
-			q = dev.checkQuery( "SELECT array_agg( id ) as gid, namecomple, layer FROM ( SELECT globalid AS id, namecomple, layer FROM basepoint WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, layer FROM baseline WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, layer FROM basepoly WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " ) as q WHERE layer IN (SELECT layer FROM layers GROUP BY layer) GROUP BY namecomple, layer ORDER BY layer LIMIT 5", req );
+			q = dev.checkQuery( "SELECT array_agg( id ) as gid, namecomple, array_agg( file ) AS file, layer, featuretyp FROM ( SELECT globalid AS id, namecomple, NULL AS file, layer, featuretyp FROM basepoint WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer, featuretyp FROM baseline WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer, featuretyp FROM basepoly WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer, NULL AS featuretyp FROM viewsheds WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer, NULL AS featuretyp FROM mapsplans WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + ") as q GROUP BY namecomple, layer, featuretyp ORDER BY layer, featuretyp", req );
 	
 	var query = client.query( q );
 	
 	query.on( 'row', function( result ){
-		names[ result.namecomple ] = { id : result.gid, layer : result.layer };
+		names[ result.namecomple ] = { id : result.gid, layer : result.layer, featuretyp: result.featuretyp };
+		if (result.file[0]) names[ result.namecomple ].file = result.file;
 	});
 	
 	query.on( 'end', function(){
@@ -126,9 +142,8 @@ exports.plans = function( req, res ){
 	var client = new pg.Client( db.conn );
 	client.connect();
 
-	var year = req.params.year,
-			plans = [],
-			q = dev.checkQuery( "SELECT planname, featuretyp FROM (SELECT planyear::int, planname, featuretyp FROM plannedpoly UNION SELECT planyear::int, planname, featuretyp FROM plannedline ORDER BY planyear, planname, featuretyp) AS q WHERE planyear = " + year, req );
+	var plans = [],
+			q = dev.checkQuery( "SELECT planyear, planname FROM plannedpoly UNION SELECT planyear, planname FROM plannedline ORDER BY planyear, planname", req );
 	
 	var query = client.query( q );
 	
@@ -137,14 +152,6 @@ exports.plans = function( req, res ){
 	});
 	
 	query.on( 'end', function(){
-		plans = _.groupBy(plans, 'planname');
-		plans = _.map(plans, function (p, name) {
-			var obj = { name: name };
-			obj.features = _.map(p, function (f) {
-				return f.featuretyp;
-			});
-			return obj;
-		});
 		res.send( plans );
 		client.end();
 	});
@@ -191,17 +198,6 @@ exports.names = function( req, res ){
 	query.on( 'end', function(){
 		res.send( names );
 		client.end();
-	});
-}
-
-exports.memory = function( req, res ){
-	var base = new Airtable({apiKey: db.airtable}).base('appbi7Lmj9ghIaQZp');
-	
-	base('memories').create(req.body, function(err, record) {
-			if (err) { console.error(err); return; }
-			console.log(record.getId());
-			res.status(200);
-			res.send();
 	});
 }
 
