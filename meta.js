@@ -160,18 +160,66 @@ exports.search = function( req, res ){
 	client.connect();
 
 	var year = req.params.year,
-			word = req.params.word,
+			word = `%${req.params.word}%`,
 			names = {},
-			q = dev.checkQuery( "SELECT array_agg( id ) as gid, namecomple, array_agg( file ) AS file, layer, featuretyp FROM ( SELECT globalid AS id, namecomple, NULL AS file, layer, featuretyp FROM basepoint WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer, featuretyp FROM baseline WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple, NULL AS file, layer, featuretyp FROM basepoly WHERE namecomple ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer, NULL AS featuretyp FROM viewsheds WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS ID, title AS namecomple, 'SSID' || globalid AS file, layer, NULL AS featuretyp FROM mapsplans WHERE title ILIKE '%" + word + "%' AND firstdispl <= " + year + " AND lastdispla >= " + year + ") as q GROUP BY namecomple, layer, featuretyp ORDER BY layer, featuretyp", req );
+			q = dev.checkQuery( 
+				`SELECT
+					array_agg( id ) as gid,
+					namecomple,
+					array_agg( file ) AS file,
+					layer,
+					featuretyp
+				FROM (
+					SELECT
+						globalid AS id,
+						namecomple,
+						NULL AS file,
+						layer,
+						featuretyp
+					FROM basepoint
+					WHERE namecomple ILIKE $1 AND firstdispl <= $2 AND lastdispla >= $2
+					UNION SELECT
+						globalid AS id,
+						namecomple,
+						NULL AS file,
+						layer,
+						featuretyp
+					FROM baseline
+					WHERE namecomple ILIKE $1 AND firstdispl <= $2 AND lastdispla >= $2
+					UNION SELECT
+						globalid AS id,
+						namecomple,
+						NULL AS file,
+						layer,
+						featuretyp
+					FROM basepoly
+					WHERE namecomple ILIKE $1 AND firstdispl <= $2 AND lastdispla >= $2
+					UNION SELECT
+						imageid AS ID,
+						title AS namecomple,
+						'SSID' || globalid AS file,
+						layer,
+						NULL AS featuretyp
+					FROM viewsheds
+					WHERE title ILIKE $1 AND firstdispl <= $2 AND lastdispla >= $2
+					UNION SELECT
+						imageid AS ID,
+						title AS namecomple,
+						'SSID' || globalid AS file,
+						layer,
+						NULL AS featuretyp
+					FROM mapsplans
+					WHERE title ILIKE $1 AND firstdispl <= $2 AND lastdispla >= $2
+				) as q
+				GROUP BY namecomple, layer, featuretyp
+				ORDER BY layer, featuretyp`, req );
 	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		names[ result.namecomple ] = { id : result.gid, layer : result.layer, featuretyp: result.featuretyp };
-		if (result.file[0]) names[ result.namecomple ].file = result.file;
-	});
-	
-	query.on( 'end', function(){
+	var query = client.query( q, [word, year], function (err, result) {
+		_.each(result.rows, (r) => {
+			names[ r.namecomple ] = { id : r.gid, layer : r.layer, featuretyp: r.featuretyp };
+			if (r.file[0]) names[ r.namecomple ].file = r.file;
+		});
+
 		res.send( names );
 		client.end();
 	});
