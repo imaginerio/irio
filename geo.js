@@ -13,10 +13,46 @@ exports.probe = function( req, res ){
 			radius = req.params.radius / 1000,
 			layers = req.params.layers,
 			results = [],
-			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, layer FROM ( SELECT globalid AS id, namecomple AS name, layer, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) AS q WHERE layer IN ( SELECT layer FROM layers GROUP BY layer ) AND ST_DWithin( geom, ST_SetSRID( ST_MakePoint( " + coords + " ), 4326 ), " + radius + " ) GROUP BY name, layer ORDER BY layer", req );
+			q = dev.checkQuery( 
+				`SELECT array_agg( id ) AS id, name, layer, featuretyp
+				FROM (
+					SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM baseline
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM basepoly
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM basepoint
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					ORDER BY layer
+				) as q
+				WHERE ST_DWithin( geom, ST_SetSRID( ST_MakePoint( ${coords} ), 4326 ), $2 )
+				GROUP BY name, layer, featuretyp
+				ORDER BY layer, featuretyp`, req );
+	
+	var query = client.query( q, [year, radius], function (err, result) {
+		_.each(result.rows, function (r) {
+			if( layers === undefined || layers.indexOf( r.grouping ) == -1 ) results.push( _.omit( r, 'grouping' ) );
+		});
+
+		res.send( results );
+		client.end();
+	});
+}
+
+exports.box = function( req, res ){
+	var client = new pg.Client( db.conn );
+	client.connect();
+	
+	var year = req.params.year,
+			c1 = req.params.c1,
+			c2 = req.params.c2,
+			layers = req.params.layers,
+			results = [],
+			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, array_agg( file ) AS file, layer, featuretyp FROM ( SELECT globalid AS id, namecomple AS name, layer, featuretyp, NULL AS file, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, NULL AS file, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, NULL AS file, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS id, title AS name, layer, NULL AS featuretyp, 'SSID' || globalid AS file, geom FROM viewsheds WHERE firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) as q WHERE geom && ST_MakeEnvelope( " + c1 + ", " + c2 + ", 4326 ) GROUP BY name, layer, featuretyp ORDER BY layer, featuretyp", req );
 	
 	var query = client.query( q );
-	
 	query.on( 'row', function( result ){
 		if( layers === undefined || layers.indexOf( result.grouping ) == -1 ) results.push( _.omit( result, 'grouping' ) );
 	});
@@ -67,7 +103,7 @@ exports.visual = function( req, res ){
 	
 	var year = req.params.year,
 			max = req.query.max || year,
-			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, title AS description, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year, req );
+			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, title AS description, notes AS credits, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year, req );
 	
 	postgeo.query( q, "geojson", function( data ){
 		res.send( data );
@@ -77,14 +113,12 @@ exports.visual = function( req, res ){
 exports.plan = function( req, res ){
 	postgeo.connect( db.conn );
 	
-	var plan = decodeURI( req.query.name ),
+	var plan = decodeURI( req.params.name ),
 			feature = decodeURI( req.query.feature );
 
 	var q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "'", req );
-	if (feature !== 'undefined') {
-		q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "'", req );
-	}
 
+	console.log(q);
 	postgeo.query( q, "geojson", function( data ){
 		res.send( data );
 	});
