@@ -264,7 +264,7 @@ exports.details = function( req, res ){
 			});
 			details.push( r );
 		});
-		
+
 		res.send( details );
 		client.end();
 	});
@@ -277,13 +277,11 @@ exports.names = function( req, res ){
 			lang = req.params.lang,
 			q = dev.checkQuery( "SELECT LOWER( text ) AS text, name_en, name_pr FROM names", req );
 	
-	var query = client.query( q );
+	var query = client.query( q, function (err, result) {
+		_.each(result.rows, function (r) {
+			names[ r.text ] = r[ "name_" + lang ];
+		});
 	
-	query.on( 'row', function( result ){
-		names[ result.text ] = result[ "name_" + lang ];
-	});
-	
-	query.on( 'end', function(){
 		res.send( names );
 		client.end();
 	});
