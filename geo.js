@@ -178,17 +178,36 @@ exports.visual = function( req, res ){
 	});
 }
 
-exports.plan = function( req, res ){
-	postgeo.connect( db.conn );
-	
-	var plan = decodeURI( req.params.name ),
-			feature = decodeURI( req.query.feature );
+exports.plan = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
 
-	var q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "'", req );
+	var plan = decodeURI(req.params.name);
 
-	console.log(q);
-	postgeo.query( q, "geojson", function( data ){
-		res.send( data );
+	var q = dev.checkQuery(
+		`SELECT
+			globalid AS id,
+			namecomple AS name,
+			geom
+		FROM plannedline
+		WHERE planname = $1
+		UNION SELECT
+			globalid AS id,
+			namecomple AS name,
+			geom
+		FROM plannedpoly
+		WHERE planname = $1`, req);
+
+	client.query(q, [plan], function (err, result) {
+		if (result.rows.length) {
+			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+				res.send(data);
+				client.end();
+			});
+		} else {
+			res.send([]);
+			client.end();
+		}
 	});
 }
 
