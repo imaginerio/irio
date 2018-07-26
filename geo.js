@@ -91,11 +91,11 @@ exports.box = function (req, res) {
 					WHERE firstdispl <= $1 AND lastdispla >= $1
 					ORDER BY layer
 				) as q
-				WHERE geom && ST_MakeEnvelope( $2, $3, 4326 )
+				WHERE geom && ST_MakeEnvelope( ${c1}, ${c2}, 4326 )
 				GROUP BY name, layer, featuretyp
 				ORDER BY layer, featuretyp`, req);
 
-	var query = client.query(q, [year, c1, c2], function (err, results) {
+	var query = client.query(q, [year], function (err, result) {
 		var results = sendSearchResults(result, layers);
 		res.send(results);
 		client.end();
