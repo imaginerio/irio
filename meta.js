@@ -125,16 +125,32 @@ exports.raster = function( req, res ){
 	var year = req.params.year,
 			max = req.query.max || year,
 			arr = [],
-			q = dev.checkQuery( "SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, notes AS credits, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM mapsplans WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " UNION SELECT imageid AS id, 'SSID' || globalid AS file, firstdispl AS date, creator, title AS description, notes AS credits, layer, ST_AsText(ST_Envelope(geom)) AS bbox FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year + " ORDER BY layer", req );
+			q = dev.checkQuery( 
+				`SELECT
+					imageid AS id,
+					'SSID' || globalid AS file,
+					firstdispl AS date,
+					creator,
+					title AS description,
+					notes AS credits,
+					layer,
+					ST_AsText(ST_Envelope(geom)) AS bbox
+				FROM mapsplans
+				WHERE firstdispl <= $1 AND lastdispla >= $2
+				UNION SELECT
+					imageid AS id,
+					'SSID' || globalid AS file,
+					firstdispl AS date,
+					creator,
+					title AS description,
+					notes AS credits,
+					layer, ST_AsText(ST_Envelope(geom)) AS bbox
+				FROM viewsheds
+				WHERE firstdispl <= $1 AND lastdispla >= $2
+				ORDER BY layer`, req );
 	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		arr.push( result );
-	});
-	
-	query.on( 'end', function(){
-		res.send( arr );
+	var query = client.query( q, [max, year], function (err, arr) {
+		res.send( arr.rows );
 		client.end();
 	});
 }
