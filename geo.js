@@ -229,14 +229,26 @@ exports.plan = function (req, res) {
 	});
 }
 
-exports.feature = function( req, res ){
-	postgeo.connect( db.conn );
-	
+exports.feature = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
+
 	var year = req.params.year,
-			id = req.params.id,
-			q = dev.checkQuery( "SELECT ST_AsGeoJSON( geom ) AS geometry FROM ( SELECT geom FROM baseline WHERE featuretyp = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT geom FROM basepoly WHERE featuretyp = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT geom FROM basepoint WHERE featuretyp = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " ) AS q", req );
-	
-	postgeo.query( q, "geojson", function( data ){
-		res.send( data );
-	});
+		id = req.params.id,
+		q = dev.checkQuery(
+			`SELECT geom FROM baseline WHERE featuretyp = $1 AND firstdispl <= $2 AND lastdispla >= $2
+			UNION SELECT geom FROM basepoly WHERE featuretyp = $1 AND firstdispl <= $2 AND lastdispla >= $2
+			UNION SELECT geom FROM basepoint WHERE featuretyp = $1 AND firstdispl <= $2 AND lastdispla >= $2`, req);
+
+			client.query(q, [id, year], function (err, result) {
+				if (result.rows.length) {
+					dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+						res.send(data);
+						client.end();
+					});
+				} else {
+					res.send([]);
+					client.end();
+				}
+			});
 }
