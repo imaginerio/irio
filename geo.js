@@ -31,7 +31,7 @@ exports.probe = function( req, res ){
 				GROUP BY name, layer, featuretyp
 				ORDER BY layer, featuretyp`, req );
 	
-	var query = client.query( q, [year, radius], function (err, result) {
+	client.query( q, [year, radius], function (err, result) {
 		_.each(result.rows, function (r) {
 			if( layers === undefined || layers.indexOf( r.grouping ) == -1 ) results.push( _.omit( r, 'grouping' ) );
 		});

@@ -91,7 +91,7 @@ exports.layers = function( req, res ){
 				WHERE geo.featuretyp IS NOT NULL
 				ORDER BY sort`, req );
 	
-	var query = client.query( q, [year], function (err, arr) {
+	client.query( q, [year], function (err, arr) {
 		var styles = _.indexBy(arr.rows, 'stylename');
 		var layers = _.objMap(_.groupBy(arr.rows, 'folder'), function(f) {
 			return _.objMap(_.groupBy(f, 'layer'), function (l, name) {
@@ -149,7 +149,7 @@ exports.raster = function( req, res ){
 				WHERE firstdispl <= $1 AND lastdispla >= $2
 				ORDER BY layer`, req );
 	
-	var query = client.query( q, [max, year], function (err, arr) {
+	client.query( q, [max, year], function (err, arr) {
 		res.send( arr.rows );
 		client.end();
 	});
@@ -214,7 +214,7 @@ exports.search = function( req, res ){
 				GROUP BY namecomple, layer, featuretyp
 				ORDER BY layer, featuretyp`, req );
 	
-	var query = client.query( q, [word, year], function (err, result) {
+	client.query( q, [word, year], function (err, result) {
 		_.each(result.rows, (r) => {
 			names[ r.namecomple ] = { id : r.gid, layer : r.layer, featuretyp: r.featuretyp };
 			if (r.file[0]) names[ r.namecomple ].file = r.file;
@@ -232,7 +232,7 @@ exports.plans = function( req, res ){
 	var plans = [],
 			q = dev.checkQuery( "SELECT planyear, planname FROM plannedpoly UNION SELECT planyear, planname FROM plannedline ORDER BY planyear, planname", req );
 	
-	var query = client.query( q, function (err, plans) {
+	client.query( q, function (err, plans) {
 		res.send( plans.rows );
 		client.end();
 	});
@@ -255,7 +255,7 @@ exports.details = function( req, res ){
 				FROM basepoly
 				WHERE globalid = ${id}`, req );
 	
-	var query = client.query( q, function (err, result) {;
+	client.query( q, function (err, result) {;
 		_.each(result.rows, function (r) {
 			if( r.lastdispla == 8888 ) r.lastdispla = 'Present';
 			r.year = r.firstdispl + " - " + r.lastdispla;
@@ -277,7 +277,7 @@ exports.names = function( req, res ){
 			lang = req.params.lang,
 			q = dev.checkQuery( "SELECT LOWER( text ) AS text, name_en, name_pr FROM names", req );
 	
-	var query = client.query( q, function (err, result) {
+	client.query( q, function (err, result) {
 		_.each(result.rows, function (r) {
 			names[ r.text ] = r[ "name_" + lang ];
 		});
@@ -295,7 +295,7 @@ exports.collector = function( req, res ){
 	var geo = JSON.parse(data.polygon);
 	var q = "INSERT INTO viewsheds_dev ( layer, globalid, creator, repository, firstdispl, lastdispla, imageid, title, geom, uploaddate, latitude, longitude ) VALUES ( 'viewsheds', " + data.id + ", '" + data.creator + "', '" + data.repository + "', " + data.firstdisplay + ", " + data.lastdisplay + ", '" + data.ssid + "', '" + data.title + "', ST_GeomFromGeoJSON('" + JSON.stringify( geo.geometry ) + "'), 9999, " + data.lat + ", " + data.lon + ")";
 	
-	var query = client.query( q );
+	client.query( q );
 	query.on( 'end', function(){
 		res.status( 200 ).send( 'Successfully added ' + data.id );
 	});
