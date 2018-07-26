@@ -166,15 +166,33 @@ exports.draw = function (req, res) {
 	});
 }
 
-exports.visual = function( req, res ){
-	postgeo.connect( db.conn );
-	
+exports.visual = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
+
 	var year = req.params.year,
-			max = req.query.max || year,
-			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, title AS description, notes AS credits, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year, req );
-	
-	postgeo.query( q, "geojson", function( data ){
-		res.send( data );
+		max = req.query.max || year,
+		q = dev.checkQuery(
+			`SELECT
+				imageid AS id,
+				firstdispl || ' - ' || lastdispla AS date,
+				creator,
+				title AS description,
+				notes AS credits,
+				ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) AS geom
+			FROM viewsheds
+			WHERE firstdispl <= $1 AND lastdispla >= $2`, req);
+
+	client.query(q, [max, year], function (err, result) {
+		if (result.rows.length) {
+			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+				res.send(data);
+				client.end();
+			});
+		} else {
+			res.send([]);
+			client.end();
+		}
 	});
 }
 
