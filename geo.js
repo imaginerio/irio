@@ -1,20 +1,19 @@
-var pg = require( 'pg' ),
-	postgeo = require( 'postgeo' ),
-	_ = require( 'underscore' ),
-	db = require( './db' ),
-	dev = require( './dev' );
+var pg = require('pg'),
+	postgeo = require('postgeo'),
+	_ = require('underscore'),
+	db = require('./db'),
+	dev = require('./dev');
 
-exports.probe = function( req, res ){
-	var client = new pg.Client( db.conn );
+exports.probe = function (req, res) {
+	var client = new pg.Client(db.conn);
 	client.connect();
-	
+
 	var year = req.params.year,
-			coords = req.params.coords,
-			radius = req.params.radius / 1000,
-			layers = req.params.layers,
-			results = [],
-			q = dev.checkQuery( 
-				`SELECT array_agg( id ) AS id, name, layer, featuretyp
+		coords = req.params.coords,
+		radius = req.params.radius / 1000,
+		layers = req.params.layers,
+		q = dev.checkQuery(
+			`SELECT array_agg( id ) AS id, name, layer, featuretyp
 				FROM (
 					SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
 					FROM baseline
@@ -29,38 +28,87 @@ exports.probe = function( req, res ){
 				) as q
 				WHERE ST_DWithin( geom, ST_SetSRID( ST_MakePoint( ${coords} ), 4326 ), $2 )
 				GROUP BY name, layer, featuretyp
-				ORDER BY layer, featuretyp`, req );
-	
-	client.query( q, [year, radius], function (err, result) {
-		_.each(result.rows, function (r) {
-			if( layers === undefined || layers.indexOf( r.grouping ) == -1 ) results.push( _.omit( r, 'grouping' ) );
-		});
+				ORDER BY layer, featuretyp`, req);
 
-		res.send( results );
+	client.query(q, [year, radius], function (err, result) {
+		var results = sendSearchResults(result, layers);
+		res.send(results);
 		client.end();
 	});
 }
 
-exports.box = function( req, res ){
-	var client = new pg.Client( db.conn );
+exports.box = function (req, res) {
+	var client = new pg.Client(db.conn);
 	client.connect();
-	
+
 	var year = req.params.year,
-			c1 = req.params.c1,
-			c2 = req.params.c2,
-			layers = req.params.layers,
-			results = [],
-			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, array_agg( file ) AS file, layer, featuretyp FROM ( SELECT globalid AS id, namecomple AS name, layer, featuretyp, NULL AS file, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, NULL AS file, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, NULL AS file, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT imageid AS id, title AS name, layer, NULL AS featuretyp, 'SSID' || globalid AS file, geom FROM viewsheds WHERE firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) as q WHERE geom && ST_MakeEnvelope( " + c1 + ", " + c2 + ", 4326 ) GROUP BY name, layer, featuretyp ORDER BY layer, featuretyp", req );
-	
-	var query = client.query( q );
-	query.on( 'row', function( result ){
-		if( layers === undefined || layers.indexOf( result.grouping ) == -1 ) results.push( _.omit( result, 'grouping' ) );
-	});
-	
-	query.on( 'end', function(){
-		res.send( results );
+		c1 = req.params.c1,
+		c2 = req.params.c2,
+		layers = req.params.layers,
+		q = dev.checkQuery(
+			`SELECT
+					array_agg( id ) AS id,
+					name,
+					array_agg( file ) AS file,
+					layer,
+					featuretyp
+				FROM (
+					SELECT
+						globalid AS id,
+						namecomple AS name,
+						layer,
+						featuretyp,
+						NULL AS file,
+						geom
+					FROM baseline
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT
+						globalid AS id,
+						namecomple AS name,
+						layer,
+						featuretyp,
+						NULL AS file,
+						geom
+					FROM basepoly
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT
+						globalid AS id,
+						namecomple AS name,
+						layer,
+						featuretyp,
+						NULL AS file,
+						geom
+					FROM basepoint
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT
+						imageid AS id,
+						title AS name,
+						layer,
+						NULL AS featuretyp,
+						'SSID' || globalid AS file,
+						geom
+					FROM viewsheds
+					WHERE firstdispl <= $1 AND lastdispla >= $1
+					ORDER BY layer
+				) as q
+				WHERE geom && ST_MakeEnvelope( $2, $3, 4326 )
+				GROUP BY name, layer, featuretyp
+				ORDER BY layer, featuretyp`, req);
+
+	var query = client.query(q, [year, c1, c2], function (err, results) {
+		var results = sendSearchResults(result, layers);
+		res.send(results);
 		client.end();
 	});
+}
+
+function sendSearchResults(result, layers) {
+	var results = [];
+	_.each(result.rows, function (r) {
+		if (layers === undefined || layers.indexOf(r.grouping) == -1) results.push(_.omit(r, 'grouping'));
+	});
+
+	return results;
 }
 
 exports.draw = function( req, res ){
