@@ -13,15 +13,29 @@ exports.probe = function( req, res ){
 			radius = req.params.radius / 1000,
 			layers = req.params.layers,
 			results = [],
-			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, layer, featuretyp FROM ( SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) as q WHERE ST_DWithin( geom, ST_SetSRID( ST_MakePoint( " + coords + " ), 4326 ), " + radius + " ) GROUP BY name, layer, featuretyp ORDER BY layer, featuretyp", req );
+			q = dev.checkQuery( 
+				`SELECT array_agg( id ) AS id, name, layer, featuretyp
+				FROM (
+					SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM baseline
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM basepoly
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM basepoint
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					ORDER BY layer
+				) as q
+				WHERE ST_DWithin( geom, ST_SetSRID( ST_MakePoint( ${coords} ), 4326 ), $2 )
+				GROUP BY name, layer, featuretyp
+				ORDER BY layer, featuretyp`, req );
 	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		if( layers === undefined || layers.indexOf( result.grouping ) == -1 ) results.push( _.omit( result, 'grouping' ) );
-	});
-	
-	query.on( 'end', function(){
+	var query = client.query( q, [year, radius], function (err, result) {
+		_.each(result.rows, function (r) {
+			if( layers === undefined || layers.indexOf( r.grouping ) == -1 ) results.push( _.omit( r, 'grouping' ) );
+		});
+
 		res.send( results );
 		client.end();
 	});
