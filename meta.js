@@ -287,6 +287,17 @@ exports.names = function (req, res) {
 	});
 }
 
+exports.memory = function( req, res ){
+	var base = new Airtable({apiKey: db.airtable}).base('appbi7Lmj9ghIaQZp');
+	
+	base('memories').create(req.body, function(err, record) {
+			if (err) { console.error(err); return; }
+			console.log(record.getId());
+			res.status(200);
+			res.send();
+	});
+}
+
 exports.collector = function (req, res) {
 	var client = new pg.Client(db.conn);
 	client.connect();
