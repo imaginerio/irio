@@ -74,7 +74,7 @@ exports.draw = function (req, res) {
 					var coords = data.features[0].geometry.coordinates.join(" "),
 						id = data.features[0].properties.id;
 
-					client.query(`SELECT $1 AS id, ST_Buffer( ST_GeomFromText( 'POINT(${coords})' ), 0.0005 ) AS geometry`, [id], function (err, result2) {
+					client.query(`SELECT $1 AS id, ST_Buffer( ST_GeomFromText( 'POINT(${coords})' ), 0.0001 ) AS geometry`, [id], function (err, result2) {
 						dbgeo.parse(result2.rows, { outputFormat: 'geojson' }, function(error, data) {
 							res.send(data);
 							client.end();
