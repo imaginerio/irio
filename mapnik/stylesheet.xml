@@ -1177,6 +1177,33 @@
     <PolygonSymbolizer fill="#db8e68" />
     <LineSymbolizer stroke-width="0.5" stroke="#75391c" stroke-opacity="0.5" />
   </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <Filter>[stylename] = 'art'</Filter>
+    <PolygonSymbolizer fill="#e78ac3" />
+    <LineSymbolizer stroke-width="2" stroke="#75391c" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>[stylename] = 'art'</Filter>
+    <PolygonSymbolizer fill="#e78ac3" />
+    <LineSymbolizer stroke-width="1.5" stroke="#75391c" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>[stylename] = 'art'</Filter>
+    <PolygonSymbolizer fill="#e78ac3" />
+    <LineSymbolizer stroke-width="1" stroke="#75391c" stroke-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>[stylename] = 'art'</Filter>
+    <PolygonSymbolizer fill="#e78ac3" />
+    <LineSymbolizer stroke-width="0.5" stroke="#75391c" stroke-opacity="0.5" />
+  </Rule>
 </Style>
 <Style name="buildings-shadow20" filter-mode="first" image-filters="agg-stack-blur(5,5)">
   <Rule>
