@@ -110,6 +110,21 @@
     <PolygonSymbolizer fill="#fff8d4" fill-opacity="0.5" />
   </Rule>
 </Style>
+<Style name="openspaces-cfill16" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>[stylename] = 'pavement'</Filter>
+    <PolygonSymbolizer fill="#fffae3" fill-opacity="0.5" />
+  </Rule>
+</Style>
+<Style name="openspaces-cfill15" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>[stylename] = 'pavement'</Filter>
+    <PolygonSymbolizer fill="#fffae3" fill-opacity="0.5" />
+  </Rule>
+</Style>
 <Style name="openspaces-bpattern16" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
