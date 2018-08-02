@@ -6,7 +6,7 @@ var tilelive = require('tilelive'),
     AWS = require( 'aws-sdk' ),
     cache,
     db = require( '../db' ),
-    cloudfront = "http://d1nxja8ugt29ju.cloudfront.net/",
+    cloudfront = "https://d1nxja8ugt29ju.cloudfront.net/",
     hillshade = [
       { year : 1960, file : '/data/raster/Hillshade_1960_8888_New.tif' },
       { year : 1924, file : '/data/raster/Hillshade_1924_1959_New.tif' },
