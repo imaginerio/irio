@@ -72,9 +72,9 @@ exports.draw = function (req, res) {
 			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
 				if (data.features[0].geometry.type == "Point") {
 					var coords = data.features[0].geometry.coordinates.join(" "),
-						id = data.features[0].properties.id;
+						id = data.features[0].properties.name;
 
-					client.query(`SELECT $1 AS id, ST_Buffer( ST_GeomFromText( 'POINT(${coords})' ), 0.0001 ) AS geometry`, [id], function (err, result2) {
+					client.query(`SELECT '${id}' AS id, ST_Buffer( ST_GeomFromText( 'POINT(${coords})' ), 0.0001 ) AS geom`, function (err, result2) {
 						dbgeo.parse(result2.rows, { outputFormat: 'geojson' }, function(error, data) {
 							res.send(data);
 							client.end();
