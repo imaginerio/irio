@@ -1,6 +1,5 @@
 apt-get update -q && apt-get install -y \
     wget \
-    git \
     curl \
     software-properties-common \
     python-software-properties
@@ -65,7 +64,6 @@ ufw allow 'Nginx Full'
 # Request certificate
 # certbot --nginx -d <domain name>
 
-git clone https://github.com/axismaps/irio.git
 cd irio
 npm install
 cd import
