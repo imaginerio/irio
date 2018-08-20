@@ -29,11 +29,11 @@ source bootstrap.sh
 make
 make install
 
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-apt-get install -y nodejs build-essential libcairo2-dev libjpeg-dev libgif-dev
-
 cd ../
-apt-install -y npm
+
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+apt-get install -y nodejs build-essential libcairo2-dev libjpeg-dev libgif-dev npm
+
 git clone https://github.com/mapnik/node-mapnik.git
 cd node-mapnik
 npm install
