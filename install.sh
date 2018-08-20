@@ -32,7 +32,8 @@ make install
 cd ../
 
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-apt-get install -y nodejs build-essential libcairo2-dev libjpeg-dev libgif-dev npm
+apt-get install -y nodejs build-essential libcairo2-dev libjpeg-dev libgif-dev
+apt-get install -y npm
 
 git clone https://github.com/mapnik/node-mapnik.git
 cd node-mapnik
