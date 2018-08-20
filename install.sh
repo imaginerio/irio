@@ -30,9 +30,13 @@ make install
 
 cd ../
 
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-apt-get install -y nodejs build-essential libcairo2-dev libjpeg-dev libgif-dev
-apt-get install -y npm
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install --lts=carbon
+
+apt-get install -y build-essential libcairo2-dev libjpeg-dev libgif-dev
 
 git clone https://github.com/mapnik/node-mapnik.git
 cd node-mapnik
@@ -63,11 +67,6 @@ ufw allow 'Nginx Full'
 
 # Request certificate
 # certbot --nginx -d <domain name>
-
-cd irio
-npm install
-cd import
-npm install -g
 
 # Setting up database user
 su postgres
