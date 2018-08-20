@@ -58,7 +58,7 @@ systemctl restart nginx
 
 add-apt-repository ppa:certbot/certbot
 apt-get update
-apt-get install python-certbot-nginx
+apt-get install -y python-certbot-nginx
 ufw allow 'Nginx Full'
 
 # Request certificate
