@@ -40,7 +40,7 @@ npm install
 
 cd ../
 npm install -g pm2
-apt-get install nginx
+apt-get install -y nginx
 
 vim /etc/nginx/sites-available/default
 # location / {
