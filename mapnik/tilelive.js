@@ -1,5 +1,5 @@
 var tilelive = require('tilelive'),
-    fs = require( 'graceful-fs' ),
+    fs = require( 'fs' ),
     xml = require( 'libxmljs' ),
     _ = require( 'underscore' ),
     pg = require( 'pg' ),

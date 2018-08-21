@@ -13,7 +13,6 @@
     "dbgeo": "^1.1.0",
     "express": "^4.16.3",
     "generic-pool": "*",
-    "graceful-fs": "3.0.2",
     "images": "^2.1.11",
     "inquirer": "^0.8.5",
     "libxmljs": "*",
