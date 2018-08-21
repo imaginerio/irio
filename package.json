@@ -1,6 +1,6 @@
 {
-  "name": "institute-rice",
-  "description": "imagineRio Interactive Map",
+  "name": "irio",
+  "description": "iRio Server Setup",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
