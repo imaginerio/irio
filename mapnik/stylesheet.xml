@@ -30,7 +30,7 @@
        <Parameter name="table"><![CDATA[( SELECT 1 AS gid, ST_MakeEnvelope(35.4142,33.8297,35.593,33.9509) AS geom ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -51,7 +51,7 @@
        <Parameter name="table"><![CDATA[( SELECT gid, ST_Buffer( geom, 0.005 ) AS geom FROM basepoly WHERE layer = 'LandPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -73,7 +73,7 @@
        <Parameter name="table"><![CDATA[( SELECT gid, ST_Buffer( geom, 0.0125 ) AS geom FROM basepoly WHERE layer = 'LandPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -95,7 +95,7 @@
        <Parameter name="table"><![CDATA[( SELECT gid, ST_Buffer( geom, 0.025 ) AS geom FROM basepoly WHERE layer = 'LandPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -121,7 +121,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'LandPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -164,7 +164,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'LandCoverPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -184,7 +184,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND stylename = 'parking' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -205,7 +205,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND stylename = 'square' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -226,7 +226,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND stylename = 'garden' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -247,7 +247,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND stylename = 'park' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -268,7 +268,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND featuretyp = 'Cemetery' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -354,7 +354,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'NeighborhoodsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -375,7 +375,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'WaterFeaturesPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -425,7 +425,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'LandLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -501,7 +501,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'WatersLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1227,7 +1227,7 @@
        <Parameter name="table"><![CDATA[( SELECT *, CASE WHEN stylename = 'freeway' THEN 0 WHEN stylename = 'primary' THEN 1 WHEN stylename = 'secondary' THEN 2 WHEN stylename = 'tertiary' THEN 3 WHEN stylename = 'residential' THEN 4 WHEN stylename = 'pedestrian' THEN 5 END AS sort FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ORDER BY sort DESC ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1414,7 +1414,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'UtilitiesLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1517,7 +1517,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1551,7 +1551,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1585,7 +1585,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1619,7 +1619,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'OpenSpacesPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1715,7 +1715,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'RoadsLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1761,7 +1761,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM baseline WHERE layer = 'WatersLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1807,7 +1807,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'LandLine' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1853,7 +1853,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'NeighborhoodsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1949,7 +1949,7 @@
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'BuildingsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
@@ -1969,7 +1969,7 @@
        <Parameter name="table"><![CDATA[( SELECT 1 AS gid, ST_MakeEnvelope(35.4142,33.8297,35.593,33.9509) AS geom ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[rice]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
        <Parameter name="host"><![CDATA[localhost]]></Parameter>
        <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
        <Parameter name="password"><![CDATA[99999999]]></Parameter>
