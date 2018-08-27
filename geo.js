@@ -119,15 +119,10 @@ exports.visual = function (req, res) {
 			WHERE firstdispl <= $1 AND lastdispla >= $2`, req);
 
 	client.query(q, [max, year], function (err, result) {
-		if (result.rows.length) {
-			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
-				res.send(data);
-				client.end();
-			});
-		} else {
-			res.send([]);
+		dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+			res.send(data);
 			client.end();
-		}
+		});
 	});
 }
 
