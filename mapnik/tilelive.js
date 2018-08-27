@@ -6,7 +6,7 @@ var tilelive = require('tilelive'),
     AWS = require( 'aws-sdk' ),
     cache,
     db = require( '../db' ),
-    cloudfront = "https://diverselevant.s3.amazonaws.com/";
+    cloudfront = "https://s3-us-west-2.amazonaws.com/cache.diverselevant/";
 
 require('tilelive-mapnik').registerProtocols(tilelive);
 
@@ -164,7 +164,7 @@ function saveTile( req, tile, res ){
 	
   if( cache === false || dev === true ) return false;
   var png = "cache/png/" + req.params.year + "/" + req.params.layer + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png";
-  var p = { Bucket : 'diverselevant', Key : png, Body : tile, ACL : 'public-read' };
+  var p = { Bucket : 'cache.diverselevant', Key : png, Body : tile, ACL : 'public-read' };
   s3.putObject( p, function( err, data ){
     if( err ){
       console.log( err );
