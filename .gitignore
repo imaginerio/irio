@@ -2,7 +2,7 @@ node_modules/*
 import/node_modules/*
 tiles*
 mapnik/cache/*
-/mapnik/cache
+mapnik/cache
 raster/*
 /raster
 Build/*

@@ -1,5 +1,5 @@
 var tilelive = require('tilelive'),
-    fs = require( 'graceful-fs' ),
+    fs = require( 'fs' ),
     xml = require( 'libxmljs' ),
     _ = require( 'underscore' ),
     pg = require( 'pg' ),
@@ -21,21 +21,13 @@ client.connect();
 exports.tiles = function( req, res ){
   var dev = req.headers.host.match( /-dev/ ) ? true : false;
   cache = req.query.cache == undefined;
-  var png = "cache/png/" + req.params.year + "/" + req.params.layer + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png",
-      exists = false,
-      query = client.query( "SELECT id FROM cache WHERE year = " + req.params.year + " AND layer = '" + req.params.layer + "' AND z = " + req.params.z + " AND x = " + req.params.x + " AND y = " + req.params.y );
+  var png = "cache/png/" + req.params.year + "/" + req.params.layer + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png";
   
-  query.on( 'row', function( result ){
-		exists = result.id;
-  });
-  
-  query.on( 'error', function( error ){
-    console.log( error.detail );
-    res.status( 500 ).send( 'Error checking cache' );
-  });
-	
-	query.on( 'end', function(){
-    if( exists && dev === false && cache === true ){
+  client.query( "SELECT id FROM cache WHERE year = $1 AND layer = $2 AND z = $3 AND x = $4 AND y = $5", [req.params.year, req.params.layer, req.params.z, req.params.x, req.params.y], function (err, result) {
+    if (err) {
+      console.log( err );
+      res.status( 500 ).send( 'Error checking cache' );
+    } else if( result.rowCount && dev === false && cache === true ){
       res.redirect( cloudfront + png );
     }
     else{
@@ -47,21 +39,13 @@ exports.tiles = function( req, res ){
 exports.raster = function( req, res ){
   var dev = req.headers.host.match( /-dev/ ) ? true : false;
   cache = req.query.cache == undefined;
-  var png = "cache/png/null/" + req.params.id + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png",
-      exists = false,
-      query = client.query( "SELECT id FROM cache WHERE year IS NULL AND layer = '" + req.params.id + "' AND z = " + req.params.z + " AND x = " + req.params.x + " AND y = " + req.params.y );
-      
-  query.on( 'row', function( result ){
-		exists = result.id;
-  });
+  var png = "cache/png/null/" + req.params.id + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png";
   
-  query.on( 'error', function( error ){
-    console.log( error.detail );
-    res.status( 500 ).send( 'Error checking cache' );
-  });
-	
-	query.on( 'end', function(){
-    if( exists && cache === true ){
+  client.query( "SELECT id FROM cache WHERE year IS NULL AND layer = $1 AND z = $2 AND x = $3 AND y = $4", [req.params.id, req.params.z, req.params.x, req.params.y], function (err, result) {
+    if (err) {
+      console.log( err );
+      res.status( 500 ).send( 'Error checking cache' );
+    } else if( result.rowCount && cache === true ){
       res.redirect( cloudfront + png );
     }
     else{
@@ -185,12 +169,9 @@ function saveTile( req, tile, res ){
     if( err ){
       console.log( err );
     } else {
-      var query = client.query( "INSERT INTO cache ( year, layer, z, x, y ) VALUES ( " + req.params.year + ", '" + req.params.layer + "', " + req.params.z + ", " + req.params.x + ", " + req.params.y + " )" );
-      query.on( 'end', function(){
-        console.log( png + " uploaded to S3" );
-      });
-      query.on( 'error', function( error ){
-        console.log( error.detail );
+      client.query( "INSERT INTO cache ( year, layer, z, x, y ) VALUES ( $1, $2, $3, $4, $5 )", [req.params.year, req.params.layer, req.params.z, req.params.x, req.params.y], function (err, result) {
+        if (err) console.log(err);
+        else console.log( png + " uploaded to S3" );
       });
     }
   });

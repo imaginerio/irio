@@ -1,103 +1,189 @@
-var pg = require( 'pg' ),
-	postgeo = require( 'postgeo' ),
-	_ = require( 'underscore' ),
-	db = require( './db' ),
-	dev = require( './dev' );
+var pg = require('pg'),
+	dbgeo = require('dbgeo'),
+	_ = require('underscore'),
+	db = require('./db'),
+	dev = require('./dev');
 
-exports.probe = function( req, res ){
-	var client = new pg.Client( db.conn );
+exports.probe = function (req, res) {
+	var client = new pg.Client(db.conn);
 	client.connect();
-	
+
 	var year = req.params.year,
-			coords = req.params.coords,
-			radius = req.params.radius / 1000,
-			layers = req.params.layers,
-			results = [],
-			q = dev.checkQuery( "SELECT array_agg( id ) AS id, name, layer FROM ( SELECT globalid AS id, namecomple AS name, layer, geom FROM baseline WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoly WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT globalid AS id, namecomple AS name, layer, geom FROM basepoint WHERE namecomple IS NOT NULL AND firstdispl <= " + year + " AND lastdispla >= " + year + " ORDER BY layer ) as q WHERE ST_DWithin( geom, ST_SetSRID( ST_MakePoint( " + coords + " ), 4326 ), " + radius + " ) GROUP BY name, layer ORDER BY layer", req );
-	
-	var query = client.query( q );
-	
-	query.on( 'row', function( result ){
-		if( layers === undefined || layers.indexOf( result.grouping ) == -1 ) results.push( _.omit( result, 'grouping' ) );
-	});
-	
-	query.on( 'end', function(){
-		res.send( results );
+		coords = req.params.coords,
+		radius = req.params.radius / 1000,
+		layers = req.params.layers,
+		q = dev.checkQuery(
+			`SELECT array_agg( id ) AS id, name, layer, featuretyp
+				FROM (
+					SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM baseline
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM basepoly
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					UNION SELECT globalid AS id, namecomple AS name, layer, featuretyp, geom
+					FROM basepoint
+					WHERE namecomple IS NOT NULL AND firstdispl <= $1 AND lastdispla >= $1
+					ORDER BY layer
+				) as q
+				WHERE ST_DWithin( geom, ST_SetSRID( ST_MakePoint( ${coords} ), 4326 ), $2 )
+				GROUP BY name, layer, featuretyp
+				ORDER BY layer, featuretyp`, req);
+
+	client.query(q, [year, radius], function (err, result) {
+		var results = sendSearchResults(result, layers);
+		res.send(results);
 		client.end();
 	});
 }
 
-exports.draw = function( req, res ){
-	postgeo.connect( db.conn );
-	
+function sendSearchResults(result, layers) {
+	var results = [];
+	_.each(result.rows, function (r) {
+		if (layers === undefined || layers.indexOf(r.grouping) == -1) results.push(_.omit(r, 'grouping'));
+	});
+
+	return results;
+}
+
+exports.draw = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
+
 	var id = req.params.id,
-	    year = req.params.year,
-	    q = dev.checkQuery( "SELECT name, ST_AsGeoJSON( geom ) AS geometry FROM ( SELECT name, ST_Union( geom ) AS geom FROM ( SELECT namecomple AS name, geom FROM baseline WHERE namecomple = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT namecomple AS name, geom FROM basepoly WHERE namecomple = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT namecomple AS name, geom FROM basepoint WHERE namecomple = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " ) AS q GROUP BY name ) AS q1", req );
-	
-	postgeo.query( q, "geojson", function( data ){
-		if( data.features[ 0 ].geometry.type == "Point" ){
-			var coords = data.features[ 0 ].geometry.coordinates.join( " " ),
-				  id = data.features[ 0 ].properties.id;
-			
-			postgeo.query( "SELECT '" + id + "' AS id, ST_AsGeoJSON( ST_Buffer( ST_GeomFromText( 'POINT(" + coords + ")' ), 0.0005 ) ) AS geometry", "geojson", function( data ){
-				res.send( data );
+		year = req.params.year,
+		q = dev.checkQuery(
+			`SELECT name, ST_Union( geom ) AS geom
+				FROM (
+					SELECT namecomple AS name, geom
+					FROM baseline
+					WHERE namecomple = $1 AND firstdispl <= $2 AND lastdispla >= $2
+					UNION SELECT namecomple AS name, geom
+					FROM basepoly
+					WHERE namecomple = $1 AND firstdispl <= $2 AND lastdispla >= $2
+					UNION SELECT namecomple AS name, geom
+					FROM basepoint
+					WHERE namecomple = $1 AND firstdispl <= $2 AND lastdispla >= $2
+				) AS q
+				GROUP BY name`, req);
+
+	client.query(q, [id, year], function (err, result) {
+		if (result.rows.length) {
+			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+				if (data.features[0].geometry.type == "Point") {
+					var coords = data.features[0].geometry.coordinates.join(" "),
+						id = data.features[0].properties.name;
+
+					client.query(`SELECT '${id}' AS id, ST_Buffer( ST_GeomFromText( 'POINT(${coords})' ), 0.0001 ) AS geom`, function (err, result2) {
+						dbgeo.parse(result2.rows, { outputFormat: 'geojson' }, function(error, data) {
+							res.send(data);
+							client.end();
+						});
+					});
+				} else if (data.features[0].geometry.type == "MultiLineString") {
+					client.query("SELECT ST_AsGeoJSON( ST_LineMerge( ST_GeomFromGeoJSON( $1 ) ) ) AS geom", [JSON.stringify(data.features[0].geometry)], function (err, result) {
+						_.each(result.rows, function (r) {
+							data.features[0].geometry = JSON.parse(r.geom);
+						});
+						
+						res.send(data);
+						client.end();
+					});
+				} else {
+					res.send(data);
+					client.end();
+				}
 			});
-		}
-		else if( data.features[ 0 ].geometry.type == "MultiLineString" ){
-  		var client = new pg.Client( db.conn );
-      client.connect();
-      
-      var query = client.query( "SELECT ST_AsGeoJSON( ST_LineMerge( ST_GeomFromGeoJSON( '" + JSON.stringify( data.features[ 0 ].geometry ) + "' ) ) ) AS geom" );
-    		
-      query.on( 'row', function( results ){
-        data.features[ 0 ].geometry = JSON.parse( results.geom );
-      });
-    		
-      query.on( 'end', function(){
-        res.send( data );
-      });
 		} else {
-      res.send( data );
+			res.send([]);
+			client.end();
 		}
 	});
 }
 
-exports.visual = function( req, res ){
-	postgeo.connect( db.conn );
-	
+exports.visual = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
+
 	var year = req.params.year,
-			max = req.query.max || year,
-			q = dev.checkQuery( "SELECT imageid AS id, firstdispl || ' - ' || lastdispla AS date, creator, title AS description, notes AS credits, ST_AsGeoJSON( ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) ) AS geometry FROM viewsheds WHERE firstdispl <= " + max + " AND lastdispla >= " + year, req );
-	
-	postgeo.query( q, "geojson", function( data ){
-		res.send( data );
+		max = req.query.max || year,
+		q = dev.checkQuery(
+			`SELECT
+				imageid AS id,
+				firstdispl || ' - ' || lastdispla AS date,
+				creator,
+				title AS description,
+				notes AS credits,
+				ST_Collect( ST_SetSRID( ST_MakePoint( longitude, latitude ), 4326 ), geom ) AS geom
+			FROM viewsheds
+			WHERE firstdispl <= $1 AND lastdispla >= $2`, req);
+
+	client.query(q, [max, year], function (err, result) {
+		if (result.rows.length) {
+			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+				res.send(data);
+				client.end();
+			});
+		} else {
+			res.send([]);
+			client.end();
+		}
 	});
 }
 
-exports.plan = function( req, res ){
-	postgeo.connect( db.conn );
-	
-	var plan = decodeURI( req.query.name ),
-			feature = decodeURI( req.query.feature );
+exports.plan = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
 
-	var q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "'", req );
-	if (feature !== 'undefined') {
-		q = dev.checkQuery( "SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedline WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "' UNION SELECT globalid AS id, namecomple AS name, ST_AsGeoJSON( geom ) AS geometry FROM plannedpoly WHERE planname = '" + plan + "' AND featuretyp = '" + feature + "'", req );
-	}
+	var plan = decodeURI(req.params.name);
 
-	postgeo.query( q, "geojson", function( data ){
-		res.send( data );
+	var q = dev.checkQuery(
+		`SELECT
+			globalid AS id,
+			namecomple AS name,
+			geom
+		FROM plannedline
+		WHERE planname = $1
+		UNION SELECT
+			globalid AS id,
+			namecomple AS name,
+			geom
+		FROM plannedpoly
+		WHERE planname = $1`, req);
+
+	client.query(q, [plan], function (err, result) {
+		if (result.rows.length) {
+			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+				res.send(data);
+				client.end();
+			});
+		} else {
+			res.send([]);
+			client.end();
+		}
 	});
 }
 
-exports.feature = function( req, res ){
-	postgeo.connect( db.conn );
-	
+exports.feature = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
+
 	var year = req.params.year,
-			id = req.params.id,
-			q = dev.checkQuery( "SELECT ST_AsGeoJSON( geom ) AS geometry FROM ( SELECT geom FROM baseline WHERE featuretyp = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT geom FROM basepoly WHERE featuretyp = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " UNION SELECT geom FROM basepoint WHERE featuretyp = '" + id + "' AND firstdispl <= " + year + " AND lastdispla >= " + year + " ) AS q", req );
-	
-	postgeo.query( q, "geojson", function( data ){
-		res.send( data );
-	});
+		id = req.params.id,
+		q = dev.checkQuery(
+			`SELECT geom FROM baseline WHERE featuretyp = $1 AND firstdispl <= $2 AND lastdispla >= $2
+			UNION SELECT geom FROM basepoly WHERE featuretyp = $1 AND firstdispl <= $2 AND lastdispla >= $2
+			UNION SELECT geom FROM basepoint WHERE featuretyp = $1 AND firstdispl <= $2 AND lastdispla >= $2`, req);
+
+			client.query(q, [id, year], function (err, result) {
+				if (result.rows.length) {
+					dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+						res.send(data);
+						client.end();
+					});
+				} else {
+					res.send([]);
+					client.end();
+				}
+			});
 }
