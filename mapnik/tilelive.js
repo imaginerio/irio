@@ -6,7 +6,7 @@ var tilelive = require('tilelive'),
     AWS = require( 'aws-sdk' ),
     cache,
     db = require( '../db' ),
-    cloudfront = "https://instituterice.s3.amazonaws.com/",
+    cloudfront = "http://cache.instituterice.s3-website-us-west-2.amazonaws.com/",
     hillshade = [ 
     	{ year : 1960, file : '/data/raster/1960_8888.tif' },
     	{ year : 1924, file : '/data/raster/1924_1959.tif' },
@@ -179,7 +179,7 @@ function saveTile( req, tile, res ){
 	
   if( cache === false || dev === true ) return false;
   var png = "cache/png/" + req.params.year + "/" + req.params.layer + "/" + req.params.z + "/" + req.params.x + "/" + req.params.y + ".png";
-  var p = { Bucket : 'instituterice', Key : png, Body : tile, ACL : 'public-read' };
+  var p = { Bucket : 'cache.instituterice', Key : png, Body : tile, ACL : 'public-read' };
   s3.putObject( p, function( err, data ){
     if( err ){
       console.log( err );
