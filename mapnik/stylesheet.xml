@@ -110,19 +110,22 @@
     <PolygonSymbolizer fill="#fff8d4" fill-opacity="0.5" />
   </Rule>
 </Style>
-<Style name="openspaces-cfill16" filter-mode="first" image-filters="agg-stack-blur(1,1)">
+<Style name="openspaces-pathpolygon" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>[stylename] = 'pavement'</Filter>
-    <PolygonSymbolizer fill="#fffae3" fill-opacity="0.5" />
+    <PolygonSymbolizer fill="#fff8d4" fill-opacity="1" />
   </Rule>
 </Style>
-<Style name="openspaces-cfill15" filter-mode="first">
+<Style name="openspaces-pathhighlight" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>[stylename] = 'pavement'</Filter>
-    <PolygonSymbolizer fill="#fffae3" fill-opacity="0.5" />
+    <PolygonSymbolizer fill="#ffffff" fill-opacity="0.2" geometry-transform="translate(1.5,1.5)" />
+  </Rule>
+</Style>
+<Style name="openspaces-pathshadow" filter-mode="first">
+  <Rule>
+    <Filter>[stylename] = 'pavement'</Filter>
+    <PolygonSymbolizer fill="#706c5f" fill-opacity="0.4" geometry-transform="translate(-1.5,-1.5)" />
   </Rule>
 </Style>
 <Style name="openspaces-bpattern16" filter-mode="first">
@@ -349,6 +352,9 @@
     <StyleName>openspaces-bpattern16</StyleName>
     <StyleName>openspaces-cfill15</StyleName>
     <StyleName>openspaces-cfill16</StyleName>
+    <StyleName>openspaces-pathhighlight</StyleName>
+    <StyleName>openspaces-pathshadow</StyleName>
+    <StyleName>openspaces-pathpolygon</StyleName>
     <StyleName>openspaces-wfill15</StyleName>
     <StyleName>openspaces-wpattern15</StyleName>
     <StyleName>openspaces-wfill16</StyleName>
