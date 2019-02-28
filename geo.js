@@ -1,6 +1,7 @@
 var pg = require('pg'),
 	dbgeo = require('dbgeo'),
 	_ = require('underscore'),
+	stringify = require('csv-stringify'),
 	db = require('./db'),
 	dev = require('./dev');
 
@@ -181,4 +182,26 @@ exports.feature = function (req, res) {
 					client.end();
 				}
 			});
+}
+
+exports.download = function (req, res) {
+	var client = new pg.Client(db.conn);
+	client.connect();
+
+	var q = `SELECT * FROM ${req.params.layer}${req.query.dev == 'true' ? '_dev' : ''}`;
+	client.query(q, function (err, result) {
+		if (req.query.format === 'csv') {
+			var input = _.map(result.rows, r => _.omit(r, 'geom'));
+			stringify(input, function (err, output) {
+				res.set({"Content-Disposition":"attachment; filename=\"viewsheds.csv\""});
+				res.send(output);
+			})
+		} else {
+			dbgeo.parse(result.rows, { outputFormat: 'geojson' }, function(error, data) {
+				res.set({"Content-Disposition":"attachment; filename=\"viewsheds.geojson\""});
+				res.send(data);
+			});
+		}
+		client.end();
+	});
 }

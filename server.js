@@ -85,6 +85,7 @@ app.get( '/feature/:year/:id', geo.feature );
 app.get( '/export/:lang/:year/:layer/:raster/:bounds/', download.exportMap );
 app.get( '/tiles/:year/:layer/:z/:x/:y.*', tilelive.tiles );
 app.get( '/raster/:id/:z/:x/:y.*', tilelive.raster );
+app.get( '/download/:layer', oidc.ensureAuthenticated(), geo.download );
 app.post( '/memory', meta.memory );
 app.post( '/collector', oidc.ensureAuthenticated(), meta.collector );
 
