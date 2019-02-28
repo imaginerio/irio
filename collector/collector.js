@@ -106,7 +106,7 @@ for (let i = 0; i < requiredInputs.length; i++) {
 
 // Submit Event
 document.querySelector('.sidebar--submit').addEventListener('click', function (e) {
-  //e.preventDefault();
+  e.preventDefault();
 
   let formEl = document.querySelector('.sidebar--form');
 
