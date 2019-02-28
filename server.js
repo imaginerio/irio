@@ -1,4 +1,5 @@
 var express = require( 'express' ),
+    path = require('path'),
 	  bodyParser = require( 'body-parser' ),
 	  http = require( 'http' ),
     meta = require( './meta' ),
@@ -48,6 +49,8 @@ app.use( function(err, req, res, next) {
 
 //app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({limit: 10000000}));
+
+app.use('/collector', express.static(path.join(__dirname, 'collector')));
 
 app.get( '/timeline', meta.timeline );
 app.get( '/layers/:year', meta.layers );
