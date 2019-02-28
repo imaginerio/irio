@@ -66,8 +66,7 @@ app.use( function(err, req, res, next) {
   res.send(err);
 });
 
-//app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({limit: 10000000}));
+app.use(bodyParser.json());
 
 app.use('/collector', oidc.ensureAuthenticated(), express.static(path.join(__dirname, 'collector')));
 

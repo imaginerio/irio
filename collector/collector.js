@@ -112,6 +112,7 @@ document.querySelector('.sidebar--submit').addEventListener('click', function (e
 
   let request = new XMLHttpRequest();
   request.open('POST', metaserver + '/collector/', true);
+  request.setRequestHeader("Content-Type", "application/json");
 
   // Success
   request.addEventListener('load', function () {
