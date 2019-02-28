@@ -7,7 +7,26 @@ var express = require( 'express' ),
     download = require( './mapnik/export' ),
     tilelive = require( './mapnik/tilelive' );
 
+const session = require('express-session');
+const { ExpressOIDC } = require('@okta/oidc-middleware');
+
 var app = express();
+
+app.use(session({
+  secret: 'beirut diverse levant',
+  resave: true,
+  saveUninitialized: false
+}));
+
+const oidc = new ExpressOIDC({
+  issuer: 'https://dev-389509.oktapreview.com/oauth2/default',
+  client_id: process.env.client_id,
+  client_secret: process.env.client_secret,
+  redirect_uri: `https://beirut.axismaps.io/authorization-code/callback`,
+  scope: 'openid profile'
+});
+
+app.use(oidc.router);
 
 app.use( function( req, res, next )
 {
@@ -44,13 +63,13 @@ app.use( function(err, req, res, next) {
 
 app.use( function(err, req, res, next) {
   res.status(500);
-  res.render('error', { error: err });
+  res.send(err);
 });
 
 //app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({limit: 10000000}));
 
-app.use('/collector', express.static(path.join(__dirname, 'collector')));
+app.use('/collector', oidc.ensureAuthenticated(), express.static(path.join(__dirname, 'collector')));
 
 app.get( '/timeline', meta.timeline );
 app.get( '/layers/:year', meta.layers );
@@ -68,7 +87,12 @@ app.get( '/export/:lang/:year/:layer/:raster/:bounds/', download.exportMap );
 app.get( '/tiles/:year/:layer/:z/:x/:y.*', tilelive.tiles );
 app.get( '/raster/:id/:z/:x/:y.*', tilelive.raster );
 app.post( '/memory', meta.memory );
-app.post('/collector', meta.collector );
+app.post( '/collector', oidc.ensureAuthenticated(), meta.collector );
 
-app.listen( 8080 );
-console.log( 'Listening on port 8080...' );
+oidc.on('ready', () => {
+  app.listen(8080, () => console.log(`Started!`));
+});
+
+oidc.on('error', err => {
+  console.log('Unable to configure ExpressOIDC', err);
+});

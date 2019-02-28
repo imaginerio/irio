@@ -11,3 +11,4 @@ mapnik/aws-config.json
 import/db.js
 db.js
 *.log
+.env
