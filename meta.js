@@ -311,13 +311,14 @@ exports.collector = function (req, res) {
 
 	var data = req.body;
 	var geo = JSON.parse(data.polygon);
-	var q = "INSERT INTO viewsheds_dev ( layer, globalid, creator, repository, firstdispl, lastdispla, imageid, title, geom, uploaddate, latitude, longitude ) VALUES ( 'viewsheds', " + data.id + ", '" + data.creator + "', '" + data.repository + "', " + data.firstdisplay + ", " + data.lastdisplay + ", '" + data.ssid + "', '" + data.title + "', ST_GeomFromGeoJSON('" + JSON.stringify(geo.geometry) + "'), 9999, " + data.lat + ", " + data.lon + ")";
+	var q = "INSERT INTO viewsheds_dev ( layer, globalid, creator, repository, firstdispl, lastdispla, imageid, title, geom, uploaddate, latitude, longitude ) VALUES ( 'viewsheds', " + data.globalid + ", '" + data.creator + "', '" + data.repository + "', " + data.firstdispl + ", " + data.lastdispla + ", '" + data.imageid + "', '" + data.title + "', ST_GeomFromGeoJSON('" + JSON.stringify(geo.geometry) + "'), 9999, " + data.latitude + ", " + data.longitude + ")";
 
-	client.query(q);
-	query.on('end', function () {
-		res.status(200).send('Successfully added ' + data.id);
-	});
-	query.on('error', function (err) {
-		res.status(500).send(err);
+	client.query(q, function (err, result) {
+		if (err) {
+			res.status(500).send(err);
+		} else {
+			res.status(200).send('Successfully added ' + data.globalid);
+		}
+		client.end()
 	});
 }
