@@ -1421,6 +1421,102 @@
     </Datasource>
   </Layer>
 
+<Style name="buildings-icon" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([stylename] = 'buildingsstar')</Filter>
+    <MarkersSymbolizer file="../../../img/religious-jewish-building-28.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([stylename] = 'buildingsstar')</Filter>
+    <MarkersSymbolizer file="../../../img/religious-jewish-building-22.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([stylename] = 'buildingscrescent')</Filter>
+    <MarkersSymbolizer file="../../../img/religious-muslim-building-24.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([stylename] = 'buildingscrescent')</Filter>
+    <MarkersSymbolizer file="../../../img/religious-muslim-building-18.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([stylename] = 'buildingscross')</Filter>
+    <MarkersSymbolizer file="../../../img/religious-christian-building-24.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([stylename] = 'buildingscross')</Filter>
+    <MarkersSymbolizer file="../../../img/religious-christian-building-20.png" />
+  </Rule>
+</Style>
+<Style name="buildings-building" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <Filter>([stylename] = 'infrastructure')</Filter>
+    <PolygonSymbolizer fill="#c4bebf" />
+    <LineSymbolizer stroke="#9b9596" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#e5bac2" />
+    <LineSymbolizer stroke="#b06a7d" />
+  </Rule>
+</Style>
+<Style name="buildings-shadow" filter-mode="first" image-filters="agg-stack-blur(2,2)">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <PolygonSymbolizer geometry-transform="translate(5,5)" fill="#82885d" fill-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <PolygonSymbolizer geometry-transform="translate(4,4)" fill="#82885d" fill-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <PolygonSymbolizer geometry-transform="translate(3,3)" fill="#82885d" fill-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <PolygonSymbolizer geometry-transform="translate(2,2)" fill="#82885d" fill-opacity="0.5" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <PolygonSymbolizer geometry-transform="translate(1.5,1.5)" fill="#82885d" fill-opacity="0.5" />
+  </Rule>
+  <Rule>
+    
+    <PolygonSymbolizer fill="#82885d" fill-opacity="0.5" />
+  </Rule>
+</Style>
+<Layer name="BuildingsPoly"
+  srs="+proj=longlat +datum=WGS84 +no_defs">
+    <StyleName>buildings-shadow</StyleName>
+    <StyleName>buildings-building</StyleName>
+    <StyleName>buildings-icon</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'BuildingsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
+       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
+       <Parameter name="password"><![CDATA[99999999]]></Parameter>
+    </Datasource>
+  </Layer>
+
 <Style name="cemetery-labels" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
@@ -1851,102 +1947,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'NeighborhoodsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
-       <Parameter name="key_field"><![CDATA[gid]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
-       <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
-       <Parameter name="host"><![CDATA[localhost]]></Parameter>
-       <Parameter name="user"><![CDATA[pg_query_user]]></Parameter>
-       <Parameter name="password"><![CDATA[99999999]]></Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="buildings-icon" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-building-28.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([stylename] = 'buildingsstar')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-jewish-building-22.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([stylename] = 'buildingscrescent')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-muslim-building-24.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([stylename] = 'buildingscrescent')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-muslim-building-18.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([stylename] = 'buildingscross')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-christian-building-24.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([stylename] = 'buildingscross')</Filter>
-    <MarkersSymbolizer file="../../../img/religious-christian-building-20.png" />
-  </Rule>
-</Style>
-<Style name="buildings-building" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <Filter>([stylename] = 'infrastructure')</Filter>
-    <PolygonSymbolizer fill="#c4bebf" />
-    <LineSymbolizer stroke="#9b9596" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <PolygonSymbolizer fill="#e5bac2" />
-    <LineSymbolizer stroke="#b06a7d" />
-  </Rule>
-</Style>
-<Style name="buildings-shadow" filter-mode="first" image-filters="agg-stack-blur(2,2)">
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <MinScaleDenominator>1500</MinScaleDenominator>
-    <PolygonSymbolizer geometry-transform="translate(5,5)" fill="#82885d" fill-opacity="0.5" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <PolygonSymbolizer geometry-transform="translate(4,4)" fill="#82885d" fill-opacity="0.5" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <PolygonSymbolizer geometry-transform="translate(3,3)" fill="#82885d" fill-opacity="0.5" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <PolygonSymbolizer geometry-transform="translate(2,2)" fill="#82885d" fill-opacity="0.5" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <PolygonSymbolizer geometry-transform="translate(1.5,1.5)" fill="#82885d" fill-opacity="0.5" />
-  </Rule>
-  <Rule>
-    
-    <PolygonSymbolizer fill="#82885d" fill-opacity="0.5" />
-  </Rule>
-</Style>
-<Layer name="BuildingsPoly"
-  srs="+proj=longlat +datum=WGS84 +no_defs">
-    <StyleName>buildings-shadow</StyleName>
-    <StyleName>buildings-building</StyleName>
-    <StyleName>buildings-icon</StyleName>
-    <Datasource>
-       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT * FROM basepoly WHERE layer = 'BuildingsPoly' AND firstdispl <= 99999999 AND lastdispla >= 99999999 ) AS q]]></Parameter>
        <Parameter name="key_field"><![CDATA[gid]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
        <Parameter name="dbname"><![CDATA[beirut]]></Parameter>
