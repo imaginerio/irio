@@ -1,5 +1,6 @@
 var pg = require('pg'),
 	_ = require('underscore'),
+	Airtable = require('airtable'),
 	db = require('./db'),
 	dev = require('./dev');
 
