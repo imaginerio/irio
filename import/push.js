@@ -34,7 +34,7 @@ function getTables( client, callback ){
 function copyDev( client, tables ){
 	var q = _.reduce( tables, function( q, t ){
 		var name = t.replace( /_dev$/, '' );
-		  return q += "ALTER TABLE " + name + " RENAME TO " + name + "_old; ";
+		  return q += "DROP TABLE IF EXISTS " + name + "_old; ALTER TABLE " + name + " RENAME TO " + name + "_old; ";
 	}, "BEGIN; " ) + "COMMIT;";
 	  
 	console.log( chalk.green( "Backing up" ) + " live tables" );
@@ -78,7 +78,7 @@ function copyDev( client, tables ){
 function copyLive( client, tables ){
 	var q = _.reduce( tables, function( q, t ){
 		var name = t.replace( /_dev$/, '' );
-		  return q += "ALTER TABLE " + t + " RENAME TO " + name + "_old; ";
+		  return q += "DROP TABLE IF EXISTS " + name + "_old; ALTER TABLE " + t + " RENAME TO " + name + "_old; ";
 	}, "BEGIN; " ) + "COMMIT;";
 	  
 	console.log( chalk.green( "Backing up" ) + " live tables" );
