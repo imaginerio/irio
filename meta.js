@@ -127,8 +127,9 @@ exports.raster = function (req, res) {
 		arr = [],
 		q = dev.checkQuery(
 			`SELECT
-					imageid AS id,
-					'SSID' || globalid AS file,
+					globalid AS id,
+					'SSID' || imageid AS file,
+					repository,
 					firstdispl AS date,
 					creator,
 					title AS description,
@@ -138,8 +139,9 @@ exports.raster = function (req, res) {
 				FROM mapsplans
 				WHERE firstdispl <= $1 AND lastdispla >= $2
 				UNION SELECT
-					imageid AS id,
-					'SSID' || globalid AS file,
+					globalid AS id,
+					'SSID' || imageid AS file,
+					repository,
 					firstdispl AS date,
 					creator,
 					title AS description,
@@ -195,17 +197,19 @@ exports.search = function (req, res) {
 					FROM basepoly
 					WHERE namecomple ILIKE $1 AND firstdispl <= $2 AND lastdispla >= $2
 					UNION SELECT
-						imageid AS ID,
+						globalid AS id,
+						'SSID' || imageid AS file,
+						repository,
 						title AS namecomple,
-						'SSID' || globalid AS file,
 						layer,
 						NULL AS featuretyp
 					FROM viewsheds
 					WHERE title ILIKE $1 AND firstdispl <= $2 AND lastdispla >= $2
 					UNION SELECT
-						imageid AS ID,
+						globalid AS id,
+						'SSID' || imageid AS file,
+						repository,
 						title AS namecomple,
-						'SSID' || globalid AS file,
 						layer,
 						NULL AS featuretyp
 					FROM mapsplans
