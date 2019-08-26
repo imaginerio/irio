@@ -1,5 +1,6 @@
 var pg = require('pg'),
 	_ = require('underscore'),
+	Airtable = require('airtable'),
 	db = require('./db'),
 	dev = require('./dev');
 
@@ -127,8 +128,9 @@ exports.raster = function (req, res) {
 		arr = [],
 		q = dev.checkQuery(
 			`SELECT
-					imageid AS id,
-					'SSID' || globalid AS file,
+					globalid AS id,
+					'SSID' || imageid AS file,
+					repository,
 					firstdispl AS date,
 					creator,
 					title AS description,
@@ -138,8 +140,9 @@ exports.raster = function (req, res) {
 				FROM mapsplans
 				WHERE firstdispl <= $1 AND lastdispla >= $2
 				UNION SELECT
-					imageid AS id,
-					'SSID' || globalid AS file,
+					globalid AS id,
+					'SSID' || imageid AS file,
+					repository,
 					firstdispl AS date,
 					creator,
 					title AS description,
@@ -197,7 +200,7 @@ exports.search = function (req, res) {
 					UNION SELECT
 						imageid AS ID,
 						title AS namecomple,
-						'SSID' || globalid AS file,
+						globalid AS file,
 						layer,
 						NULL AS featuretyp
 					FROM viewsheds
@@ -205,7 +208,7 @@ exports.search = function (req, res) {
 					UNION SELECT
 						imageid AS ID,
 						title AS namecomple,
-						'SSID' || globalid AS file,
+						globalid AS file,
 						layer,
 						NULL AS featuretyp
 					FROM mapsplans
