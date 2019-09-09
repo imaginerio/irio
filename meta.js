@@ -199,7 +199,6 @@ exports.search = function (req, res) {
 					UNION SELECT
 						globalid AS id,
 						'SSID' || imageid AS file,
-						repository,
 						title AS namecomple,
 						layer,
 						NULL AS featuretyp
@@ -208,7 +207,6 @@ exports.search = function (req, res) {
 					UNION SELECT
 						globalid AS id,
 						'SSID' || imageid AS file,
-						repository,
 						title AS namecomple,
 						layer,
 						NULL AS featuretyp
