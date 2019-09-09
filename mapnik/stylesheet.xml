@@ -723,13 +723,13 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([firstdispl] &lt;= 1918) and ([lastdispla] &gt;= 1918)</Filter>
-    <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="11" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="11" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([firstdispl] &lt;= 1918) and ([lastdispla] &gt;= 1918)</Filter>
-    <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="9" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold Italic" size="9" fill="#465a64" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="WaterLine_labels"
@@ -1290,13 +1290,13 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     
-    <TextSymbolizer face-name="DejaVu Sans Bold" size="11" fill="#f4f1ea" halo-fill="rgba(0, 0, 0, 0.4)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold" size="11" fill="#f4f1ea" halo-fill="rgba(0, 0, 0, 0.4)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     
-    <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#60543c" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#60543c" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="1" placement="line" character-spacing="1" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>750</MaxScaleDenominator>
@@ -1315,12 +1315,12 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <TextSymbolizer face-name="DejaVu Sans Bold" size="11" fill="#f4f1ea" halo-fill="rgba(0, 0, 0, 0.4)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold" size="11" fill="#f4f1ea" halo-fill="rgba(0, 0, 0, 0.4)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#f4f1ea" halo-fill="rgba(0, 0, 0, 0.4)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#f4f1ea" halo-fill="rgba(0, 0, 0, 0.4)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="RoadsLine_labels"
@@ -1360,13 +1360,13 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>[stylename] = 'railroads'</Filter>
-    <TextSymbolizer face-name="DejaVu Sans Bold" size="11" fill="#60543c" halo-fill="rgba(255, 255, 255, 0.6)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold" size="11" fill="#60543c" halo-fill="rgba(255, 255, 255, 0.6)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>[stylename] = 'railroads'</Filter>
-    <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#60543c" halo-fill="rgba(255, 255, 255, 0.6)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[nameshort]]]></TextSymbolizer>
+    <TextSymbolizer face-name="DejaVu Sans Bold" size="9" fill="#60543c" halo-fill="rgba(255, 255, 255, 0.6)" halo-radius="1" placement="line" character-spacing="1" text-transform="uppercase" avoid-edges="true" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="UtilitiesLine_labels"
