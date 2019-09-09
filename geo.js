@@ -85,7 +85,7 @@ exports.box = function (req, res) {
 						title AS name,
 						layer,
 						NULL AS featuretyp,
-						'SSID' || globalid AS file,
+						'SSID' || imageid AS file,
 						geom
 					FROM viewsheds
 					WHERE firstdispl <= $1 AND lastdispla >= $1
