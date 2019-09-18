@@ -310,10 +310,10 @@ exports.collector = function (req, res) {
 	client.connect();
 
 	var data = req.body;
-	var geo = JSON.parse(data.polygon);
-	geo.crs = { type: 'name', properties: { name: 'EPSG:4326' } };
+	var geo = JSON.parse(data.polygon);	
 
-	var q = "INSERT INTO viewsheds_dev ( layer, globalid, creator, repository, firstdispl, lastdispla, imageid, title, geom, uploaddate, latitude, longitude ) VALUES ( 'viewsheds', " + data.globalid + ", '" + data.creator + "', '" + data.repository + "', " + data.firstdispl + ", " + data.lastdispla + ", '" + data.imageid + "', '" + data.title + "', ST_GeomFromGeoJSON('" + JSON.stringify(geo.geometry) + "'), 9999, " + data.latitude + ", " + data.longitude + ")";
+	var q = "INSERT INTO viewsheds_dev ( layer, globalid, creator, repository, firstdispl, lastdispla, imageid, title, geom, uploaddate, latitude, longitude ) VALUES ( 'viewsheds', " + data.globalid + ", '" + data.creator + "', '" + data.repository + "', " + data.firstdispl + ", " + data.lastdispla + ", '" + data.imageid + "', '" + data.title + "', ST_SetSRID(ST_GeomFromGeoJSON('" + JSON.stringify(geo.geometry) + "'), 4326), 9999, " + data.latitude + ", " + data.longitude + ")";
+
 
 	client.query(q, function (err, result) {
 		if (err) {
