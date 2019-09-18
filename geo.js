@@ -110,7 +110,7 @@ exports.visual = function (req, res) {
 		max = req.query.max || year,
 		q = dev.checkQuery(
 			`SELECT
-				imageid AS id,
+				globalid AS id,
 				firstdispl || ' - ' || lastdispla AS date,
 				creator,
 				title AS description,
